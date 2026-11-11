@@ -61,7 +61,7 @@ class CodeRules(unittest.TestCase):
         self.assertEqual(kinds("/** Replays the executions in komar/obs.jsonl. */ class T {}"), set())
 
     def test_string_with_slashes_is_not_a_comment(self):
-        self.assertIn("reads mode input", kinds('String u = "http://x"; Path p = Path.of("komar/obs.komar");'))
+        self.assertIn("reads mode input", kinds('String u = "http://x"; Path p = Path.of("komar/obs.view");'))
 
     def test_absolute_path(self):
         self.assertIn("absolute path", kinds('new File("/home/user/results/x.json")'))

@@ -22,12 +22,12 @@ as bash would, and rejects them when bash would not read them literally (operato
 comments, line breaks):
 
     komar run komar/NAME.yaml -o komar/NAME.jsonl -- <the scenario command of the case>
-    sed -n 'A,Bp' komar/NAME.komar
-    cut -c A-B komar/NAME.komar        (also A- and -B)
+    sed -n 'A,Bp' komar/NAME.view
+    cut -c A-B komar/NAME.view        (also A- and -B)
 
 The scenario command is the one the harness checks and the debugger runs: `eval_command(case,
 "scenario")`, with the project's `eval_maven_args`. `write` and `edit` may also write `komar/NAME.yaml`.
-`komar run` writes the dump `NAME.jsonl` and, next to it, the compact view `NAME.komar`: the hits per
+`komar run` writes the dump `NAME.jsonl` and, next to it, the compact view `NAME.view`: the hits per
 probe, warnings, the end record and each distinct execution of a probed method once, as a tree with its
 collaborator calls and its outcome.
 

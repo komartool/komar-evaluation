@@ -13,7 +13,7 @@ not part of the result):
 - run the scenario under Komar with the bash tool:
   komar run komar/NAME.yaml -o komar/NAME.jsonl -- {{komar_scenario}}
   A spec with errors is reported before anything starts and does not count as a run.
-- read what was observed with the read tool from komar/NAME.komar, a compact view of the run that
+- read what was observed with the read tool from komar/NAME.view, a compact view of the run that
   komar run writes next to the raw dump komar/NAME.jsonl.
 
 Komar documentation (excerpts):

@@ -5,6 +5,7 @@ The guard check needs node and an installed Pi package (as tests/test_runner.py)
 needs Komar installed (scripts/setup_komar.sh, KEVAL_KOMAR or <KEVAL_TOOLS>/komar) and JDK 21 with
 javac. Missing tools skip the check."""
 import json
+import re
 import os
 import shutil
 import signal
@@ -64,25 +65,25 @@ COMMANDS = [
 
 # commands reading a view: "view" with compact (the komar mode), None without
 VIEW_COMMANDS = [
-    ("sed -n '1,40p' komar/a.komar", "view"),
-    ("sed -n 7p komar/run-2.v1.komar", "view"),
-    ("sed -n \"3,3p\" komar/a.komar", "view"),
-    ("cut -c 1-20000 komar/a.komar", "view"),
-    ("cut -c 20001- komar/a.komar", "view"),
-    ("cut -c -500 komar/a.komar", "view"),
+    ("sed -n '1,40p' komar/a.view", "view"),
+    ("sed -n 7p komar/run-2.v1.view", "view"),
+    ("sed -n \"3,3p\" komar/a.view", "view"),
+    ("cut -c 1-20000 komar/a.view", "view"),
+    ("cut -c 20001- komar/a.view", "view"),
+    ("cut -c -500 komar/a.view", "view"),
     ("sed -n '1,40p' komar/a.jsonl", None),
     ("cut -c 1-100 komar/a.jsonl", None),
-    ("sed -n '1,40p' komar/a.komar komar/b.komar", None),
-    ("sed -n '1,40p' komar/a.komar | head", None),
-    ("sed -n '1,40p' komar/a.komar > x", None),
-    ("sed '1,40p' komar/a.komar", None),
-    ("sed -n '1,40p;w x' komar/a.komar", None),
-    ("sed -n 'e cat /etc/passwd' komar/a.komar", None),
-    ("sed -n '1,40p' komar/../src/A.komar", None),
-    ("sed -n '1,40p' /tmp/a.komar", None),
+    ("sed -n '1,40p' komar/a.view komar/b.view", None),
+    ("sed -n '1,40p' komar/a.view | head", None),
+    ("sed -n '1,40p' komar/a.view > x", None),
+    ("sed '1,40p' komar/a.view", None),
+    ("sed -n '1,40p;w x' komar/a.view", None),
+    ("sed -n 'e cat /etc/passwd' komar/a.view", None),
+    ("sed -n '1,40p' komar/../src/A.view", None),
+    ("sed -n '1,40p' /tmp/a.view", None),
     ("sed -n '1,40p' src/A.java", None),
-    ("cut -f 1 komar/a.komar", None),
-    ("cut -c 1-20 komar/*.komar", None),
+    ("cut -f 1 komar/a.view", None),
+    ("cut -c 1-20 komar/*.view", None),
 ]
 
 
@@ -91,12 +92,12 @@ COMPACT_READS = [
     ("read", "komar/a.jsonl", None, True),
     ("read", "komar/a.JSONL", None, True),
     ("grep", "komar/a.jsonl", None, True),
-    ("read", "komar/a.komar", None, False),
+    ("read", "komar/a.view", None, False),
     ("read", "komar/a.yaml", None, False),
     ("grep", "komar", None, False),
     ("grep", "", None, False),
     ("grep", "", "*.java", False),
-    ("grep", "komar", "*.komar", False),
+    ("grep", "komar", "*.view", False),
     ("grep", "", "!*.xml", False),
     ("grep", "", "*.jsonl", True),
     ("grep", "", "*", True),
@@ -283,7 +284,7 @@ class ModeWiringTest(unittest.TestCase):
         self.assertTrue(komar["task"].startswith(auto["task"][:auto["task"].index("Condition:")] + "Condition: Komar.\n"))
         self.assertIn("at most 3 runs in total.", komar["task"])
         self.assertNotIn("jq", komar["task"])
-        self.assertIn("read tool from komar/NAME.komar", komar["task"])
+        self.assertIn("read tool from komar/NAME.view", komar["task"])
         scenario = K.scenario_text(eval_command(case, "scenario"))
         self.assertIn(f"komar run komar/NAME.yaml -o komar/NAME.jsonl -- {scenario}\n", komar["task"])
 
@@ -357,7 +358,7 @@ class ModeWiringTest(unittest.TestCase):
 
 class EscapeCheckTest(unittest.TestCase):
     def test_view_commands_are_plain_commands_in_the_komar_mode(self):
-        calls = [{"name": "bash", "arguments": {"command": "sed -n '1,40p' komar/a.komar"}}]
+        calls = [{"name": "bash", "arguments": {"command": "sed -n '1,40p' komar/a.view"}}]
         self.assertEqual(X.check_tool_calls(calls, [], "/w", komar_mode=True), [])
         bad = [{"name": "bash", "arguments": {"command": "jq . komar/a.jsonl | sh"}}]
         self.assertEqual([f["kind"] for f in X.check_tool_calls(bad, [], "/w", komar_mode=True)],
@@ -374,6 +375,15 @@ def komar_installation() -> Path | None:
         if c and (Path(c) / "bin" / "komar").is_file():
             return Path(c)
     return None
+
+
+class ViewNameTest(unittest.TestCase):
+    def test_view_regexes_accept_view_and_reject_other_suffixes(self):
+        self.assertIsNotNone(K.VIEW.match("komar/x.view"))
+        self.assertIsNone(K.VIEW.match("komar/x.komar"))
+        self.assertIsNone(K.VIEW.match("komar/x.jsonl"))
+        guard = (ROOT / "pi" / "guard.ts").read_text()
+        self.assertIn("const KOMAR_VIEW = new RegExp(`^komar/${KOMAR_NAME}\\\\.view$`);", guard)
 
 
 class KomarIntegrationTest(unittest.TestCase):
@@ -413,6 +423,10 @@ class KomarIntegrationTest(unittest.TestCase):
             log = K.read_log(agent / "log.jsonl")
             self.assertEqual(log[0]["hits"], {"m": 2, "l": 1})
             self.assertEqual(log[0]["end"]["code"], 0)
+            # the view the prompt tells the agent to read is the file Komar writes, and it is accounted
+            ext = re.search(r"komar/NAME\.(\w+), a compact view", (ROOT / "prompts" / "task-komar.txt").read_text()).group(1)
+            self.assertTrue((ws / "komar" / f"s.{ext}").is_file(), f"Komar wrote no komar/s.{ext}")
+            self.assertGreater(log[0].get("view_bytes", 0), 0)
 
 
 if __name__ == "__main__":

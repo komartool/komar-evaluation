@@ -1,12 +1,12 @@
 """Komar of the komar mode: the commands the agent may run, the run wrapper and the journal of a cell.
 
 The agent writes Komar specs to komar/NAME.yaml in the workspace, runs the driving scenario under Komar
-and reads the compact view komar/NAME.komar that Komar writes next to the JSONL dump
+and reads the compact view komar/NAME.view that Komar writes next to the JSONL dump
 (prompts/task-komar.txt). pi/guard.ts accepts these command forms besides the named case commands,
 checked word by word (command_kind with `compact`; the guard has the same rules in TypeScript):
 
     komar run komar/NAME.yaml -o komar/NAME.jsonl -- <scenario command of the case>
-    sed -n 'A,Bp' komar/NAME.komar        cut -c A-B komar/NAME.komar   (lines too long for read)
+    sed -n 'A,Bp' komar/NAME.view        cut -c A-B komar/NAME.view   (lines too long for read)
 
 command_kind without `compact` also knows a jq form over the dumps; the mode does not use it.
 
@@ -48,7 +48,7 @@ SCRATCH = "komar"
 NAME = r"[A-Za-z0-9_-][A-Za-z0-9._-]*"
 SPEC = re.compile(rf"^{SCRATCH}/{NAME}\.yaml$")
 OUTPUT = re.compile(rf"^{SCRATCH}/{NAME}\.jsonl$")
-VIEW = re.compile(rf"^{SCRATCH}/{NAME}\.komar$")
+VIEW = re.compile(rf"^{SCRATCH}/{NAME}\.view$")
 SED_RANGE = re.compile(r"^\d+(?:,\d+)?p$")
 CUT_RANGE = re.compile(r"^(?:\d+-?\d*|-\d+)$")
 SAFE = re.compile(r"[A-Za-z0-9_@%+=:,./#-]")
@@ -107,7 +107,7 @@ def shell_words(command: str) -> list[str] | None:
 def command_kind(command: str, scenario: list[str], compact: bool = False) -> str | None:
     """"komar" or "jq" for a command of the two allowed forms, None otherwise; with `compact`
     (the komar mode) the komar form and "view": `sed -n 'A,Bp'` or `cut -c A-B` of one view
-    komar/NAME.komar, for lines too long for the read tool."""
+    komar/NAME.view, for lines too long for the read tool."""
     words = shell_words(command)
     if not words:
         return None
@@ -254,7 +254,7 @@ def calls_enabled(spec_text: str | None) -> bool:
 
 
 def _output_summary(path: Path) -> dict[str, Any]:
-    view = path.with_suffix(".komar")  # the compact view Komar writes next to the dump
+    view = path.with_suffix(".view")  # the compact view Komar writes next to the dump
     out: dict[str, Any] = {"output_bytes": path.stat().st_size if path.is_file() else 0, "hits": {}, "diag": {},
                            "end": None, **({"view_bytes": view.stat().st_size} if view.is_file() else {})}
     if not path.is_file():

@@ -17,7 +17,7 @@ import { createBashTool } from "@earendil-works/pi-coding-agent";
  * (komarCommandKind; runner/komar.py has the same rules): the scenario under Komar with a spec and an
  * output in the scratch directory komar/, and jq over outputs there; write/edit may also write the
  * specs komar/NAME.yaml. With `komar.compact` (set by the runner in the komar mode) there is no jq: the agent
- * reads the compact view komar/NAME.komar, and no tool reads the dumps komar/*.jsonl (compactReadDenied).
+ * reads the compact view komar/NAME.view, and no tool reads the dumps komar/*.jsonl (compactReadDenied).
  *
  * Commands run with an environment reduced to GUARD_ENV_ALLOW (the runner's command environment):
  * no API key, no Pi or guard variables, no session metadata reach the project code.
@@ -76,7 +76,7 @@ export function matchCommand(allowed: Map<string, string>, command: string): str
 const KOMAR_NAME = "[A-Za-z0-9_-][A-Za-z0-9._-]*";
 export const KOMAR_SPEC = new RegExp(`^komar/${KOMAR_NAME}\\.yaml$`);
 const KOMAR_OUTPUT = new RegExp(`^komar/${KOMAR_NAME}\\.jsonl$`);
-const KOMAR_VIEW = new RegExp(`^komar/${KOMAR_NAME}\\.komar$`);
+const KOMAR_VIEW = new RegExp(`^komar/${KOMAR_NAME}\\.view$`);
 const JQ_FLAGS = /^-[crsnSej]+$/;
 const JQ_LONG_FLAGS = new Set(["--compact-output", "--raw-output", "--slurp", "--null-input", "--sort-keys", "--tab",
 	"--exit-status", "--join-output"]);
@@ -121,7 +121,7 @@ export function shellWords(command: string): string[] | null {
 }
 
 /** "komar" or "jq" for a command of the two forms of the komar mode, undefined otherwise; with `compact`
- * (the komar mode) the komar form and "view": `sed -n 'A,Bp'` or `cut -c A-B` of one view komar/NAME.komar,
+ * (the komar mode) the komar form and "view": `sed -n 'A,Bp'` or `cut -c A-B` of one view komar/NAME.view,
  * for lines too long for the read tool (its hint names sed). */
 export function komarCommandKind(command: string, scenario: string[], compact = false): "komar" | "jq" | "view" | undefined {
 	const words = shellWords(command);
@@ -170,7 +170,7 @@ const GREP_SAFE_GLOB = /^(?:!.*|[^{}[\]]*\.(?!jsonl$)[A-Za-z0-9_-]+)$/i;
 export function compactReadDenied(tool: string, rel: string, glob?: string): string | undefined {
 	const path = rel === "" ? "." : rel;
 	if ((tool === "read" || tool === "grep") && (KOMAR_DUMP.test(path) || /^komar\/.*\.jsonl\//i.test(path))) {
-		return "the raw Komar dumps komar/*.jsonl are not available; read the compact view komar/NAME.komar";
+		return "the raw Komar dumps komar/*.jsonl are not available; read the compact view komar/NAME.view";
 	}
 	const scopeHasKomar = path === "." || path === "komar" || path.startsWith("komar/");
 	if (tool === "grep" && glob !== undefined && glob !== "" && scopeHasKomar && !GREP_SAFE_GLOB.test(glob)) {
@@ -319,7 +319,7 @@ export default function (pi: ExtensionAPI) {
 				(config.komar !== undefined ? komarCommandKind(raw, config.komar.scenario, config.komar.compact) : undefined);
 			if (name === undefined) {
 				const komar = config.komar === undefined ? ""
-					: config.komar.compact ? ", the komar run command of the task, and sed -n 'A,Bp' or cut -c A-B of a view komar/NAME.komar" : ", and the komar run and jq commands of the task";
+					: config.komar.compact ? ", the komar run command of the task, and sed -n 'A,Bp' or cut -c A-B of a view komar/NAME.view" : ", and the komar run and jq commands of the task";
 				return deny(
 					"bash",
 					raw.slice(0, 2000),
