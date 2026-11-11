@@ -1,0 +1,17 @@
+id: pdfbox-image-xobject-get-color-key-mask
+project: pdfbox
+group: indirect
+target:
+  class: org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject
+  method: getColorKeyMask
+  signature: () -> org.apache.pdfbox.cos.COSArray
+scenario:
+  test: org.apache.pdfbox.pdmodel.graphics.image.JPEGFactoryTest#testCreateFromImageINT_ARGB
+  source: pdfbox/src/test/java/org/apache/pdfbox/pdmodel/graphics/image/JPEGFactoryTest.java
+output_test_file: pdfbox/src/test/java/org/apache/pdfbox/pdmodel/graphics/image/PDImageXObjectCarvedTest.java
+hidden_paths:
+- pdfbox/src/test/java/org/apache/pdfbox/pdmodel/graphics/image/PDImageXObjectTest.java
+commands:
+  build: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -Dtest=JPEGFactoryTest#testCreateFromImageINT_ARGB, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -Dtest=PDImageXObjectCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

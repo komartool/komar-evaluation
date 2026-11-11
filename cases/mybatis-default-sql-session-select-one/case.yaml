@@ -1,0 +1,18 @@
+id: mybatis-default-sql-session-select-one
+project: mybatis
+group: direct
+target:
+  class: org.apache.ibatis.session.defaults.DefaultSqlSession
+  method: selectOne
+  signature: (java.lang.String, java.lang.Object) -> java.lang.Object
+scenario:
+  test: org.apache.ibatis.submitted.valueinmap.ValueInMapTest#shouldWorkWithAPropertyNamedValue
+  source: src/test/java/org/apache/ibatis/submitted/valueinmap/ValueInMapTest.java
+output_test_file: src/test/java/org/apache/ibatis/session/defaults/DefaultSqlSessionSelectOneCarvedTest.java
+hidden_paths:
+- src/test/java/org/apache/ibatis/session/SqlSessionTest.java
+commands:
+  build: [./mvnw, -Dlicense.skip=true, -q, -o, -DskipTests, test-compile]
+  scenario: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=ValueInMapTest#shouldWorkWithAPropertyNamedValue, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false,
+    test]
+  generated_test: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=DefaultSqlSessionSelectOneCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

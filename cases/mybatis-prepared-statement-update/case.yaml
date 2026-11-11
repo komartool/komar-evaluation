@@ -1,0 +1,17 @@
+id: mybatis-prepared-statement-update
+project: mybatis
+group: indirect
+target:
+  class: org.apache.ibatis.executor.statement.PreparedStatementHandler
+  method: update
+  signature: (java.sql.Statement) -> int
+scenario:
+  test: org.apache.ibatis.submitted.complex_property.ComponentTest#shouldInsertNestedPasswordFieldOfComplexType
+  source: src/test/java/org/apache/ibatis/submitted/complex_property/ComponentTest.java
+output_test_file: src/test/java/org/apache/ibatis/executor/statement/PreparedStatementHandlerCarvedTest.java
+hidden_paths:
+- src/test/java/org/apache/ibatis/executor/statement/BaseStatementHandlerTest.java
+commands:
+  build: [./mvnw, -Dlicense.skip=true, -q, -o, -DskipTests, test-compile]
+  scenario: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=ComponentTest#shouldInsertNestedPasswordFieldOfComplexType, -DfailIfNoTests=false, test]
+  generated_test: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=PreparedStatementHandlerCarvedTest, -DfailIfNoTests=false, test]

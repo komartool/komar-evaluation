@@ -1,0 +1,17 @@
+id: jsoup-node-wrap
+project: jsoup
+group: direct
+target:
+  class: org.jsoup.nodes.Node
+  method: wrap
+  signature: (java.lang.String) -> org.jsoup.nodes.Node
+scenario:
+  test: org.jsoup.nodes.TextNodeTest#testSplitAndEmbolden
+  source: src/test/java/org/jsoup/nodes/TextNodeTest.java
+output_test_file: src/test/java/org/jsoup/nodes/NodeWrapCarvedTest.java
+hidden_paths:
+- src/test/java/org/jsoup/nodes/NodeTest.java
+commands:
+  build: [mvn, -q, -o, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -Dtest=TextNodeTest#testSplitAndEmbolden, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -Dtest=NodeWrapCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

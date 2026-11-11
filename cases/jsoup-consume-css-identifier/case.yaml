@@ -1,0 +1,17 @@
+id: jsoup-consume-css-identifier
+project: jsoup
+group: indirect
+target:
+  class: org.jsoup.parser.TokenQueue
+  method: consumeCssIdentifier
+  signature: () -> java.lang.String
+scenario:
+  test: org.jsoup.select.QueryParserTest#parsesEscapedSubqueries
+  source: src/test/java/org/jsoup/select/QueryParserTest.java
+output_test_file: src/test/java/org/jsoup/parser/TokenQueueConsumeCarvedTest.java
+hidden_paths:
+- src/test/java/org/jsoup/parser/TokenQueueTest.java
+commands:
+  build: [mvn, -q, -o, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -Dtest=QueryParserTest#parsesEscapedSubqueries, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -Dtest=TokenQueueConsumeCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

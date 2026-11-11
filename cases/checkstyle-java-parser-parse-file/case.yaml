@@ -1,0 +1,19 @@
+id: checkstyle-java-parser-parse-file
+project: checkstyle
+group: direct
+target:
+  class: com.puppycrawl.tools.checkstyle.JavaParser
+  method: parseFile
+  signature: (java.io.File, com.puppycrawl.tools.checkstyle.JavaParser$Options) -> com.puppycrawl.tools.checkstyle.api.DetailAST
+scenario:
+  test: com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilterTest#testCachingByFileContentsInstance
+  source: src/test/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilterTest.java
+output_test_file: src/test/java/com/puppycrawl/tools/checkstyle/JavaParserParseFileCarvedTest.java
+hidden_paths:
+- src/test/java/com/puppycrawl/tools/checkstyle/JavaParserTest.java
+commands:
+  build: [mvn, -q, -o, -Djacoco.skip=true, -Dexec.skip=true, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -Djacoco.skip=true, -Dexec.skip=true, -Dtest=SuppressionCommentFilterTest#testCachingByFileContentsInstance, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false,
+    test]
+  generated_test: [mvn, -q, -o, -Djacoco.skip=true, -Dexec.skip=true, -Dtest=JavaParserParseFileCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false,
+    test]

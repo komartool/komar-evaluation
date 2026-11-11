@@ -1,0 +1,17 @@
+id: checkstyle-right-curly-visit
+project: checkstyle
+group: indirect
+target:
+  class: com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck
+  method: visitToken
+  signature: (com.puppycrawl.tools.checkstyle.api.DetailAST) -> void
+scenario:
+  test: com.puppycrawl.tools.checkstyle.MainTest#testGenerateXpathSuppressionOptionOne
+  source: src/test/java/com/puppycrawl/tools/checkstyle/MainTest.java
+output_test_file: src/test/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheckCarvedTest.java
+hidden_paths:
+- src/test/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheckTest.java
+commands:
+  build: [mvn, -q, -o, -DskipTests, -Djacoco.skip=true, -Dexec.skip=true, test-compile]
+  scenario: [mvn, -q, -o, -Dtest=MainTest#testGenerateXpathSuppressionOptionOne, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Djacoco.skip=true, -Dexec.skip=true, test]
+  generated_test: [mvn, -q, -o, -Dtest=RightCurlyCheckCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Djacoco.skip=true, -Dexec.skip=true, test]

@@ -1,0 +1,19 @@
+id: mybatis-foreach-parameter-handler
+project: mybatis
+group: indirect
+target:
+  class: org.apache.ibatis.scripting.defaults.DefaultParameterHandler
+  method: setParameters
+  signature: (java.sql.PreparedStatement) -> void
+scenario:
+  test: org.apache.ibatis.submitted.foreach.ForEachTest#shouldHandleMoreComplexNullItem
+  source: src/test/java/org/apache/ibatis/submitted/foreach/ForEachTest.java
+output_test_file: src/test/java/org/apache/ibatis/scripting/defaults/DefaultParameterHandlerCarvedTest.java
+hidden_paths:
+- src/test/java/org/apache/ibatis/scripting/defaults/DefaultParameterHandlerTest.java
+- src/test/java/org/apache/ibatis/submitted/foreach_map
+- src/test/java/org/apache/ibatis/submitted/bind_in_foreach
+commands:
+  build: [./mvnw, -Dlicense.skip=true, -q, -o, -DskipTests, test-compile]
+  scenario: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=ForEachTest#shouldHandleMoreComplexNullItem, -DfailIfNoTests=false, test]
+  generated_test: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=DefaultParameterHandlerCarvedTest, -DfailIfNoTests=false, test]

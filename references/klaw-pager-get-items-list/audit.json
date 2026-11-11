@@ -1,0 +1,61 @@
+{
+ "case_id": "klaw-pager-get-items-list",
+ "project": "klaw",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 38.0,
+   "invocations": 4,
+   "scenarios": 4,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 0,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 73.6,
+   "invocations": 4,
+   "scenarios": 4,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 0,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 4,
+  "structure_hits": 4,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 4,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 4,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 4,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 4,
+  "io_hit_ids": [
+   "03689cc097c8",
+   "1d3181de90be",
+   "eaf6cae7b7c0",
+   "fd0004b46474"
+  ],
+  "data_hits": 4,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [],
+  "dependency_fields_count": 0,
+  "value_dependencies": [
+   "args[4]"
+  ],
+  "value_dependencies_count": 1,
+  "masked": 0,
+  "cuts": 0
+ }
+}

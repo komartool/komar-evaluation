@@ -1,0 +1,20 @@
+id: gh-graphhopper-storage-load-existing
+project: graphhopper
+group: indirect
+target:
+  class: com.graphhopper.storage.GraphHopperStorage
+  method: loadExisting
+  signature: () -> boolean
+scenario:
+  test: com.graphhopper.GraphHopperTest#testDoNotInterpolateTwice1645
+  source: core/src/test/java/com/graphhopper/GraphHopperTest.java
+output_test_file: core/src/test/java/com/graphhopper/storage/GraphHopperStorageCarvedTest.java
+hidden_paths:
+- core/src/test/java/com/graphhopper/storage/GraphHopperStorageTest.java
+- core/src/test/java/com/graphhopper/storage/GraphHopperStorageWithTurnCostsTest.java
+- core/src/test/java/com/graphhopper/storage/GraphHopperStorageLMTest.java
+- core/src/test/java/com/graphhopper/storage/GraphStorageViaMMapTest.java
+commands:
+  build: [mvn, -q, -o, -pl, core, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, core, -Dtest=GraphHopperTest#testDoNotInterpolateTwice1645, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -pl, core, -Dtest=GraphHopperStorageCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

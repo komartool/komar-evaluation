@@ -1,0 +1,61 @@
+# Copy to config.yaml and edit. Relative paths are resolved against the repository root.
+# The settings marked (env) can also be set from the environment, and every setting accepted by
+# scripts/run.py on the command line overrides both (README, "Configuration").
+
+# OpenAI-compatible model gateway. Pi reaches it through pi/provider.ts.
+provider:
+  name: custom                         # provider name passed to `pi --provider`
+  base_url: https://gateway.example.com/v1   # (env KEVAL_BASE_URL)
+  api_key_env: KEVAL_API_KEY           # the key is read from this environment variable, never stored
+  fallback_api_key_env: null           # optional: key used to retry a cell after a gateway error
+  models: []                           # empty: fetched from <base_url>/models; or a list of model ids
+
+model: provider/model-id               # model id at the gateway (env KEVAL_MODEL)
+thinking: medium                       # reasoning effort: off | minimal | low | medium | high | xhigh (env KEVAL_THINKING)
+timeout: 600                           # agent limit per cell, wall-clock seconds (env KEVAL_TIMEOUT)
+command_timeout: 900                   # limit of one build or test command, seconds
+debug_runs: 3                          # autonomous and komar: scenario runs per cell
+
+modes: [baseline, autonomous, komar]
+rounds: [1, 2]                         # (env KEVAL_ROUNDS, e.g. "1 2")
+run_id_format: "r{round}"
+case_list: cases.csv                   # cases.csv (JDK 21 projects) or cases-jdk11.csv (with jdk: 11)
+jdk: 21
+cases: []                              # empty: all cases of the case list
+
+parallel_cases: 2                      # cases processed at the same time (env KEVAL_PARALLEL_CASES)
+min_free_disk_gb: 15                   # stop below this
+min_free_mem_gb: 3                     # wait before starting a cell below this
+
+# commit of github.com/komartool/komar that scripts/setup_komar.sh builds (env KOMAR_COMMIT)
+komar_commit: 665ede625b388aae6f4d3ef321a12450eb95e266
+
+paths:
+  projects: ../projects                # checkouts of the subject projects (scripts/setup.sh)
+  results: ../results                  # cells, evaluation records, logs (outside the repository)
+  references: references               # reference traces of the cases (shipped in the repository)
+  work: null                           # scratch space (workspaces, traces); null: a fresh temp directory
+  tools: .tools                        # Node.js, Pi, BTrace, the debugger server (scripts/setup.sh)
+  komar: null                          # null: <tools>/komar (scripts/setup_komar.sh)
+  java_home: null                      # JDK of `jdk`; null: $JAVA_HOME
+  maven_repository: ~/.m2/repository
+  pi: null                             # null: <tools>/pi/bin/pi, then pi on PATH
+
+evaluation:
+  steps: [verify, b]
+  reference_runs: 2                    # reference traces per case (nondeterminism audit)
+  trace_depth: 5                       # depth of the field graphs in traces
+  dependency_labels: null              # null: evaluation/dependency-labels.json
+
+# scripts/dep_labels.py (relabelling the dependency fields; not needed to run the evaluation)
+labelling:
+  model: null                          # model id at the gateway (env KEVAL_LABEL_MODEL)
+  base_url: null                       # null: provider.base_url
+  api_key_env: null                    # null: provider.api_key_env
+  out: null                            # null: <results>/labelling
+
+# Build and test commands get only an allowlist of the runner's environment (PATH, HOME, locale,
+# TMPDIR, MAVEN_*, GRADLE_*; runner/config.py) plus these variables, e.g. a Maven repository outside $HOME:
+# env:
+#   MAVEN_OPTS: "-Dmaven.repo.local=/data/m2"
+env: {}

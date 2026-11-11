@@ -1,0 +1,60 @@
+{
+ "case_id": "petclinic-pet-validator-validate",
+ "project": "spring-petclinic",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 34.2,
+   "invocations": 1,
+   "scenarios": 1,
+   "jvms": 1,
+   "masked": 3,
+   "cuts": 93,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 32.7,
+   "invocations": 1,
+   "scenarios": 1,
+   "jvms": 1,
+   "masked": 3,
+   "cuts": 93,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 1,
+  "structure_hits": 1,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 1,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 1,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 1,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 1,
+  "io_hit_ids": [
+   "daabb7d96288"
+  ],
+  "data_hits": 1,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [],
+  "dependency_fields_count": 0,
+  "value_dependencies": [
+   "args[0].birthDate",
+   "args[1].beanWrapper.conversionService",
+   "args[1].target.birthDate"
+  ],
+  "value_dependencies_count": 3,
+  "masked": 6,
+  "cuts": 186
+ }
+}

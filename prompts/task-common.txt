@@ -1,0 +1,35 @@
+Repository: {{repository}} at commit {{commit}}
+Language: {{language}}, JDK: {{jdk}}, working directory: {{working_directory}}
+
+Target method:
+  class: {{target_class}}
+  method: {{target_method}}
+  signature: {{target_signature}}
+
+Driving scenario: {{scenario_description}}
+Scenario test source: {{scenario_source_paths}}
+
+Task: write one isolated unit-test class at {{output_test_file}} that reproduces the executions of the
+target method that occur when the driving scenario runs. For each execution reproduce the state of the
+receiver object, the arguments, the interactions of the target method with its collaborators, and the
+outcome (the returned value or the thrown exception).
+
+Write one test method per distinct execution. Executions with the same receiver state, arguments,
+collaborator interactions and outcome count as one.
+
+Requirements for the test:
+- it calls the target method directly and does not run the driving scenario;
+- it does not start an application context, a database, a network server or other infrastructure;
+  collaborators that depend on such infrastructure are replaced with mocks that behave as in the
+  scenario;
+- it checks the outcome of every execution and, where relevant, the state after the call.
+
+Available commands (argv arrays), run them with the bash tool exactly as written:
+{{commands}}
+
+Rules:
+- do not modify production code, existing tests, test resources, build files or dependencies;
+- do not add dependencies, logging or instrumentation;
+- existing mocking libraries may be used;
+- helper and inner classes inside the generated class are allowed;
+- compile and run the generated class and repair only that class until it passes.

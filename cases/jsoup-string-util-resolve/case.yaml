@@ -1,0 +1,17 @@
+id: jsoup-string-util-resolve
+project: jsoup
+group: indirect
+target:
+  class: org.jsoup.internal.StringUtil
+  method: resolve
+  signature: (java.lang.String, java.lang.String) -> java.lang.String
+scenario:
+  test: org.jsoup.nodes.NodeTest#handlesAbsPrefix
+  source: src/test/java/org/jsoup/nodes/NodeTest.java
+output_test_file: src/test/java/org/jsoup/internal/StringUtilCarvedTest.java
+hidden_paths:
+- src/test/java/org/jsoup/internal/StringUtilTest.java
+commands:
+  build: [mvn, -q, -o, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -Dtest=NodeTest#handlesAbsPrefix, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -Dtest=StringUtilCarvedTest, -Dsurefire.failIfNoSpecifiedTests=false, test]

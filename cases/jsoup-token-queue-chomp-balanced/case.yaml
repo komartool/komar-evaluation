@@ -1,0 +1,17 @@
+id: jsoup-token-queue-chomp-balanced
+project: jsoup
+group: indirect
+target:
+  class: org.jsoup.parser.TokenQueue
+  method: chompBalanced
+  signature: (char, char) -> java.lang.String
+scenario:
+  test: org.jsoup.select.SelectorTest#testNestedHas
+  source: src/test/java/org/jsoup/select/SelectorTest.java
+output_test_file: src/test/java/org/jsoup/parser/TokenQueueCarvedTest.java
+hidden_paths:
+- src/test/java/org/jsoup/parser/TokenQueueTest.java
+commands:
+  build: [mvn, -q, -o, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -Dtest=SelectorTest#testNestedHas, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -Dtest=TokenQueueCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

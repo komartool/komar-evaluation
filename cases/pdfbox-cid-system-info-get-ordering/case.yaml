@@ -1,0 +1,16 @@
+id: pdfbox-cid-system-info-get-ordering
+project: pdfbox
+group: indirect
+target:
+  class: org.apache.pdfbox.pdmodel.font.PDCIDSystemInfo
+  method: getOrdering
+  signature: () -> java.lang.String
+scenario:
+  test: org.apache.pdfbox.pdmodel.font.PDFontTest#testDeleteFont
+  source: pdfbox/src/test/java/org/apache/pdfbox/pdmodel/font/PDFontTest.java
+output_test_file: pdfbox/src/test/java/org/apache/pdfbox/pdmodel/font/PDCIDSystemInfoCarvedTest.java
+hidden_paths: []
+commands:
+  build: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -Dtest=PDFontTest#testDeleteFont, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -Dtest=PDCIDSystemInfoCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

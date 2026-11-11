@@ -1,0 +1,16 @@
+id: klaw-approval-service-add-approval
+project: klaw
+group: direct
+target:
+  class: io.aiven.klaw.service.ApprovalService
+  method: addApproval
+  signature: (java.util.List, java.lang.String, java.lang.Integer, java.lang.Integer) -> java.util.List
+scenario:
+  test: io.aiven.klaw.service.ApprovalServiceTest
+  source: core/src/test/java/io/aiven/klaw/service/ApprovalServiceTest.java
+output_test_file: core/src/test/java/io/aiven/klaw/service/ApprovalServiceAddApprovalCarvedTest.java
+hidden_paths: []
+commands:
+  build: [mvn, -q, -o, -pl, core, -DskipTests, -Dexec.skip=true, test-compile]
+  scenario: [mvn, -q, -o, -pl, core, -Dtest=ApprovalServiceTest, -Dsurefire.failIfNoSpecifiedTests=false, -DfailIfNoTests=false, -Dexec.skip=true, test]
+  generated_test: [mvn, -q, -o, -pl, core, -Dtest=ApprovalServiceAddApprovalCarvedTest, -Dsurefire.failIfNoSpecifiedTests=false, -DfailIfNoTests=false, -Dexec.skip=true, test]

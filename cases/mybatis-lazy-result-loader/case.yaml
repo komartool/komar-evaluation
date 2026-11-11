@@ -1,0 +1,20 @@
+id: mybatis-lazy-result-loader
+project: mybatis
+group: indirect
+target:
+  class: org.apache.ibatis.executor.loader.ResultLoader
+  method: loadResult
+  signature: () -> java.lang.Object
+scenario:
+  test: org.apache.ibatis.submitted.lazy_properties.LazyPropertiesTest#shouldLoadOnlyTheInvokedLazyProperty
+  source: src/test/java/org/apache/ibatis/submitted/lazy_properties/LazyPropertiesTest.java
+output_test_file: src/test/java/org/apache/ibatis/executor/loader/ResultLoaderCarvedTest.java
+hidden_paths:
+- src/test/java/org/apache/ibatis/submitted/lazyload_common_property
+- src/test/java/org/apache/ibatis/submitted/deferload_common_property
+- src/test/java/org/apache/ibatis/submitted/lazyload_proxyfactory_comparison
+- src/test/java/org/apache/ibatis/submitted/lazy_immutable
+commands:
+  build: [./mvnw, -Dlicense.skip=true, -q, -o, -DskipTests, test-compile]
+  scenario: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=LazyPropertiesTest#shouldLoadOnlyTheInvokedLazyProperty, -DfailIfNoTests=false, test]
+  generated_test: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=ResultLoaderCarvedTest, -DfailIfNoTests=false, test]

@@ -1,0 +1,16 @@
+id: petclinic-named-entity-to-string
+project: spring-petclinic
+group: indirect
+target:
+  class: org.springframework.samples.petclinic.model.NamedEntity
+  method: toString
+  signature: () -> java.lang.String
+scenario:
+  test: org.springframework.samples.petclinic.owner.PetControllerTests#testInitUpdateForm
+  source: src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java
+output_test_file: src/test/java/org/springframework/samples/petclinic/model/NamedEntityCarvedTest.java
+hidden_paths: []
+commands:
+  build: [./mvnw, -q, -o, -Dcheckstyle.skip, -Dspring-javaformat.skip=true, -DskipTests, test-compile]
+  scenario: [./mvnw, -q, -o, -Dcheckstyle.skip, -Dspring-javaformat.skip=true, -Dtest=PetControllerTests#testInitUpdateForm, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [./mvnw, -q, -o, -Dcheckstyle.skip, -Dspring-javaformat.skip=true, -Dtest=NamedEntityCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

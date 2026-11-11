@@ -1,0 +1,68 @@
+{
+ "case_id": "klaw-approval-service-add-approval",
+ "project": "klaw",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 55.6,
+   "invocations": 11,
+   "scenarios": 9,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 0,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 48.4,
+   "invocations": 11,
+   "scenarios": 9,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 0,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 9,
+  "structure_hits": 9,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 9,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 9,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 9,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 9,
+  "io_hit_ids": [
+   "2a9ed0c7be8c",
+   "3f9c1b6680e1",
+   "44f138fc58f8",
+   "5a215bf3cbcb",
+   "65827f77146d",
+   "6fdad2c16efe",
+   "84438baa1a35",
+   "f3d72163f7cf",
+   "f596edb62317"
+  ],
+  "data_hits": 9,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [
+   "commonUtilsService",
+   "mailService",
+   "manageDatabase"
+  ],
+  "dependency_fields_count": 3,
+  "value_dependencies": [],
+  "value_dependencies_count": 0,
+  "masked": 0,
+  "cuts": 0
+ }
+}

@@ -1,0 +1,19 @@
+id: checkstyle-xpath-util-get-xpath-items
+project: checkstyle
+group: direct
+target:
+  class: com.puppycrawl.tools.checkstyle.utils.XpathUtil
+  method: getXpathItems
+  signature: (java.lang.String, com.puppycrawl.tools.checkstyle.xpath.AbstractNode) -> java.util.List
+scenario:
+  test: com.puppycrawl.tools.checkstyle.xpath.ElementNodeTest#testCompareOrderWrongInstance
+  source: src/test/java/com/puppycrawl/tools/checkstyle/xpath/ElementNodeTest.java
+output_test_file: src/test/java/com/puppycrawl/tools/checkstyle/utils/XpathUtilGetXpathItemsCarvedTest.java
+hidden_paths:
+- src/test/java/com/puppycrawl/tools/checkstyle/utils/XpathUtilTest.java
+commands:
+  build: [mvn, -q, -o, -Djacoco.skip=true, -Dexec.skip=true, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -Djacoco.skip=true, -Dexec.skip=true, -Dtest=ElementNodeTest#testCompareOrderWrongInstance, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false,
+    test]
+  generated_test: [mvn, -q, -o, -Djacoco.skip=true, -Dexec.skip=true, -Dtest=XpathUtilGetXpathItemsCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false,
+    test]

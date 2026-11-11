@@ -1,0 +1,17 @@
+id: gh-storable-properties-load-existing
+project: graphhopper
+group: indirect
+target:
+  class: com.graphhopper.storage.StorableProperties
+  method: loadExisting
+  signature: () -> boolean
+scenario:
+  test: com.graphhopper.GraphHopperTest#testImportThenLoadCH
+  source: core/src/test/java/com/graphhopper/GraphHopperTest.java
+output_test_file: core/src/test/java/com/graphhopper/storage/StorablePropertiesCarvedTest.java
+hidden_paths:
+- core/src/test/java/com/graphhopper/storage/StorablePropertiesTest.java
+commands:
+  build: [mvn, -q, -o, -pl, core, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, core, -Dtest=GraphHopperTest#testImportThenLoadCH, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -pl, core, -Dtest=StorablePropertiesCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

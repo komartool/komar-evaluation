@@ -1,0 +1,17 @@
+id: apollo-namespace-branch-service-update-rules-release-id
+project: apollo
+group: indirect
+target:
+  class: com.ctrip.framework.apollo.biz.service.NamespaceBranchService
+  method: updateRulesReleaseId
+  signature: (java.lang.String, java.lang.String, java.lang.String, java.lang.String, long, java.lang.String) -> com.ctrip.framework.apollo.biz.entity.GrayReleaseRule
+scenario:
+  test: com.ctrip.framework.apollo.biz.service.ReleaseCreationTest#testPublishBranch
+  source: apollo-biz/src/test/java/com/ctrip/framework/apollo/biz/service/ReleaseCreationTest.java
+output_test_file: apollo-biz/src/test/java/com/ctrip/framework/apollo/biz/service/NamespaceBranchServiceUpdateRulesReleaseIdCarvedTest.java
+hidden_paths:
+- apollo-biz/src/test/java/com/ctrip/framework/apollo/biz/service/NamespaceBranchServiceTest.java
+commands:
+  build: [mvn, -q, -o, -pl, apollo-biz, -am, -DskipTests, -Dexec.skip=true, test-compile]
+  scenario: [mvn, -q, -o, -pl, apollo-biz, -am, -Dtest=ReleaseCreationTest#testPublishBranch, -Dsurefire.failIfNoSpecifiedTests=false, -DfailIfNoTests=false, -Dexec.skip=true, test]
+  generated_test: [mvn, -q, -o, -pl, apollo-biz, -am, -Dtest=NamespaceBranchServiceUpdateRulesReleaseIdCarvedTest, -Dsurefire.failIfNoSpecifiedTests=false, -DfailIfNoTests=false, -Dexec.skip=true, test]

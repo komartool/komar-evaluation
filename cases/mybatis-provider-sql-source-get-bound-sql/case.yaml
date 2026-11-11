@@ -1,0 +1,16 @@
+id: mybatis-provider-sql-source-get-bound-sql
+project: mybatis
+group: direct
+target:
+  class: org.apache.ibatis.builder.annotation.ProviderSqlSource
+  method: getBoundSql
+  signature: (java.lang.Object) -> org.apache.ibatis.mapping.BoundSql
+scenario:
+  test: org.apache.ibatis.submitted.sqlprovider.SqlProviderTest#omitTypeWhenSpecifyDefaultType
+  source: src/test/java/org/apache/ibatis/submitted/sqlprovider/SqlProviderTest.java
+output_test_file: src/test/java/org/apache/ibatis/builder/annotation/ProviderSqlSourceCarvedTest.java
+hidden_paths: []
+commands:
+  build: [./mvnw, -Dlicense.skip=true, -q, -o, -DskipTests, test-compile]
+  scenario: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=SqlProviderTest#omitTypeWhenSpecifyDefaultType, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=ProviderSqlSourceCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

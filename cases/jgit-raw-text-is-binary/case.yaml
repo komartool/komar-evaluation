@@ -1,0 +1,18 @@
+id: jgit-raw-text-is-binary
+project: jgit
+group: indirect
+target:
+  class: org.eclipse.jgit.diff.RawText
+  method: isBinary
+  signature: (byte[], int, boolean) -> boolean
+scenario:
+  test: org.eclipse.jgit.diff.DiffFormatterBuiltInDriverTest#testJavaDriver
+  source: org.eclipse.jgit.test/tst/org/eclipse/jgit/diff/DiffFormatterBuiltInDriverTest.java
+output_test_file: org.eclipse.jgit.test/tst/org/eclipse/jgit/diff/RawTextCarvedTest.java
+hidden_paths:
+- org.eclipse.jgit.test/tst/org/eclipse/jgit/diff/RawTextTest.java
+commands:
+  build: [mvn, -q, -o, -pl, org.eclipse.jgit.test, -am, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, org.eclipse.jgit.test, -am, -Dtest=DiffFormatterBuiltInDriverTest#testJavaDriver, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false,
+    test]
+  generated_test: [mvn, -q, -o, -pl, org.eclipse.jgit.test, -am, -Dtest=RawTextCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

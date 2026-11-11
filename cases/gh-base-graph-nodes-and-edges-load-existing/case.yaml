@@ -1,0 +1,16 @@
+id: gh-base-graph-nodes-and-edges-load-existing
+project: graphhopper
+group: indirect
+target:
+  class: com.graphhopper.storage.BaseGraphNodesAndEdges
+  method: loadExisting
+  signature: () -> boolean
+scenario:
+  test: com.graphhopper.GraphHopperTest#testImportThenLoadCHLM
+  source: core/src/test/java/com/graphhopper/GraphHopperTest.java
+output_test_file: core/src/test/java/com/graphhopper/storage/BaseGraphNodesAndEdgesCarvedTest.java
+hidden_paths: []
+commands:
+  build: [mvn, -q, -o, -pl, core, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, core, -Dtest=GraphHopperTest#testImportThenLoadCHLM, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -pl, core, -Dtest=BaseGraphNodesAndEdgesCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

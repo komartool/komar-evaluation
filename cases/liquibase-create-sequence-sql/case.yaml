@@ -1,0 +1,17 @@
+id: liquibase-create-sequence-sql
+project: liquibase
+group: indirect
+target:
+  class: liquibase.sqlgenerator.core.CreateSequenceGenerator
+  method: generateSql
+  signature: (liquibase.statement.core.CreateSequenceStatement, liquibase.database.Database, liquibase.sqlgenerator.SqlGeneratorChain) -> liquibase.sql.Sql[]
+scenario:
+  test: liquibase.dbtest.h2.H2IntegrationTest#testSnapshotReportsAllObjectTypes
+  source: liquibase-integration-tests/src/test/java/liquibase/dbtest/h2/H2IntegrationTest.java
+output_test_file: liquibase-standard/src/test/java/liquibase/sqlgenerator/core/CreateSequenceGeneratorCarvedTest.java
+hidden_paths:
+- liquibase-standard/src/test/java/liquibase/sqlgenerator/core/CreateSequenceGeneratorTest.java
+commands:
+  build: [./mvnw, -q, -o, -pl, liquibase-integration-tests, -am, -DskipTests, test-compile]
+  scenario: [./mvnw, -q, -o, -pl, liquibase-integration-tests, -am, -Dtest=H2IntegrationTest#testSnapshotReportsAllObjectTypes, -Dsurefire.failIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [./mvnw, -q, -o, -pl, liquibase-standard, -Dtest=CreateSequenceGeneratorCarvedTest, -Dsurefire.failIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

@@ -1,0 +1,16 @@
+id: petclinic-vets-get-vet-list
+project: spring-petclinic
+group: indirect
+target:
+  class: org.springframework.samples.petclinic.vet.Vets
+  method: getVetList
+  signature: () -> java.util.List<org.springframework.samples.petclinic.vet.Vet>
+scenario:
+  test: org.springframework.samples.petclinic.vet.VetControllerTests#testShowResourcesVetList
+  source: src/test/java/org/springframework/samples/petclinic/vet/VetControllerTests.java
+output_test_file: src/test/java/org/springframework/samples/petclinic/vet/VetsCarvedTest.java
+hidden_paths: []
+commands:
+  build: [./mvnw, -q, -o, -Dcheckstyle.skip, -Dspring-javaformat.skip=true, -DskipTests, test-compile]
+  scenario: [./mvnw, -q, -o, -Dcheckstyle.skip, -Dspring-javaformat.skip=true, -Dtest=VetControllerTests#testShowResourcesVetList, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [./mvnw, -q, -o, -Dcheckstyle.skip, -Dspring-javaformat.skip=true, -Dtest=VetsCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

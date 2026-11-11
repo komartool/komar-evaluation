@@ -1,0 +1,16 @@
+id: mybatis-base-executor-update
+project: mybatis
+group: direct
+target:
+  class: org.apache.ibatis.executor.BaseExecutor
+  method: update
+  signature: (org.apache.ibatis.mapping.MappedStatement, java.lang.Object) -> int
+scenario:
+  test: org.apache.ibatis.executor.BaseExecutorTest#shouldInsertNewAuthor
+  source: src/test/java/org/apache/ibatis/executor/BaseExecutorTest.java
+output_test_file: src/test/java/org/apache/ibatis/executor/BaseExecutorUpdateCarvedTest.java
+hidden_paths: []
+commands:
+  build: [./mvnw, -Dlicense.skip=true, -q, -o, -DskipTests, test-compile]
+  scenario: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=BaseExecutorTest#shouldInsertNewAuthor, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=BaseExecutorUpdateCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

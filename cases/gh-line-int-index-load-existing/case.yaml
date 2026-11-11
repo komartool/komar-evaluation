@@ -1,0 +1,16 @@
+id: gh-line-int-index-load-existing
+project: graphhopper
+group: indirect
+target:
+  class: com.graphhopper.storage.index.LineIntIndex
+  method: loadExisting
+  signature: () -> boolean
+scenario:
+  test: com.graphhopper.GraphHopperTest#testAStarCHBug
+  source: core/src/test/java/com/graphhopper/GraphHopperTest.java
+output_test_file: core/src/test/java/com/graphhopper/storage/index/LineIntIndexCarvedTest.java
+hidden_paths: []
+commands:
+  build: [mvn, -q, -o, -pl, core, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, core, -Dtest=GraphHopperTest#testAStarCHBug, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -pl, core, -Dtest=LineIntIndexCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

@@ -1,0 +1,3861 @@
+{
+ "meta": {
+  "pairs": 277,
+  "agreement": 0.9494584837545126,
+  "kappa": 0.887860736799491,
+  "disagreements": 14,
+  "unresolved": 0,
+  "usage": {
+   "prompt_tokens": 1316836,
+   "completion_tokens": 276770,
+   "cost": 0.6537639999999999
+  },
+  "model": "DeepSeek/deepseek-v4.1-flash"
+ },
+ "labels": [
+  {
+   "case": "apollo-access-key-service-create",
+   "project": "apollo",
+   "field": "accessKeyRepository",
+   "declared_type": "AccessKeyRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates persistence operations to it by calling countByAppId and save, so a unit test can replace it with a stub or mock.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-access-key-service-create",
+   "project": "apollo",
+   "field": "auditService",
+   "declared_type": "AuditService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AuditService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method only calls auditService.audit to record an audit entry and does not read its data to compute the result, so it can be mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-app-namespace-service-create-default-app-namespace",
+   "project": "apollo",
+   "field": "appNamespaceRepository",
+   "declared_type": "AppNamespaceRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method only calls its persistence behaviour (findByAppIdAndName and save) and a unit test replaces it with a mock.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-app-namespace-service-create-default-app-namespace",
+   "project": "apollo",
+   "field": "auditService",
+   "declared_type": "AuditService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AuditService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method only invokes auditService.audit to record an audit entry, which a test can stub or verify.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-app-namespace-service-create-default-app-namespace",
+   "project": "apollo",
+   "field": "clusterService",
+   "declared_type": "ClusterService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ClusterService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a collaborating service that the target method does not read data from and would be mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-app-namespace-service-create-default-app-namespace",
+   "project": "apollo",
+   "field": "namespaceService",
+   "declared_type": "NamespaceService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a collaborating service whose behaviour a unit test would substitute with a mock, and the target method does not use its data.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-cluster-service-delete",
+   "project": "apollo",
+   "field": "auditService",
+   "declared_type": "AuditService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AuditService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method only invokes auditService.audit(...) to record the deletion and does not read any of its data.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-cluster-service-delete",
+   "project": "apollo",
+   "field": "clusterRepository",
+   "declared_type": "ClusterRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates persistence work to it (findById to load the cluster and save to mark it deleted) and can legitimately be stubbed.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-cluster-service-delete",
+   "project": "apollo",
+   "field": "namespaceService",
+   "declared_type": "NamespaceService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The method only calls namespaceService.deleteByAppIdAndClusterName(...) to delete linked namespaces, so its behaviour can be mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-commit-service-create-commit",
+   "project": "apollo",
+   "field": "commitRepository",
+   "declared_type": "CommitRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "CommitRepository is a repository that the target method only invokes via save(commit), so its behaviour can be stubbed or mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-instance-service-update-instance-config",
+   "project": "apollo",
+   "field": "instanceConfigRepository",
+   "declared_type": "InstanceConfigRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The method delegates findById and save operations to this repository, whose behaviour a unit test replaces with a mock.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-instance-service-update-instance-config",
+   "project": "apollo",
+   "field": "instanceRepository",
+   "declared_type": "InstanceRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a repository collaborator of the service, though the target method does not use it in this execution.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-item-service-update",
+   "project": "apollo",
+   "field": "auditService",
+   "declared_type": "AuditService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AuditService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method only calls auditService.audit(...) to record an audit entry, so its behavior can be stubbed or mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-item-service-update",
+   "project": "apollo",
+   "field": "bizConfig",
+   "declared_type": "BizConfig",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.config.BizConfig"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method calls bizConfig methods to obtain configuration limits, so its behaviour can be stubbed in a unit test.",
+   "p1": "STATE",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-item-service-update",
+   "project": "apollo",
+   "field": "itemRepository",
+   "declared_type": "ItemRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates persistence operations to itemRepository via findById and save, making it a repository dependency.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-item-service-update",
+   "project": "apollo",
+   "field": "namespaceService",
+   "declared_type": "NamespaceService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method only calls namespaceService.findOne(...) to retrieve namespace data, so its behavior can be replaced in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-branch-service-delete-branch",
+   "project": "apollo",
+   "field": "auditService",
+   "declared_type": "AuditService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AuditService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteBranch calls auditService.audit to record the deletion, so its behaviour is mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-delete-branch",
+   "project": "apollo",
+   "field": "clusterService",
+   "declared_type": "ClusterService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ClusterService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteBranch delegates cluster lookup and deletion to clusterService.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-delete-branch",
+   "project": "apollo",
+   "field": "grayReleaseRuleRepository",
+   "declared_type": "GrayReleaseRuleRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteBranch uses the repository through doUpdateBranchGrayRules to find, save, and delete gray release rules.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-delete-branch",
+   "project": "apollo",
+   "field": "namespaceService",
+   "declared_type": "NamespaceService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "namespaceService is an injected collaborating service dependency of NamespaceBranchService and is not read as data by deleteBranch.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-delete-branch",
+   "project": "apollo",
+   "field": "releaseHistoryService",
+   "declared_type": "ReleaseHistoryService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ReleaseHistoryService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteBranch calls releaseHistoryService.createReleaseHistory to record the branch deletion operation.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-delete-branch",
+   "project": "apollo",
+   "field": "releaseService",
+   "declared_type": "ReleaseService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ReleaseService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteBranch calls releaseService.findLatestActiveRelease to obtain the latest branch release.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-update-branch-gray-rules",
+   "project": "apollo",
+   "field": "auditService",
+   "declared_type": "AuditService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AuditService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator used for auditing, so its behavior can be mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-update-branch-gray-rules",
+   "project": "apollo",
+   "field": "clusterService",
+   "declared_type": "ClusterService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ClusterService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator for cluster operations, so tests can replace its behavior with a stub or mock.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-update-branch-gray-rules",
+   "project": "apollo",
+   "field": "grayReleaseRuleRepository",
+   "declared_type": "GrayReleaseRuleRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a repository/DAO used for persistence access, so its behavior is replaced in unit tests.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-update-branch-gray-rules",
+   "project": "apollo",
+   "field": "namespaceService",
+   "declared_type": "NamespaceService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator for namespace operations, so its behavior can be mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-update-branch-gray-rules",
+   "project": "apollo",
+   "field": "releaseHistoryService",
+   "declared_type": "ReleaseHistoryService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ReleaseHistoryService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator that creates release history records, so tests can mock its behavior.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-update-branch-gray-rules",
+   "project": "apollo",
+   "field": "releaseService",
+   "declared_type": "ReleaseService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ReleaseService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator queried for the latest active release, so its behavior can be stubbed or mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-update-rules-release-id",
+   "project": "apollo",
+   "field": "auditService",
+   "declared_type": "AuditService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AuditService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "A service collaborator used for auditing side effects, not data that determines the method result.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-update-rules-release-id",
+   "project": "apollo",
+   "field": "clusterService",
+   "declared_type": "ClusterService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ClusterService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "A service collaborator for cluster operations, not state read to compute this method's result.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-update-rules-release-id",
+   "project": "apollo",
+   "field": "grayReleaseRuleRepository",
+   "declared_type": "GrayReleaseRuleRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "A repository dependency the target method calls to find, save, and delete gray release rules.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-update-rules-release-id",
+   "project": "apollo",
+   "field": "namespaceService",
+   "declared_type": "NamespaceService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "A service collaborator for namespace operations, not a data object read to compute the result.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-update-rules-release-id",
+   "project": "apollo",
+   "field": "releaseHistoryService",
+   "declared_type": "ReleaseHistoryService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ReleaseHistoryService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "A service collaborator for release-history operations, not state needed for this method's computation.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-branch-service-update-rules-release-id",
+   "project": "apollo",
+   "field": "releaseService",
+   "declared_type": "ReleaseService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ReleaseService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "A service collaborator for release operations, not state read to compute the method result.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-namespace-service-delete-namespace",
+   "project": "apollo",
+   "field": "appNamespaceService",
+   "declared_type": "AppNamespaceService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AppNamespaceService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Injected service for app namespace operations; it is a collaborator dependency even though deleteNamespace does not call it.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-delete-namespace",
+   "project": "apollo",
+   "field": "auditService",
+   "declared_type": "AuditService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AuditService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteNamespace calls auditService.audit(...) to record the deletion, so its behaviour should be mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-delete-namespace",
+   "project": "apollo",
+   "field": "bizConfig",
+   "declared_type": "BizConfig",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.config.BizConfig"
+   ],
+   "label": "STATE",
+   "reason": "It is a configuration data holder whose values affect namespace limits and are not a delegated service.",
+   "p1": "STATE",
+   "p2": "DEPENDENCY",
+   "p3": "STATE"
+  },
+  {
+   "case": "apollo-namespace-service-delete-namespace",
+   "project": "apollo",
+   "field": "clusterService",
+   "declared_type": "ClusterService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ClusterService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteNamespace indirectly calls clusterService via isChildNamespace/findChildNamespace to inspect clusters, so it is a delegated service.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-delete-namespace",
+   "project": "apollo",
+   "field": "commitService",
+   "declared_type": "CommitService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.CommitService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteNamespace calls commitService.batchDelete(...), so its behaviour should be stubbed.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-delete-namespace",
+   "project": "apollo",
+   "field": "instanceService",
+   "declared_type": "InstanceService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.InstanceService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteNamespace calls instanceService.batchDeleteInstanceConfig(...), so it is a service dependency.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-delete-namespace",
+   "project": "apollo",
+   "field": "itemService",
+   "declared_type": "ItemService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ItemService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteNamespace calls itemService.batchDelete(...), so it is a service dependency.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-delete-namespace",
+   "project": "apollo",
+   "field": "messageSender",
+   "declared_type": "MessageSender",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.message.DatabaseMessageSender"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteNamespace calls messageSender.sendMessage(...), so its messaging behaviour should be mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-delete-namespace",
+   "project": "apollo",
+   "field": "namespaceBranchService",
+   "declared_type": "NamespaceBranchService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceBranchService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteNamespace calls namespaceBranchService.deleteBranch(...), so it is a service dependency.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-delete-namespace",
+   "project": "apollo",
+   "field": "namespaceLockService",
+   "declared_type": "NamespaceLockService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceLockService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteNamespace calls namespaceLockService.unlock(...), so it is a service dependency.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-delete-namespace",
+   "project": "apollo",
+   "field": "namespaceRepository",
+   "declared_type": "NamespaceRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteNamespace uses namespaceRepository.save(...) and lookup methods, so it is a repository dependency.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-delete-namespace",
+   "project": "apollo",
+   "field": "releaseHistoryService",
+   "declared_type": "ReleaseHistoryService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ReleaseHistoryService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteNamespace calls releaseHistoryService.batchDelete(...), so it is a service dependency.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-delete-namespace",
+   "project": "apollo",
+   "field": "releaseService",
+   "declared_type": "ReleaseService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ReleaseService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteNamespace calls releaseService.batchDelete(...) and may use release lookups, so it is a service dependency.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-find-child-namespace",
+   "project": "apollo",
+   "field": "appNamespaceService",
+   "declared_type": "AppNamespaceService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AppNamespaceService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator that the class delegates namespace metadata operations to, though this target method does not use it.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-find-child-namespace",
+   "project": "apollo",
+   "field": "auditService",
+   "declared_type": "AuditService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AuditService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service used to record audit events, so a test would replace it with a stub or mock.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-find-child-namespace",
+   "project": "apollo",
+   "field": "bizConfig",
+   "declared_type": "BizConfig",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.config.BizConfig"
+   ],
+   "label": "STATE",
+   "reason": "Configuration object holding limit and white-list values, so its data is state rather than a delegated behavior.",
+   "p1": "STATE",
+   "p2": "DEPENDENCY",
+   "p3": "STATE"
+  },
+  {
+   "case": "apollo-namespace-service-find-child-namespace",
+   "project": "apollo",
+   "field": "clusterService",
+   "declared_type": "ClusterService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ClusterService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates child-cluster lookup to it, so its behavior should be stubbed or mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-find-child-namespace",
+   "project": "apollo",
+   "field": "commitService",
+   "declared_type": "CommitService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.CommitService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator for commit operations and would be mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-find-child-namespace",
+   "project": "apollo",
+   "field": "instanceService",
+   "declared_type": "InstanceService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.InstanceService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator for instance-config operations and would be mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-find-child-namespace",
+   "project": "apollo",
+   "field": "itemService",
+   "declared_type": "ItemService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ItemService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator for item operations and would be mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-find-child-namespace",
+   "project": "apollo",
+   "field": "messageSender",
+   "declared_type": "MessageSender",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.message.DatabaseMessageSender"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an infrastructure message sender whose behavior a unit test may replace with a mock.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-find-child-namespace",
+   "project": "apollo",
+   "field": "namespaceBranchService",
+   "declared_type": "NamespaceBranchService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceBranchService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator for namespace-branch operations and would be mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-find-child-namespace",
+   "project": "apollo",
+   "field": "namespaceLockService",
+   "declared_type": "NamespaceLockService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceLockService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator for namespace locking and would be mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-find-child-namespace",
+   "project": "apollo",
+   "field": "namespaceRepository",
+   "declared_type": "NamespaceRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates namespace persistence queries to it, so it should be stubbed or mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-find-child-namespace",
+   "project": "apollo",
+   "field": "releaseHistoryService",
+   "declared_type": "ReleaseHistoryService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ReleaseHistoryService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator for release-history operations and would be mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-namespace-service-find-child-namespace",
+   "project": "apollo",
+   "field": "releaseService",
+   "declared_type": "ReleaseService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ReleaseService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator for release operations and would be mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "apollo-release-history-service-create-release-history",
+   "project": "apollo",
+   "field": "auditService",
+   "declared_type": "AuditService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AuditService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method calls auditService.audit(...) to record an audit entry, so its behaviour can be stubbed or mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-history-service-create-release-history",
+   "project": "apollo",
+   "field": "bizConfig",
+   "declared_type": "BizConfig",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.config.BizConfig"
+   ],
+   "label": "STATE",
+   "reason": "The target method reads bizConfig's release history retention settings to compute behavior, so these configuration values must be reproduced.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-history-service-create-release-history",
+   "project": "apollo",
+   "field": "releaseHistoryRepository",
+   "declared_type": "ReleaseHistoryRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates persistence to releaseHistoryRepository.save(...), so its behaviour can be mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-history-service-create-release-history",
+   "project": "apollo",
+   "field": "releaseRepository",
+   "declared_type": "ReleaseRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "This repository is injected infrastructure whose behaviour a test can replace, although createReleaseHistory itself does not call it.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-history-service-create-release-history",
+   "project": "apollo",
+   "field": "transactionManager",
+   "declared_type": "TransactionTemplate",
+   "runtime_classes": [
+    "org.springframework.transaction.support.TransactionTemplate"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "TransactionTemplate is infrastructure used to execute transactional work, so its behaviour can be mocked or stubbed.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-find-active-releases",
+   "project": "apollo",
+   "field": "auditService",
+   "declared_type": "AuditService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AuditService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an injected service dependency used for auditing, not data read by findActiveReleases.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-find-active-releases",
+   "project": "apollo",
+   "field": "itemService",
+   "declared_type": "ItemService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ItemService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an injected service dependency for item operations, not data read by findActiveReleases.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-find-active-releases",
+   "project": "apollo",
+   "field": "itemSetService",
+   "declared_type": "ItemSetService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ItemSetService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an injected service dependency for item-set operations, not data read by findActiveReleases.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-find-active-releases",
+   "project": "apollo",
+   "field": "namespaceBranchService",
+   "declared_type": "NamespaceBranchService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceBranchService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an injected service dependency for namespace branch operations, not data read by findActiveReleases.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-find-active-releases",
+   "project": "apollo",
+   "field": "namespaceLockService",
+   "declared_type": "NamespaceLockService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceLockService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an injected service dependency for namespace locking, not data read by findActiveReleases.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-find-active-releases",
+   "project": "apollo",
+   "field": "namespaceService",
+   "declared_type": "NamespaceService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an injected service dependency for namespace operations, not data read by findActiveReleases.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-find-active-releases",
+   "project": "apollo",
+   "field": "releaseHistoryService",
+   "declared_type": "ReleaseHistoryService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ReleaseHistoryService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an injected service dependency for release history operations, not data read by findActiveReleases.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-find-active-releases",
+   "project": "apollo",
+   "field": "releaseRepository",
+   "declared_type": "ReleaseRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a repository whose query behavior findActiveReleases delegates to directly.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-publish",
+   "project": "apollo",
+   "field": "auditService",
+   "declared_type": "AuditService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AuditService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates auditing to this service, so its behaviour can be stubbed or mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-publish",
+   "project": "apollo",
+   "field": "itemService",
+   "declared_type": "ItemService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ItemService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method calls this service to retrieve namespace items, making it a collaborator whose behaviour can be replaced.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-publish",
+   "project": "apollo",
+   "field": "itemSetService",
+   "declared_type": "ItemSetService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ItemSetService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "This is a service collaborator in the receiver whose behaviour can be mocked in unit tests.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-publish",
+   "project": "apollo",
+   "field": "namespaceBranchService",
+   "declared_type": "NamespaceBranchService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceBranchService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates branch rule updates to this service when publishing a child namespace.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-publish",
+   "project": "apollo",
+   "field": "namespaceLockService",
+   "declared_type": "NamespaceLockService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceLockService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method calls this service to check and release namespace locks, so it is an infrastructure collaborator.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-publish",
+   "project": "apollo",
+   "field": "namespaceService",
+   "declared_type": "NamespaceService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates parent and child namespace lookups to this service.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-publish",
+   "project": "apollo",
+   "field": "releaseHistoryService",
+   "declared_type": "ReleaseHistoryService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ReleaseHistoryService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates release-history creation to this service, so it can be stubbed or mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-publish",
+   "project": "apollo",
+   "field": "releaseRepository",
+   "declared_type": "ReleaseRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates persistence operations for releases to this repository.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-rollback",
+   "project": "apollo",
+   "field": "auditService",
+   "declared_type": "AuditService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.AuditService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Used in the child-namespace rollback path via createRelease to record an audit entry.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-rollback",
+   "project": "apollo",
+   "field": "itemService",
+   "declared_type": "ItemService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ItemService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Injected service collaborator for release operations, though rollback itself does not call it.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-rollback",
+   "project": "apollo",
+   "field": "itemSetService",
+   "declared_type": "ItemSetService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ItemSetService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Injected service collaborator for change-set operations, though rollback itself does not call it.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-rollback",
+   "project": "apollo",
+   "field": "namespaceBranchService",
+   "declared_type": "NamespaceBranchService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceBranchService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Called during child-namespace rollback to update gray-release rules.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-rollback",
+   "project": "apollo",
+   "field": "namespaceLockService",
+   "declared_type": "NamespaceLockService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceLockService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Called during createRelease in the child-namespace rollback path to unlock the namespace.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-rollback",
+   "project": "apollo",
+   "field": "namespaceService",
+   "declared_type": "NamespaceService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.NamespaceService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Queried by rollbackChildNamespace to find parent and child namespaces and drive branch rollback.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-rollback",
+   "project": "apollo",
+   "field": "releaseHistoryService",
+   "declared_type": "ReleaseHistoryService",
+   "runtime_classes": [
+    "com.ctrip.framework.apollo.biz.service.ReleaseHistoryService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Called by rollback to create release history records and read branch release keys.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "apollo-release-service-rollback",
+   "project": "apollo",
+   "field": "releaseRepository",
+   "declared_type": "ReleaseRepository",
+   "runtime_classes": [
+    "$Proxy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Used to load, save, and query releases throughout rollback.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "checkstyle-checker-process",
+   "project": "checkstyle",
+   "field": "beforeExecutionFileFilters",
+   "declared_type": "BeforeExecutionFileFilterSet",
+   "runtime_classes": [
+    "com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The method calls accept on this filter set to decide whether a file is processed, so its behavior is a replaceable collaborator.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "STATE"
+  },
+  {
+   "case": "checkstyle-checker-process",
+   "project": "checkstyle",
+   "field": "childContext",
+   "declared_type": "Context",
+   "runtime_classes": [
+    "com.puppycrawl.tools.checkstyle.DefaultContext"
+   ],
+   "label": "STATE",
+   "reason": "This is a context data holder containing values for child components, not behavior delegated to by process.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "checkstyle-checker-process",
+   "project": "checkstyle",
+   "field": "configuration",
+   "declared_type": "Configuration",
+   "runtime_classes": [
+    "com.puppycrawl.tools.checkstyle.DefaultConfiguration"
+   ],
+   "label": "STATE",
+   "reason": "This is configuration data for the Checker rather than a service the target method delegates work to.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "checkstyle-checker-process",
+   "project": "checkstyle",
+   "field": "counter",
+   "declared_type": "SeverityLevelCounter",
+   "runtime_classes": [
+    "com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter"
+   ],
+   "label": "STATE",
+   "reason": "The method reads counter.getCount() to compute its return value, so the counter's data must be reproduced.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "checkstyle-checker-process",
+   "project": "checkstyle",
+   "field": "filters",
+   "declared_type": "FilterSet",
+   "runtime_classes": [
+    "com.puppycrawl.tools.checkstyle.api.FilterSet"
+   ],
+   "label": "STATE",
+   "reason": "It is a collection wrapper of filters whose contents affect whether violations are accepted, so it must be reproduced as state.",
+   "p1": "DEPENDENCY",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "checkstyle-checker-process",
+   "project": "checkstyle",
+   "field": "log",
+   "declared_type": "Log",
+   "runtime_classes": [
+    "org.apache.commons.logging.impl.Jdk14Logger"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The method calls logging behavior for diagnostics, which is infrastructure that can be stubbed in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "checkstyle-checker-process",
+   "project": "checkstyle",
+   "field": "moduleClassLoader",
+   "declared_type": "ClassLoader",
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "This is infrastructure used to load module classes during setup, not data consumed by the process computation.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "checkstyle-checker-process",
+   "project": "checkstyle",
+   "field": "moduleFactory",
+   "declared_type": "ModuleFactory",
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "This is a factory collaborator for creating child modules, so its behavior can be replaced in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "checkstyle-empty-line-separator-visit",
+   "project": "checkstyle",
+   "field": "configuration",
+   "declared_type": null,
+   "runtime_classes": [
+    "com.puppycrawl.tools.checkstyle.DefaultConfiguration"
+   ],
+   "label": "STATE",
+   "reason": "DefaultConfiguration is a configuration value holder whose settings determine the check's behavior and must be reproduced when setting up the test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "checkstyle-indentation-visit",
+   "project": "checkstyle",
+   "field": "configuration",
+   "declared_type": null,
+   "runtime_classes": [
+    "com.puppycrawl.tools.checkstyle.DefaultConfiguration"
+   ],
+   "label": "STATE",
+   "reason": "DefaultConfiguration is a value holder of configuration properties (tab width, offsets) that the check and its handlers read, so the test must supply the same configuration data rather than mock behavior.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "checkstyle-indentation-visit",
+   "project": "checkstyle",
+   "field": "handlerFactory",
+   "declared_type": "HandlerFactory",
+   "runtime_classes": [
+    "com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates to handlerFactory.getHandler to create the expression handler for the visited AST, so its behavior may legitimately be stubbed in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "checkstyle-indentation-visit",
+   "project": "checkstyle",
+   "field": "lineWrappingHandler",
+   "declared_type": "LineWrappingHandler",
+   "runtime_classes": [
+    "com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "LineWrappingHandler is a collaborator that performs line-wrapping indentation computations invoked by the expression handlers, so it is a behavior delegate a test may replace.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "checkstyle-right-curly-visit",
+   "project": "checkstyle",
+   "field": "configuration",
+   "declared_type": null,
+   "runtime_classes": [
+    "com.puppycrawl.tools.checkstyle.DefaultConfiguration"
+   ],
+   "label": "STATE",
+   "reason": "It is the check's configuration data, used indirectly when logging violations to determine message/severity details, so a unit test must supply the appropriate configuration rather than mock its behavior.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "checkstyle-whitespace-after-visit",
+   "project": "checkstyle",
+   "field": "configuration",
+   "declared_type": null,
+   "runtime_classes": [
+    "com.puppycrawl.tools.checkstyle.DefaultConfiguration"
+   ],
+   "label": "STATE",
+   "reason": "The check's configuration data determines how the target method behaves and must be reproduced in the unit test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "checkstyle-whitespace-around-visit",
+   "project": "checkstyle",
+   "field": "configuration",
+   "declared_type": null,
+   "runtime_classes": [
+    "com.puppycrawl.tools.checkstyle.DefaultConfiguration"
+   ],
+   "label": "STATE",
+   "reason": "The inherited configuration object holds module and message settings that affect the check's logging behavior and must be reproduced in the test setup.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "checkstyle-xpath-query-generator-generate",
+   "project": "checkstyle",
+   "field": "fileText",
+   "declared_type": "FileText",
+   "runtime_classes": [
+    "com.puppycrawl.tools.checkstyle.api.FileText"
+   ],
+   "label": "STATE",
+   "reason": "The target method reads its file content via get(lineNumber - 1) to compute expanded tab columns, so the test must reproduce this data.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "checkstyle-xpath-query-generator-generate",
+   "project": "checkstyle",
+   "field": "rootAst",
+   "declared_type": "DetailAST",
+   "runtime_classes": [
+    "com.puppycrawl.tools.checkstyle.DetailAstImpl"
+   ],
+   "label": "STATE",
+   "reason": "The target method traverses and reads the AST data to determine matching nodes and generate XPath queries, so the test must construct the same AST.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "gh-base-graph-nodes-and-edges-load-existing",
+   "project": "graphhopper",
+   "field": "bounds",
+   "declared_type": "BBox",
+   "runtime_classes": [
+    "com.graphhopper.util.shapes.BBox"
+   ],
+   "label": "STATE",
+   "reason": "The BBox is a mutable value holder whose fields are populated by loadExisting and represent graph metadata that must be present in the receiver.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "gh-base-graph-nodes-and-edges-load-existing",
+   "project": "graphhopper",
+   "field": "edges",
+   "declared_type": "DataAccess",
+   "runtime_classes": [
+    "com.graphhopper.storage.RAMIntDataAccess"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The DataAccess storage object is delegated to via loadExisting/getHeader and can be stubbed or mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "gh-base-graph-nodes-and-edges-load-existing",
+   "project": "graphhopper",
+   "field": "nodes",
+   "declared_type": "DataAccess",
+   "runtime_classes": [
+    "com.graphhopper.storage.RAMIntDataAccess"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The DataAccess storage object is delegated to via loadExisting/getHeader and can be stubbed or mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "gh-douglas-peucker-set-max-distance",
+   "project": "graphhopper",
+   "field": "calc",
+   "declared_type": "DistanceCalc",
+   "runtime_classes": [
+    "com.graphhopper.util.DistancePlaneProjection"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "setMaxDistance delegates to calc.calcNormalizedDist(dist) to compute the normalized distance, so its behavior can be replaced with a stub or mock in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "gh-graphhopper-storage-load-existing",
+   "project": "graphhopper",
+   "field": "baseGraph",
+   "declared_type": "BaseGraph",
+   "runtime_classes": [
+    "com.graphhopper.storage.BaseGraph"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The method delegates checkNotInitialized() and loadExisting() to this storage collaborator, so its behavior can be stubbed or mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "gh-graphhopper-storage-load-existing",
+   "project": "graphhopper",
+   "field": "dir",
+   "declared_type": "Directory",
+   "runtime_classes": [
+    "com.graphhopper.storage.GHDirectory"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The directory is infrastructure/storage access used only to obtain the location for error messages.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "gh-graphhopper-storage-load-existing",
+   "project": "graphhopper",
+   "field": "encodingManager",
+   "declared_type": "EncodingManager",
+   "runtime_classes": [
+    "com.graphhopper.routing.util.EncodingManager"
+   ],
+   "label": "STATE",
+   "reason": "The method reads its flag-encoder and encoded-value configuration strings to compare against stored properties, so this data must be reproduced.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "gh-graphhopper-storage-load-existing",
+   "project": "graphhopper",
+   "field": "properties",
+   "declared_type": "StorableProperties",
+   "runtime_classes": [
+    "com.graphhopper.storage.StorableProperties"
+   ],
+   "label": "STATE",
+   "reason": "The method reads stored property values and uses loadExisting to decide whether loading succeeds or which compatibility checks fail.",
+   "p1": "DEPENDENCY",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "gh-line-int-index-load-existing",
+   "project": "graphhopper",
+   "field": "bounds",
+   "declared_type": "BBox",
+   "runtime_classes": [
+    "com.graphhopper.util.shapes.BBox"
+   ],
+   "label": "STATE",
+   "reason": "The method reads the bounding box data to build the IndexStructureInfo (keyAlgo, entries, shifts), so the test must supply a concrete BBox with the right coordinates.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "gh-line-int-index-load-existing",
+   "project": "graphhopper",
+   "field": "dataAccess",
+   "declared_type": "DataAccess",
+   "runtime_classes": [
+    "com.graphhopper.storage.RAMIntDataAccess"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The method only invokes its behaviour (loadExisting, getHeader) to load persisted data, so it can legitimately be replaced by a stub or mock.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "gh-storable-properties-load-existing",
+   "project": "graphhopper",
+   "field": "da",
+   "declared_type": "DataAccess",
+   "runtime_classes": [
+    "com.graphhopper.storage.RAMDataAccess"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The method delegates all I/O to the DataAccess (loadExisting, getCapacity, getBytes), so a test can stub it to control the returned bytes and capacity.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "gh-string-index-load-existing",
+   "project": "graphhopper",
+   "field": "keys",
+   "declared_type": "DataAccess",
+   "runtime_classes": [
+    "com.graphhopper.storage.RAMDataAccess"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "DataAccess is the storage-access collaborator used by loadExisting to load persisted key data and headers.",
+   "p1": "DEPENDENCY",
+   "p2": "STATE",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "gh-string-index-load-existing",
+   "project": "graphhopper",
+   "field": "smallCache",
+   "declared_type": "Map<String, Long>",
+   "runtime_classes": [
+    "com.graphhopper.search.StringIndex$1"
+   ],
+   "label": "STATE",
+   "reason": "The LinkedHashMap cache is an in-memory collection/value-holder that represents internal object state rather than a delegated service.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "gh-string-index-load-existing",
+   "project": "graphhopper",
+   "field": "vals",
+   "declared_type": "DataAccess",
+   "runtime_classes": [
+    "com.graphhopper.storage.RAMDataAccess"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "DataAccess is the storage-access collaborator used by loadExisting to load persisted value data and headers.",
+   "p1": "DEPENDENCY",
+   "p2": "STATE",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "gh-virtual-edge-iterator-state-get-reverse",
+   "project": "graphhopper",
+   "field": "edgeFlags",
+   "declared_type": "IntsRef",
+   "runtime_classes": [
+    "com.graphhopper.storage.IntsRef"
+   ],
+   "label": "STATE",
+   "reason": "The target method reads the encoded flags buffer via property.getBool(!reverse, edgeFlags) to compute the boolean result, so its contents must be reproduced in the test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "gh-virtual-edge-iterator-state-get-reverse",
+   "project": "graphhopper",
+   "field": "pointList",
+   "declared_type": "PointList",
+   "runtime_classes": [
+    "com.graphhopper.util.PointList"
+   ],
+   "label": "STATE",
+   "reason": "It is a geometry data object holding edge data that is not consulted by getReverse but is part of the edge's state rather than a collaborator.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "gh-virtual-edge-iterator-state-get-reverse",
+   "project": "graphhopper",
+   "field": "reverseEdge",
+   "declared_type": "EdgeIteratorState",
+   "runtime_classes": [
+    "com.graphhopper.routing.querygraph.VirtualEdgeIteratorState"
+   ],
+   "label": "STATE",
+   "reason": "It is another edge-state object stored as receiver state, and getReverse does not invoke its behaviour.",
+   "p1": "STATE",
+   "p2": "DEPENDENCY",
+   "p3": "STATE"
+  },
+  {
+   "case": "jgit-checkout-command-call",
+   "project": "jgit",
+   "field": "monitor",
+   "declared_type": "ProgressMonitor",
+   "runtime_classes": [
+    "org.eclipse.jgit.lib.NullProgressMonitor"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The progress monitor is infrastructure passed to the checkout operation, and its behavior can be replaced with a stub without affecting the computed result.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "jgit-checkout-command-call",
+   "project": "jgit",
+   "field": "repo",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.eclipse.jgit.internal.storage.file.FileRepository"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The repository is an infrastructure/storage collaborator that the target method calls for ref resolution, locking, and updates.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "jgit-config-to-text",
+   "project": "jgit",
+   "field": "baseConfig",
+   "declared_type": "Config",
+   "runtime_classes": [
+    "org.eclipse.jgit.storage.file.FileBasedConfig"
+   ],
+   "label": "STATE",
+   "reason": "It is a fallback configuration data object rather than a service, so its data is part of the receiver's configuration state.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jgit-config-to-text",
+   "project": "jgit",
+   "field": "fs",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.eclipse.jgit.util.FS_POSIX"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "FS is a filesystem abstraction and infrastructure object that a unit test may substitute.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "jgit-config-to-text",
+   "project": "jgit",
+   "field": "hash",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.eclipse.jgit.lib.ObjectId"
+   ],
+   "label": "STATE",
+   "reason": "ObjectId is an immutable value object representing file content identity and should be reproduced as data.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jgit-config-to-text",
+   "project": "jgit",
+   "field": "listeners",
+   "declared_type": "ListenerList",
+   "runtime_classes": [
+    "org.eclipse.jgit.events.ListenerList"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "ListenerList is an event-dispatch infrastructure component whose behaviour can be stubbed or mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "jgit-config-to-text",
+   "project": "jgit",
+   "field": "snapshot",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.eclipse.jgit.internal.storage.file.FileSnapshot",
+    "org.eclipse.jgit.internal.storage.file.FileSnapshot$1"
+   ],
+   "label": "STATE",
+   "reason": "FileSnapshot is a value object holding file metadata and therefore represents state.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jgit-merge-command-call",
+   "project": "jgit",
+   "field": "mergeStrategy",
+   "declared_type": "MergeStrategy",
+   "runtime_classes": [
+    "org.eclipse.jgit.merge.StrategyRecursive"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates merge creation to this strategy via newMerger and only calls its behavior, so it can be replaced with a stub or mock.",
+   "p1": "STATE",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "jgit-merge-command-call",
+   "project": "jgit",
+   "field": "monitor",
+   "declared_type": "ProgressMonitor",
+   "runtime_classes": [
+    "org.eclipse.jgit.lib.NullProgressMonitor"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method only passes the progress monitor to checkout, merge, and autoGC operations, so its behavior can be replaced with a stub.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "jgit-merge-command-call",
+   "project": "jgit",
+   "field": "repo",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.eclipse.jgit.internal.storage.file.FileRepository"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates repository access, ref updates, config reads, and I/O operations to this repository object, making it infrastructure that can be stubbed or mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "jgit-merger-merge",
+   "project": "jgit",
+   "field": "db",
+   "declared_type": "Repository",
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "The repository is an infrastructure/storage collaborator used by the merger and can be replaced with a test double for repository operations.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "jgit-merger-merge",
+   "project": "jgit",
+   "field": "inserter",
+   "declared_type": "ObjectInserter",
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "The object inserter is an I/O collaborator used to write and flush merged objects, so it can be stubbed or mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "jgit-merger-merge",
+   "project": "jgit",
+   "field": "mergeAlgorithm",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.eclipse.jgit.merge.MergeAlgorithm"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The merge algorithm is a service whose behavior performs content merges, so a test may replace it to control merge results.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "jgit-merger-merge",
+   "project": "jgit",
+   "field": "monitor",
+   "declared_type": "ProgressMonitor",
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "The progress monitor is an infrastructure callback used only for reporting progress during the merge.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "jgit-merger-merge",
+   "project": "jgit",
+   "field": "reader",
+   "declared_type": "ObjectReader",
+   "runtime_classes": [
+    "org.eclipse.jgit.internal.storage.file.WindowCursor"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The object reader provides storage access for loading objects and is a collaborator that can be replaced in a test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "jgit-merger-merge",
+   "project": "jgit",
+   "field": "walk",
+   "declared_type": "RevWalk",
+   "runtime_classes": [
+    "org.eclipse.jgit.revwalk.RevWalk"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The revision walk delegates object graph traversal and parsing to repository-backed behavior, so it can be mocked or stubbed.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "jgit-merger-merge",
+   "project": "jgit",
+   "field": "workingTreeIterator",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.eclipse.jgit.treewalk.FileTreeIterator"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The working tree iterator provides I/O access to working tree entries and is an infrastructure collaborator for conflict detection.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "jgit-stash-create-call",
+   "project": "jgit",
+   "field": "person",
+   "declared_type": "PersonIdent",
+   "runtime_classes": [
+    "org.eclipse.jgit.lib.PersonIdent"
+   ],
+   "label": "STATE",
+   "reason": "The target method reads this PersonIdent's data to set the author/committer and reflog identity of the stash commits, so the test must supply the intended value.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jgit-stash-create-call",
+   "project": "jgit",
+   "field": "repo",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.eclipse.jgit.internal.storage.file.FileRepository"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates repository operations such as ref lookup, object reading/insertion, index locking, work-tree access, and event firing to this Repository.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "jsoup-consume-css-identifier",
+   "project": "jsoup",
+   "field": "reader",
+   "declared_type": "CharacterReader",
+   "runtime_classes": [
+    "org.jsoup.parser.CharacterReader"
+   ],
+   "label": "STATE",
+   "reason": "The CharacterReader holds the input data and current position that consumeCssIdentifier reads and mutates to compute the returned identifier, so tests must construct it with the relevant text rather than mock its behavior.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-element-css-selector",
+   "project": "jsoup",
+   "field": "attributes",
+   "declared_type": "",
+   "runtime_classes": [
+    "org.jsoup.nodes.Attributes"
+   ],
+   "label": "STATE",
+   "reason": "cssSelector reads the element's id and class attributes to construct the selector, so the attribute data must be reproduced in the test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-element-css-selector",
+   "project": "jsoup",
+   "field": "childNodes",
+   "declared_type": "NodeList",
+   "runtime_classes": [
+    "org.jsoup.nodes.Element$NodeList"
+   ],
+   "label": "STATE",
+   "reason": "The child node list is part of the element's DOM data and is not a service or infrastructure dependency to replace.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-element-css-selector",
+   "project": "jsoup",
+   "field": "parentNode",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.jsoup.nodes.Element"
+   ],
+   "label": "STATE",
+   "reason": "The parent element determines the ancestor path and sibling position used in the generated selector, so its data must be reproduced.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-element-css-selector",
+   "project": "jsoup",
+   "field": "tag",
+   "declared_type": "Tag",
+   "runtime_classes": [
+    "org.jsoup.parser.Tag"
+   ],
+   "label": "STATE",
+   "reason": "The tag object supplies the element's tag name, which is read to build the CSS selector.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-element-has-class",
+   "project": "jsoup",
+   "field": "attributes",
+   "declared_type": "",
+   "runtime_classes": [
+    "org.jsoup.nodes.Attributes"
+   ],
+   "label": "STATE",
+   "reason": "The class attribute data stored in this Attributes object is read by hasClass to compute the boolean result.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "jsoup-element-has-class",
+   "project": "jsoup",
+   "field": "childNodes",
+   "declared_type": "NodeList",
+   "runtime_classes": [
+    "org.jsoup.nodes.Element$NodeList"
+   ],
+   "label": "STATE",
+   "reason": "It is a NodeList collection wrapper holding the element's children, so it is receiver state even though hasClass does not inspect it.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "jsoup-element-has-class",
+   "project": "jsoup",
+   "field": "outputSettings",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.jsoup.nodes.Document$OutputSettings"
+   ],
+   "label": "STATE",
+   "reason": "It is configuration state of the receiver, not a collaborator whose behaviour hasClass delegates to.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "jsoup-element-has-class",
+   "project": "jsoup",
+   "field": "parentNode",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.jsoup.nodes.Document",
+    "org.jsoup.nodes.Element"
+   ],
+   "label": "STATE",
+   "reason": "It is a domain/tree reference to the parent node and part of the receiver's state, not a service used by hasClass.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "jsoup-element-has-class",
+   "project": "jsoup",
+   "field": "parser",
+   "declared_type": "Parser",
+   "runtime_classes": [
+    "org.jsoup.parser.Parser"
+   ],
+   "label": "STATE",
+   "reason": "Parser object is part of the node's stored environment; hasClass does not invoke it.",
+   "p1": "DEPENDENCY",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "jsoup-element-has-class",
+   "project": "jsoup",
+   "field": "tag",
+   "declared_type": "Tag",
+   "runtime_classes": [
+    "org.jsoup.parser.Tag"
+   ],
+   "label": "STATE",
+   "reason": "Tag is a domain data object identifying the element and is part of the receiver's state, though hasClass only reads attributes.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "jsoup-form-element-form-data",
+   "project": "jsoup",
+   "field": "childNodes",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.jsoup.nodes.Element$NodeList"
+   ],
+   "label": "STATE",
+   "reason": "The form's child node list is the DOM data that elements()/select traverses to discover form controls.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-form-element-form-data",
+   "project": "jsoup",
+   "field": "linkedEls",
+   "declared_type": "Elements",
+   "runtime_classes": [
+    "org.jsoup.select.Elements"
+   ],
+   "label": "STATE",
+   "reason": "It is a collection of linked form control elements whose contents are read by elements() when computing formData().",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-form-element-form-data",
+   "project": "jsoup",
+   "field": "parentNode",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.jsoup.nodes.Element"
+   ],
+   "label": "STATE",
+   "reason": "It is part of the element's DOM structure/data and is not a service whose behavior would be stubbed.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-form-element-form-data",
+   "project": "jsoup",
+   "field": "tag",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.jsoup.parser.Tag"
+   ],
+   "label": "STATE",
+   "reason": "The Tag object supplies domain metadata such as form-submittable behavior and must be reproduced rather than mocked.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-node-abs-url",
+   "project": "jsoup",
+   "field": "attributes",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.jsoup.nodes.Attributes"
+   ],
+   "label": "STATE",
+   "reason": "The attribute values are read via hasKeyIgnoreCase/getIgnoreCase to decide the returned absolute URL, so the test must reproduce this data.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-node-abs-url",
+   "project": "jsoup",
+   "field": "childNodes",
+   "declared_type": "List<Node>",
+   "runtime_classes": [
+    "org.jsoup.nodes.Element$NodeList"
+   ],
+   "label": "STATE",
+   "reason": "It is collection-backed node data rather than a service the method delegates to; absUrl does not use it, but it is part of the node's state.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-node-abs-url",
+   "project": "jsoup",
+   "field": "parentNode",
+   "declared_type": "return",
+   "runtime_classes": [
+    "org.jsoup.nodes.Element"
+   ],
+   "label": "STATE",
+   "reason": "It is a domain/tree reference holding node data, not an injected collaborator whose behaviour absUrl replaces.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-node-abs-url",
+   "project": "jsoup",
+   "field": "tag",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.jsoup.parser.Tag"
+   ],
+   "label": "STATE",
+   "reason": "The tag object is structural/domain data describing the node, not a service or infrastructure dependency used for delegation.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-node-wrap",
+   "project": "jsoup",
+   "field": "parentNode",
+   "declared_type": "return",
+   "runtime_classes": [
+    "org.jsoup.nodes.Element"
+   ],
+   "label": "STATE",
+   "reason": "The parent Element is a domain object of the DOM tree whose presence, type and child list drive the wrap logic (context selection, replaceChild, remainder insertion), and tests build real documents rather than mocking it.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-tag-set-value-of",
+   "project": "jsoup",
+   "field": "source",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.jsoup.parser.TagSet"
+   ],
+   "label": "STATE",
+   "reason": "It is an internal fallback TagSet whose tag data is read (via get) to find or clone tags that determine the result of valueOf.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "jsoup-token-queue-chomp-balanced",
+   "project": "jsoup",
+   "field": "reader",
+   "declared_type": "CharacterReader",
+   "runtime_classes": [
+    "org.jsoup.parser.CharacterReader"
+   ],
+   "label": "STATE",
+   "reason": "The target method reads characters from this CharacterReader and relies on its buffered input data to compute the returned balanced string, so a test must set up that underlying data.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "klaw-approval-service-add-approval",
+   "project": "klaw",
+   "field": "commonUtilsService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.CommonUtilsService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator (CommonUtilsService) that the class can call for utility behavior, so a unit test may mock or stub it even though addApproval does not use it.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-approval-service-add-approval",
+   "project": "klaw",
+   "field": "mailService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.MailUtils"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an email-sending service (MailUtils) that the class delegates to for notifications, so a unit test may replace it with a mock or stub.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-approval-service-add-approval",
+   "project": "klaw",
+   "field": "manageDatabase",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.config.ManageDatabase"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a database access/facade component whose methods (selectAllCachedUserInfo, getTeamNameFromTeamId) addApproval calls, so a unit test should mock it to control returned data.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-approval-service-get-approvals-for-request",
+   "project": "klaw",
+   "field": "commonUtilsService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.CommonUtilsService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an injected service (CommonUtilsService) whose behaviour, such as getLoginUrl, is only invoked for side effects and is stubbed with a mock in the tests.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-approval-service-get-approvals-for-request",
+   "project": "klaw",
+   "field": "mailService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.MailUtils"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an injected MailUtils service that the class only calls to send mail, so a unit test legitimately replaces it with a mock.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-approval-service-get-approvals-for-request",
+   "project": "klaw",
+   "field": "manageDatabase",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.config.ManageDatabase"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates lookups such as getTeamNameFromTeamId to this database access facade, which the developers mock in their tests.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-envs-clusters-tenants-controller-service-add-new-env",
+   "project": "klaw",
+   "field": "clusterApiService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.ClusterApiService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Injected cluster API service collaborator; addNewEnv does not call it, but it is a service dependency of the receiver.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-envs-clusters-tenants-controller-service-add-new-env",
+   "project": "klaw",
+   "field": "commonUtilsService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.CommonUtilsService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Authorization and principal helper whose behaviour addNewEnv invokes via isAuthorizedFor and getUserName, so tests mock it.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-envs-clusters-tenants-controller-service-add-new-env",
+   "project": "klaw",
+   "field": "defaultDataService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.DefaultDataService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Injected default-data service collaborator; addNewEnv does not call it, but it is a service dependency of the receiver.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-envs-clusters-tenants-controller-service-add-new-env",
+   "project": "klaw",
+   "field": "mailService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.MailUtils"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Used by getUserName to resolve the current user, so its behaviour is mocked as a dependency.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-envs-clusters-tenants-controller-service-add-new-env",
+   "project": "klaw",
+   "field": "manageDatabase",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.config.ManageDatabase"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Database and cache facade whose methods addNewEnv calls for env lists, sequence IDs, persistence, and cache updates, so tests mock it.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-envs-clusters-tenants-controller-service-add-new-env",
+   "project": "klaw",
+   "field": "usersTeamsControllerService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.UsersTeamsControllerService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "Injected user/team service collaborator; addNewEnv does not call it, but it is a service dependency of the receiver.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-envs-clusters-tenants-controller-service-delete-cluster",
+   "project": "klaw",
+   "field": "clusterApiService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.ClusterApiService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an injected service collaborator that unit tests can replace with a mock, even though deleteCluster does not directly call it.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-envs-clusters-tenants-controller-service-delete-cluster",
+   "project": "klaw",
+   "field": "commonUtilsService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.CommonUtilsService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteCluster calls it for authorization, tenant lookup, and metadata updates, so its behavior is mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-envs-clusters-tenants-controller-service-delete-cluster",
+   "project": "klaw",
+   "field": "defaultDataService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.DefaultDataService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an injected service collaborator whose behavior can be mocked, although deleteCluster does not directly invoke it.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-envs-clusters-tenants-controller-service-delete-cluster",
+   "project": "klaw",
+   "field": "mailService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.MailUtils"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteCluster indirectly uses it via getUserName to resolve the current username, so its behavior is stubbed in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-envs-clusters-tenants-controller-service-delete-cluster",
+   "project": "klaw",
+   "field": "manageDatabase",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.config.ManageDatabase"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "deleteCluster delegates environment lookup and cluster deletion to manageDatabase, so it is mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-envs-clusters-tenants-controller-service-delete-cluster",
+   "project": "klaw",
+   "field": "usersTeamsControllerService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.UsersTeamsControllerService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an injected service collaborator that can be mocked, although deleteCluster does not directly call it.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-kw-authentication-success-handler-get-redirect-page",
+   "project": "klaw",
+   "field": "AbstractAuthenticationTargetUrlRequestHandler.logger",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.apache.commons.logging.LogAdapter$Slf4jLocationAwareLog"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The logger is an infrastructure logging collaborator invoked only for log output, not read as data to compute the redirect.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-kw-authentication-success-handler-get-redirect-page",
+   "project": "klaw",
+   "field": "SavedRequestAwareAuthenticationSuccessHandler.logger",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.apache.commons.logging.LogAdapter$Slf4jLocationAwareLog"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The logger is an infrastructure logging collaborator invoked only for log output, not read as data to compute the redirect.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-kw-authentication-success-handler-get-redirect-page",
+   "project": "klaw",
+   "field": "handleDbRequests",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.helpers.db.rdbms.HandleDbRequestsJdbc"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method calls handleDbRequests.getUsersInfo(...) to determine the redirect, so it is a repository/service collaborator that a test can mock.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-kw-authentication-success-handler-get-redirect-page",
+   "project": "klaw",
+   "field": "redirectStrategy",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.springframework.security.web.DefaultRedirectStrategy"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The redirect strategy is an infrastructure collaborator used by the success handler for redirects, not data read by getRedirectPage.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-kw-authentication-success-handler-get-redirect-page",
+   "project": "klaw",
+   "field": "requestCache",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.springframework.security.web.savedrequest.HttpSessionRequestCache"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The request cache is an infrastructure collaborator for saved-request access; getRedirectPage reads the saved request from the session attribute instead of its data.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-request-statistics-service-get-requests-count-overview",
+   "project": "klaw",
+   "field": "commonUtilsService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.CommonUtilsService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method calls its behaviour to obtain team ID, tenant ID, and the principal, so a test can legitimately stub or mock it.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-request-statistics-service-get-requests-count-overview",
+   "project": "klaw",
+   "field": "mailService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.MailUtils"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates to it to resolve the current username, so its behaviour can be replaced with a stub or mock.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-request-statistics-service-get-requests-count-overview",
+   "project": "klaw",
+   "field": "manageDatabase",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.config.ManageDatabase"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates database count retrieval to it and its DB request handler, so it is infrastructure behaviour suitable for mocking.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-roles-permissions-controller-service-update-permissions",
+   "project": "klaw",
+   "field": "commonUtilsService",
+   "declared_type": "CommonUtilsService",
+   "runtime_classes": [
+    "io.aiven.klaw.service.CommonUtilsService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method calls its authorization and tenant/user lookup behavior, which can be replaced with a stub or mock in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-roles-permissions-controller-service-update-permissions",
+   "project": "klaw",
+   "field": "mailService",
+   "declared_type": "MailUtils",
+   "runtime_classes": [
+    "io.aiven.klaw.service.MailUtils"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method indirectly calls getUserName on it to resolve the current user, so its behavior is delegating infrastructure that can be mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-roles-permissions-controller-service-update-permissions",
+   "project": "klaw",
+   "field": "manageDatabase",
+   "declared_type": "ManageDatabase",
+   "runtime_classes": [
+    "io.aiven.klaw.config.ManageDatabase"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates permission persistence and role cache reloading to it, so a unit test should mock its behavior.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-users-teams-controller-service-add-new-team",
+   "project": "klaw",
+   "field": "commonUtilsService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.CommonUtilsService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates authorization checks, tenant lookup, principal retrieval, and metadata updates to this service.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-users-teams-controller-service-add-new-team",
+   "project": "klaw",
+   "field": "inMemoryUserDetailsManager",
+   "declared_type": "InMemoryUserDetailsManager",
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "It is an infrastructure user-store collaborator; addNewTeam does not read its data and would only call its behavior.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-users-teams-controller-service-add-new-team",
+   "project": "klaw",
+   "field": "mailService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.MailUtils"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method obtains the current username through mailService.getUserName, so its behavior is delegated to.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-users-teams-controller-service-add-new-team",
+   "project": "klaw",
+   "field": "manageDatabase",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.config.ManageDatabase"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates team-name lookup and persistence through manageDatabase and its DB handle rather than reading a data object.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-users-teams-controller-service-add-new-team",
+   "project": "klaw",
+   "field": "passwordService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.PasswordService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is a service collaborator for password encoding; addNewTeam does not read its state and would only use its behavior.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-users-teams-controller-service-approve-new-user-requests",
+   "project": "klaw",
+   "field": "commonUtilsService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.CommonUtilsService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates authorization checks, tenant/principal lookups, metadata updates, and login URL retrieval to this service.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-users-teams-controller-service-approve-new-user-requests",
+   "project": "klaw",
+   "field": "inMemoryUserDetailsManager",
+   "declared_type": "InMemoryUserDetailsManager",
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "The target method uses it to create or manage in-memory user accounts as part of approving a user, which a test can mock.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-users-teams-controller-service-approve-new-user-requests",
+   "project": "klaw",
+   "field": "mailService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.MailUtils"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates username resolution and email sending behavior to this service.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-users-teams-controller-service-approve-new-user-requests",
+   "project": "klaw",
+   "field": "manageDatabase",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.config.ManageDatabase"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates persistence and lookup operations through this database facade, so tests can stub or mock it.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "klaw-users-teams-controller-service-approve-new-user-requests",
+   "project": "klaw",
+   "field": "passwordService",
+   "declared_type": null,
+   "runtime_classes": [
+    "io.aiven.klaw.service.PasswordService"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method calls password encoding behavior on this service rather than reading its internal data.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "lab-calculate-price-handler-handle",
+   "project": "lab-insurance",
+   "field": "tariffs",
+   "declared_type": "Tariffs",
+   "runtime_classes": [
+    "pl.altkom.asc.lab.micronaut.poc.pricing.domain.Tariffs$Intercepted"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The handler only calls tariffs.getByCode(...) to look up a Tariff, so it acts as a repository-like collaborator that a unit test can stub to return a prepared Tariff rather than reproducing its data.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-base-executor-update",
+   "project": "mybatis",
+   "field": "configuration",
+   "declared_type": "Configuration",
+   "runtime_classes": [
+    "org.apache.ibatis.session.Configuration"
+   ],
+   "label": "STATE",
+   "reason": "It holds the MyBatis session configuration whose values determine how the update statement handler is created and executed.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "mybatis-base-executor-update",
+   "project": "mybatis",
+   "field": "localCache",
+   "declared_type": "PerpetualCache",
+   "runtime_classes": [
+    "org.apache.ibatis.cache.impl.PerpetualCache"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The update method only invokes clearLocalCache(), which calls clear() on this cache, so its stored data is not read to compute the update result.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-base-executor-update",
+   "project": "mybatis",
+   "field": "localOutputParameterCache",
+   "declared_type": "PerpetualCache",
+   "runtime_classes": [
+    "org.apache.ibatis.cache.impl.PerpetualCache"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The update method only clears this cache as a side effect and does not read its contents to compute the result.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-base-executor-update",
+   "project": "mybatis",
+   "field": "transaction",
+   "declared_type": "Transaction",
+   "runtime_classes": [
+    "org.apache.ibatis.transaction.jdbc.JdbcTransaction"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It provides the database connection and transactional behavior used during update execution and is infrastructure that can be stubbed or mocked.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-base-executor-update",
+   "project": "mybatis",
+   "field": "wrapper",
+   "declared_type": "Executor",
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "It is an Executor collaborator passed to statement handling infrastructure during update execution and can be replaced in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-caching-executor-query",
+   "project": "mybatis",
+   "field": "delegate",
+   "declared_type": "Executor",
+   "runtime_classes": [
+    "org.apache.ibatis.executor.SimpleExecutor"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates the actual query execution to this wrapped Executor, so a test may stub or mock it.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-caching-executor-query",
+   "project": "mybatis",
+   "field": "tcm",
+   "declared_type": "TransactionalCacheManager",
+   "runtime_classes": [
+    "org.apache.ibatis.cache.TransactionalCacheManager"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates cache lookup and storage to this TransactionalCacheManager, whose behavior a test may replace.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-default-sql-session-select-one",
+   "project": "mybatis",
+   "field": "configuration",
+   "declared_type": "Configuration",
+   "runtime_classes": [
+    "org.apache.ibatis.session.Configuration"
+   ],
+   "label": "STATE",
+   "reason": "The configuration registry supplies the MappedStatement used for the select, so its mapping data determines the query and must be reproduced or stubbed in the test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "mybatis-default-sql-session-select-one",
+   "project": "mybatis",
+   "field": "executor",
+   "declared_type": "Executor",
+   "runtime_classes": [
+    "org.apache.ibatis.executor.CachingExecutor"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The executor is the collaborator that performs the actual query, so a unit test can replace it with a stub or mock to control the returned results.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-default-sql-session-update",
+   "project": "mybatis",
+   "field": "configuration",
+   "declared_type": "Configuration",
+   "runtime_classes": [
+    "org.apache.ibatis.session.Configuration"
+   ],
+   "label": "STATE",
+   "reason": "The target method reads the configuration to resolve the MappedStatement for the given statement id, so the test must reproduce the relevant configuration data.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "mybatis-default-sql-session-update",
+   "project": "mybatis",
+   "field": "executor",
+   "declared_type": "Executor",
+   "runtime_classes": [
+    "org.apache.ibatis.executor.CachingExecutor"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates the actual update operation to the executor, whose behaviour can legitimately be stubbed or mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-dynamic-sql-source",
+   "project": "mybatis",
+   "field": "configuration",
+   "declared_type": "Configuration",
+   "runtime_classes": [
+    "org.apache.ibatis.session.Configuration"
+   ],
+   "label": "STATE",
+   "reason": "The Configuration supplies settings and registries that determine how the DynamicContext and SqlSourceBuilder build the BoundSql, so its data must be reproduced in the test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "mybatis-dynamic-sql-source",
+   "project": "mybatis",
+   "field": "rootSqlNode",
+   "declared_type": "SqlNode",
+   "runtime_classes": [
+    "org.apache.ibatis.scripting.xmltags.MixedSqlNode"
+   ],
+   "label": "STATE",
+   "reason": "The SQL node tree supplies the SQL text and parameter mappings that determine the resulting BoundSql, so it is domain state the test must construct rather than a replaceable service.",
+   "p1": "STATE",
+   "p2": "DEPENDENCY",
+   "p3": "STATE"
+  },
+  {
+   "case": "mybatis-foreach-parameter-handler",
+   "project": "mybatis",
+   "field": "boundSql",
+   "declared_type": "BoundSql",
+   "runtime_classes": [
+    "org.apache.ibatis.mapping.BoundSql"
+   ],
+   "label": "STATE",
+   "reason": "It supplies the parameter mappings and additional parameter values that determine what is bound to the PreparedStatement.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "mybatis-foreach-parameter-handler",
+   "project": "mybatis",
+   "field": "configuration",
+   "declared_type": "Configuration",
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "It is an infrastructure/factory object used to create MetaObjects and provide the reflector factory, type-handler registry, and null JDBC type behavior.",
+   "p1": "STATE",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "mybatis-foreach-parameter-handler",
+   "project": "mybatis",
+   "field": "mappedStatement",
+   "declared_type": "MappedStatement",
+   "runtime_classes": [
+    "org.apache.ibatis.mapping.MappedStatement"
+   ],
+   "label": "STATE",
+   "reason": "It supplies the parameter map id and ParamNameResolver whose data drives parameter-name/type resolution.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "mybatis-foreach-parameter-handler",
+   "project": "mybatis",
+   "field": "parameterObject",
+   "declared_type": "Object",
+   "runtime_classes": [
+    "org.apache.ibatis.binding.MapperMethod$ParamMap"
+   ],
+   "label": "STATE",
+   "reason": "It holds the actual parameter values that are read via MetaObject and bound to the statement.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "mybatis-foreach-parameter-handler",
+   "project": "mybatis",
+   "field": "typeHandlerRegistry",
+   "declared_type": "TypeHandlerRegistry",
+   "runtime_classes": [
+    "org.apache.ibatis.type.TypeHandlerRegistry"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "It is an infrastructure registry whose behavior is called to look up appropriate TypeHandler instances for binding.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "mybatis-lazy-result-loader",
+   "project": "mybatis",
+   "field": "boundSql",
+   "declared_type": "BoundSql",
+   "runtime_classes": [
+    "org.apache.ibatis.mapping.BoundSql"
+   ],
+   "label": "STATE",
+   "reason": "BoundSql holds the SQL and parameter mappings that are passed to the executor query and thus determine the result.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "mybatis-lazy-result-loader",
+   "project": "mybatis",
+   "field": "cacheKey",
+   "declared_type": "CacheKey",
+   "runtime_classes": [
+    "org.apache.ibatis.cache.CacheKey"
+   ],
+   "label": "STATE",
+   "reason": "CacheKey is a data value holder passed into the executor query, not a collaborator whose behaviour is stubbed.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "mybatis-lazy-result-loader",
+   "project": "mybatis",
+   "field": "configuration",
+   "declared_type": "Configuration",
+   "runtime_classes": [
+    "org.apache.ibatis.session.Configuration"
+   ],
+   "label": "STATE",
+   "reason": "Configuration is read for its environment and object factory data and is used to construct collaborators, so it must be reproduced in the test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "mybatis-lazy-result-loader",
+   "project": "mybatis",
+   "field": "executor",
+   "declared_type": "Executor",
+   "runtime_classes": [
+    "org.apache.ibatis.executor.CachingExecutor"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates the query to the executor's behaviour, which a test may legitimately stub or mock.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-lazy-result-loader",
+   "project": "mybatis",
+   "field": "mappedStatement",
+   "declared_type": "MappedStatement",
+   "runtime_classes": [
+    "org.apache.ibatis.mapping.MappedStatement"
+   ],
+   "label": "STATE",
+   "reason": "MappedStatement is a domain/mapping data object passed to the executor query and read rather than a behaviour collaborator here.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "mybatis-lazy-result-loader",
+   "project": "mybatis",
+   "field": "objectFactory",
+   "declared_type": "ObjectFactory",
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "ObjectFactory is a factory collaborator supplying object creation behaviour used by the result extractor.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-lazy-result-loader",
+   "project": "mybatis",
+   "field": "resultExtractor",
+   "declared_type": "ResultExtractor",
+   "runtime_classes": [
+    "org.apache.ibatis.executor.ResultExtractor"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates the extraction of the result object to resultExtractor's behaviour.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-mapper-method-execute",
+   "project": "mybatis",
+   "field": "command",
+   "declared_type": "SqlCommand",
+   "runtime_classes": [
+    "org.apache.ibatis.binding.MapperMethod$SqlCommand"
+   ],
+   "label": "STATE",
+   "reason": "The execute method reads command.getType() and command.getName() to decide and perform the SQL operation, so its metadata must be reproduced in the test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "mybatis-mapper-method-execute",
+   "project": "mybatis",
+   "field": "method",
+   "declared_type": "MethodSignature",
+   "runtime_classes": [
+    "org.apache.ibatis.binding.MapperMethod$MethodSignature"
+   ],
+   "label": "STATE",
+   "reason": "The execute method reads the method signature's return-type flags, argument conversion, and extraction metadata to determine behavior and results, so it must be reproduced in the test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "mybatis-nested-foreach-node",
+   "project": "mybatis",
+   "field": "configuration",
+   "declared_type": "Configuration",
+   "runtime_classes": [
+    "org.apache.ibatis.session.Configuration"
+   ],
+   "label": "STATE",
+   "reason": "It supplies the isNullableOnForEach setting used to compute the default nullable behavior and is also passed into created DynamicContext instances.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "mybatis-nested-foreach-node",
+   "project": "mybatis",
+   "field": "contents",
+   "declared_type": "SqlNode",
+   "runtime_classes": [
+    "org.apache.ibatis.scripting.xmltags.MixedSqlNode"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates SQL generation to contents by calling contents.apply on each iteration.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-nested-foreach-node",
+   "project": "mybatis",
+   "field": "evaluator",
+   "declared_type": "ExpressionEvaluator",
+   "runtime_classes": [
+    "org.apache.ibatis.scripting.xmltags.ExpressionEvaluator"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates collection-expression evaluation to evaluator to obtain the iterable to process.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-prepared-statement-update",
+   "project": "mybatis",
+   "field": "boundSql",
+   "declared_type": null,
+   "runtime_classes": [],
+   "label": "STATE",
+   "reason": "update reads its parameter object to pass to the key generator, so its data must be reproduced.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "mybatis-prepared-statement-update",
+   "project": "mybatis",
+   "field": "configuration",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.apache.ibatis.session.Configuration"
+   ],
+   "label": "STATE",
+   "reason": "it is the configuration/data object holding settings, not behavior delegated to by update.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "mybatis-prepared-statement-update",
+   "project": "mybatis",
+   "field": "executor",
+   "declared_type": null,
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "it is an infrastructure executor passed to the key generator, so a test can replace it with a mock.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "mybatis-prepared-statement-update",
+   "project": "mybatis",
+   "field": "mappedStatement",
+   "declared_type": null,
+   "runtime_classes": [],
+   "label": "STATE",
+   "reason": "update reads its key generator and metadata, so its data determines the result.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "mybatis-prepared-statement-update",
+   "project": "mybatis",
+   "field": "objectFactory",
+   "declared_type": null,
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "it is a factory used by handler infrastructure, not data read by update.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "mybatis-prepared-statement-update",
+   "project": "mybatis",
+   "field": "parameterHandler",
+   "declared_type": null,
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "it is a behavior handler for parameter binding, not data read by update.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "mybatis-prepared-statement-update",
+   "project": "mybatis",
+   "field": "resultSetHandler",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.apache.ibatis.executor.resultset.DefaultResultSetHandler"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "it is a behavior handler for result sets, not data read by update.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "mybatis-prepared-statement-update",
+   "project": "mybatis",
+   "field": "rowBounds",
+   "declared_type": null,
+   "runtime_classes": [],
+   "label": "STATE",
+   "reason": "it is a value holder for pagination data, not a service called by update.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "mybatis-prepared-statement-update",
+   "project": "mybatis",
+   "field": "typeHandlerRegistry",
+   "declared_type": null,
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "TypeHandlerRegistry is registry infrastructure used for type handler lookup, not data read by the update method.",
+   "p1": "DEPENDENCY",
+   "p2": "STATE",
+   "p3": "DEPENDENCY"
+  },
+  {
+   "case": "mybatis-provider-sql-source-get-bound-sql",
+   "project": "mybatis",
+   "field": "configuration",
+   "declared_type": "Configuration",
+   "runtime_classes": [
+    "org.apache.ibatis.session.Configuration"
+   ],
+   "label": "STATE",
+   "reason": "It is passed as configuration data into the language driver when creating the SQL source and determines the resulting BoundSql.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "mybatis-provider-sql-source-get-bound-sql",
+   "project": "mybatis",
+   "field": "languageDriver",
+   "declared_type": "LanguageDriver",
+   "runtime_classes": [],
+   "label": "DEPENDENCY",
+   "reason": "The target method delegates SQL source creation to languageDriver.createSqlSource(...), which can be stubbed or mocked in a unit test.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "mybatis-provider-sql-source-get-bound-sql",
+   "project": "mybatis",
+   "field": "paramNameResolver",
+   "declared_type": "ParamNameResolver",
+   "runtime_classes": [
+    "org.apache.ibatis.reflection.ParamNameResolver"
+   ],
+   "label": "STATE",
+   "reason": "Its parameter names are read to map arguments and it is passed into SQL source creation, so its data must be reproduced.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "mybatis-provider-sql-source-get-bound-sql",
+   "project": "mybatis",
+   "field": "providerContext",
+   "declared_type": "ProviderContext",
+   "runtime_classes": [
+    "org.apache.ibatis.builder.annotation.ProviderContext"
+   ],
+   "label": "STATE",
+   "reason": "It is used to decide provider method argument handling and is passed as data to the provider method, so its contents must be reproduced.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-catalog-get-viewer-preferences",
+   "project": "pdfbox",
+   "field": "document",
+   "declared_type": "PDDocument",
+   "runtime_classes": [
+    "org.apache.pdfbox.pdmodel.PDDocument"
+   ],
+   "label": "STATE",
+   "reason": "PDDocument is a domain object held as catalog context; getViewerPreferences does not delegate to it, so it is receiver state rather than a mockable collaborator.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-catalog-get-viewer-preferences",
+   "project": "pdfbox",
+   "field": "root",
+   "declared_type": "COSDictionary",
+   "runtime_classes": [
+    "org.apache.pdfbox.cos.COSDictionary"
+   ],
+   "label": "STATE",
+   "reason": "The method reads the VIEWER_PREFERENCES entry from this COSDictionary to determine whether to construct PDViewerPreferences or return null.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-cid-font-get-cid-system-info",
+   "project": "pdfbox",
+   "field": "cmap",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.apache.fontbox.ttf.CmapSubtable"
+   ],
+   "label": "STATE",
+   "reason": "The cmap holds font mapping data and is not a service the target method delegates to, so it is receiver state.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-cid-font-get-cid-system-info",
+   "project": "pdfbox",
+   "field": "dict",
+   "declared_type": "COSDictionary",
+   "runtime_classes": [
+    "org.apache.pdfbox.cos.COSDictionary"
+   ],
+   "label": "STATE",
+   "reason": "The target method reads the CIDSystemInfo entry directly from the COSDictionary to compute its result.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-cid-font-get-cid-system-info",
+   "project": "pdfbox",
+   "field": "fontDescriptor",
+   "declared_type": "PDFontDescriptor",
+   "runtime_classes": [
+    "org.apache.pdfbox.pdmodel.font.PDFontDescriptor"
+   ],
+   "label": "STATE",
+   "reason": "The font descriptor is a domain/data object and is not used by getCIDSystemInfo, so it is receiver state rather than a dependency.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-cid-font-get-cid-system-info",
+   "project": "pdfbox",
+   "field": "parent",
+   "declared_type": "PDType0Font",
+   "runtime_classes": [
+    "org.apache.pdfbox.pdmodel.font.PDType0Font"
+   ],
+   "label": "STATE",
+   "reason": "The parent Type0 font is a domain font object and is not invoked by getCIDSystemInfo, so it is receiver state.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-cid-font-get-cid-system-info",
+   "project": "pdfbox",
+   "field": "ttf",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.apache.fontbox.ttf.OpenTypeFont",
+    "org.apache.fontbox.ttf.TrueTypeFont"
+   ],
+   "label": "STATE",
+   "reason": "The TrueType/OpenType font object holds font program data and is not used by getCIDSystemInfo, so it is receiver state.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-cid-system-info-get-ordering",
+   "project": "pdfbox",
+   "field": "dictionary",
+   "declared_type": "COSDictionary",
+   "runtime_classes": [
+    "org.apache.pdfbox.cos.COSDictionary"
+   ],
+   "label": "STATE",
+   "reason": "The target method reads the ordering string from this COSDictionary, so its data must be reproduced in the test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-cos-parser-get-encryption",
+   "project": "pdfbox",
+   "field": "document",
+   "declared_type": "return",
+   "runtime_classes": [
+    "org.apache.pdfbox.cos.COSDocument"
+   ],
+   "label": "STATE",
+   "reason": "The method reads the document's encryption dictionary (or trailer data) to build the returned PDEncryption, so its data determines the result.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-cos-parser-get-encryption",
+   "project": "pdfbox",
+   "field": "seqSource",
+   "declared_type": null,
+   "runtime_classes": [
+    "org.apache.pdfbox.pdfparser.RandomAccessSource"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The sequential source is an I/O infrastructure object used for reading file bytes, which a unit test would replace rather than reproduce as data.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-cos-parser-get-encryption",
+   "project": "pdfbox",
+   "field": "source",
+   "declared_type": "RandomAccessRead",
+   "runtime_classes": [
+    "org.apache.pdfbox.io.RandomAccessBufferedFileInputStream"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The RandomAccessRead is the underlying file I/O and is delegated to for byte access, not read as state.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-cos-parser-get-encryption",
+   "project": "pdfbox",
+   "field": "xrefTrailerResolver",
+   "declared_type": "XrefTrailerResolver",
+   "runtime_classes": [
+    "org.apache.pdfbox.pdfparser.XrefTrailerResolver"
+   ],
+   "label": "STATE",
+   "reason": "The method reads the trailer dictionary from the resolver to obtain the /Encrypt entry, so its data determines the returned encryption object.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-ext-graphics-state-get-soft-mask",
+   "project": "pdfbox",
+   "field": "dict",
+   "declared_type": "COSDictionary",
+   "runtime_classes": [
+    "org.apache.pdfbox.cos.COSDictionary"
+   ],
+   "label": "STATE",
+   "reason": "The COSDictionary holds the /SMASK entry whose data is read to determine whether a soft mask exists and to construct it, so its contents must be reproduced in the test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-font-descriptor-get-flags",
+   "project": "pdfbox",
+   "field": "dic",
+   "declared_type": "COSDictionary",
+   "runtime_classes": [
+    "org.apache.pdfbox.cos.COSDictionary"
+   ],
+   "label": "STATE",
+   "reason": "getFlags() reads the /Flags integer value from this COS dictionary to compute the result, so its data must be reproduced in the test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-font-descriptor-is-fixed-pitch",
+   "project": "pdfbox",
+   "field": "dic",
+   "declared_type": "COSDictionary",
+   "runtime_classes": [
+    "org.apache.pdfbox.cos.COSDictionary"
+   ],
+   "label": "STATE",
+   "reason": "The target method reads the /Flags integer from this COS dictionary to compute the fixed-pitch result, so its data must be reproduced in the test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-font-descriptor-is-symbolic",
+   "project": "pdfbox",
+   "field": "dic",
+   "declared_type": "COSDictionary",
+   "runtime_classes": [
+    "org.apache.pdfbox.cos.COSDictionary"
+   ],
+   "label": "STATE",
+   "reason": "The target method reads the /Flags integer stored in this COS dictionary to compute the symbolic bit result.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-icc-based-get-default-decode",
+   "project": "pdfbox",
+   "field": "array",
+   "declared_type": "",
+   "runtime_classes": [
+    "org.apache.pdfbox.cos.COSArray"
+   ],
+   "label": "STATE",
+   "reason": "The COSArray is color-space data rather than a service; getDefaultDecode does not delegate behavior to it.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-icc-based-get-default-decode",
+   "project": "pdfbox",
+   "field": "initialColor",
+   "declared_type": "PDColor",
+   "runtime_classes": [
+    "org.apache.pdfbox.pdmodel.graphics.color.PDColor"
+   ],
+   "label": "STATE",
+   "reason": "PDColor is a domain value holder, not a dependency whose behavior the target method calls.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-icc-based-get-default-decode",
+   "project": "pdfbox",
+   "field": "stream",
+   "declared_type": "PDStream",
+   "runtime_classes": [
+    "org.apache.pdfbox.pdmodel.common.PDStream"
+   ],
+   "label": "STATE",
+   "reason": "getDefaultDecode calls getNumberOfComponents, which reads the /N value from this PDStream's COSObject, so its data determines the result.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-image-xobject-get-color-key-mask",
+   "project": "pdfbox",
+   "field": "colorSpace",
+   "declared_type": "PDColorSpace",
+   "runtime_classes": [
+    "org.apache.pdfbox.pdmodel.graphics.color.PDDeviceGray",
+    "org.apache.pdfbox.pdmodel.graphics.color.PDDeviceRGB"
+   ],
+   "label": "STATE",
+   "reason": "A domain color-space value object cached on the image whose data determines interpretation of image data; the target method does not delegate any work to it, and it must be reproduced/configured as data rather than stubbed.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-image-xobject-get-color-key-mask",
+   "project": "pdfbox",
+   "field": "resources",
+   "declared_type": "PDResources",
+   "runtime_classes": [
+    "org.apache.pdfbox.pdmodel.PDResources"
+   ],
+   "label": "STATE",
+   "reason": "A resource dictionary holder whose entries are read (for lookups such as color-space resolution) and which wraps resource collections, i.e. data that must be supplied to the object under test rather than a replaceable collaborator for this method.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-image-xobject-get-color-key-mask",
+   "project": "pdfbox",
+   "field": "stream",
+   "declared_type": "COSStream",
+   "runtime_classes": [
+    "org.apache.pdfbox.pdmodel.common.PDStream"
+   ],
+   "label": "STATE",
+   "reason": "The COS stream whose dictionary holds the /Mask entry that getColorKeyMask reads and returns, so its data directly determines the method result and must be reproduced in the test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-image-xobject-get-interpolate",
+   "project": "pdfbox",
+   "field": "colorSpace",
+   "declared_type": "PDColorSpace",
+   "runtime_classes": [
+    "org.apache.pdfbox.pdmodel.graphics.color.PDDeviceRGB"
+   ],
+   "label": "STATE",
+   "reason": "PDColorSpace is a domain/data value stored on the receiver; getInterpolate does not delegate behavior to it.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "pdfbox-image-xobject-get-interpolate",
+   "project": "pdfbox",
+   "field": "resources",
+   "declared_type": "PDResources",
+   "runtime_classes": [
+    "org.apache.pdfbox.pdmodel.PDResources"
+   ],
+   "label": "STATE",
+   "reason": "It is the image's resource context/data and is not called or used by getInterpolate.",
+   "p1": "STATE",
+   "p2": "DEPENDENCY",
+   "p3": "STATE"
+  },
+  {
+   "case": "pdfbox-image-xobject-get-interpolate",
+   "project": "pdfbox",
+   "field": "stream",
+   "declared_type": "COSStream",
+   "runtime_classes": [
+    "org.apache.pdfbox.pdmodel.common.PDStream"
+   ],
+   "label": "STATE",
+   "reason": "The stream holds the COS dictionary entry /Interpolate that getInterpolate reads to compute the boolean result.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": "STATE"
+  },
+  {
+   "case": "pdfbox-resources-get-ext-gstate",
+   "project": "pdfbox",
+   "field": "cache",
+   "declared_type": "ResourceCache",
+   "runtime_classes": [
+    "org.apache.pdfbox.pdmodel.DefaultResourceCache"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The method only calls its behaviour (getExtGState/put) to look up and store cached graphics states, so a unit test can replace it with a stub or mock.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-resources-get-ext-gstate",
+   "project": "pdfbox",
+   "field": "resources",
+   "declared_type": "COSDictionary",
+   "runtime_classes": [
+    "org.apache.pdfbox.cos.COSDictionary"
+   ],
+   "label": "STATE",
+   "reason": "The method reads this COSDictionary's EXT_G_STATE entries to obtain the dictionary from which the PDExtendedGraphicsState is constructed, so its data must be reproduced in the test.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-xref-trailer-resolver-get-xref-type",
+   "project": "pdfbox",
+   "field": "curXrefTrailerObj",
+   "declared_type": "XrefTrailerObj",
+   "runtime_classes": [],
+   "label": "STATE",
+   "reason": "It is an internal XrefTrailerObj data holder rather than a collaborator, though getXrefType does not read it.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "pdfbox-xref-trailer-resolver-get-xref-type",
+   "project": "pdfbox",
+   "field": "resolvedXrefTrailer",
+   "declared_type": "XrefTrailerObj",
+   "runtime_classes": [
+    "org.apache.pdfbox.pdfparser.XrefTrailerResolver$XrefTrailerObj"
+   ],
+   "label": "STATE",
+   "reason": "getXrefType reads its xrefType field to determine the returned result.",
+   "p1": "STATE",
+   "p2": "STATE",
+   "p3": null
+  },
+  {
+   "case": "petclinic-pet-type-formatter-parse",
+   "project": "spring-petclinic",
+   "field": "owners",
+   "declared_type": "OwnerRepository",
+   "runtime_classes": [
+    "org.springframework.samples.petclinic.owner.OwnerRepository"
+   ],
+   "label": "DEPENDENCY",
+   "reason": "The parse method delegates to OwnerRepository.findPetTypes() to fetch the pet types, so the test legitimately stubs this repository.",
+   "p1": "DEPENDENCY",
+   "p2": "DEPENDENCY",
+   "p3": null
+  }
+ ]
+}

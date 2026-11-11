@@ -1,0 +1,16 @@
+id: pdfbox-xref-trailer-resolver-get-xref-type
+project: pdfbox
+group: indirect
+target:
+  class: org.apache.pdfbox.pdfparser.XrefTrailerResolver
+  method: getXrefType
+  signature: () -> org.apache.pdfbox.pdfparser.XrefTrailerResolver$XRefType
+scenario:
+  test: org.apache.pdfbox.multipdf.MergeAcroFormsTest#testAPEntry
+  source: pdfbox/src/test/java/org/apache/pdfbox/multipdf/MergeAcroFormsTest.java
+output_test_file: pdfbox/src/test/java/org/apache/pdfbox/pdfparser/XrefTrailerResolverCarvedTest.java
+hidden_paths: []
+commands:
+  build: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -Dtest=MergeAcroFormsTest#testAPEntry, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -Dtest=XrefTrailerResolverCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

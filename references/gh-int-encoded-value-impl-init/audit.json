@@ -1,0 +1,65 @@
+{
+ "case_id": "gh-int-encoded-value-impl-init",
+ "project": "graphhopper",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 40.1,
+   "invocations": 10,
+   "scenarios": 10,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 0,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 40.2,
+   "invocations": 10,
+   "scenarios": 10,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 0,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 10,
+  "structure_hits": 10,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 10,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 10,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 10,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 10,
+  "io_hit_ids": [
+   "35aa825b3738",
+   "3bba0a4365cf",
+   "408b5d9b29e7",
+   "58694abf3286",
+   "73c08ccf7d1e",
+   "77a61629ae76",
+   "791e891bdebf",
+   "82a0a8c0ab86",
+   "9646bcf8ed20",
+   "dad7431d63ec"
+  ],
+  "data_hits": 10,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [],
+  "dependency_fields_count": 0,
+  "value_dependencies": [],
+  "value_dependencies_count": 0,
+  "masked": 0,
+  "cuts": 0
+ }
+}

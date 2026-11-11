@@ -1,0 +1,81 @@
+# Subject projects. Every case of a project uses the same commit.
+#
+# eval_maven_args: added to the build and test commands of the evaluation (verification, tracing),
+# never to the commands of the agent. They switch off code-format checks
+# bound to early Maven phases, so that the format of a generated test does not decide whether it
+# compiles; the agent modes still see the project's checks through their own commands.
+
+apollo:
+  url: https://github.com/apolloconfig/apollo.git
+  commit: 998b88f100d5ba8dd4af16a0eb1d008b513cca70
+  jdk: 21
+  license: Apache-2.0
+
+klaw:
+  url: https://github.com/Aiven-Open/klaw.git
+  commit: 99f895322296ef5cbfcfb42684add6c52fe6e057
+  jdk: 21
+  license: Apache-2.0
+  eval_maven_args: [-Dspotless.check.skip=true, -Dspotless.apply.skip=true]
+
+mybatis:
+  url: https://github.com/mybatis/mybatis-3.git
+  commit: 673798b256e244e95183604eb42afd7916b8cfd7
+  jdk: 21
+  license: Apache-2.0
+
+jsoup:
+  url: https://github.com/jhy/jsoup.git
+  commit: 7860d088e044236e288c1f88a743b68b2a0edece
+  jdk: 21
+  license: MIT
+
+checkstyle:
+  url: https://github.com/checkstyle/checkstyle.git
+  commit: 47b4b774648d2229c40e78572e37def1e1b26c45
+  jdk: 21
+  license: LGPL-2.1
+
+jgit:
+  url: https://github.com/eclipse-jgit/jgit.git
+  commit: 226017b8cba58eb8d227f22dd92e970eeab4053f
+  jdk: 21
+  license: EDL-1.0
+
+liquibase:
+  url: https://github.com/liquibase/liquibase.git
+  commit: f6ddd5657c17f06a152a542a2e746f904242d7fd
+  jdk: 21
+  license: FSL-1.1-ALv2
+
+# Projects of cases/cases-jdk11.csv. They run on JDK 11: a config for them sets `jdk: 11`,
+# paths.java_home to a JDK 11 and `case_list: cases-jdk11.csv`.
+# prebuild: commands run once in every fresh workspace before the scenario (sibling modules installed).
+
+pdfbox:
+  url: https://github.com/apache/pdfbox.git
+  commit: 8876e8e1a0adbf619cef4638cc3cea073e3ca484
+  jdk: 11
+  license: Apache-2.0
+
+graphhopper:
+  url: https://github.com/graphhopper/graphhopper.git
+  commit: af5ac0b0ae024da4b23966b1eef480508b5eedbb
+  jdk: 11
+  license: Apache-2.0
+
+spring-petclinic:
+  url: https://github.com/spring-projects/spring-petclinic.git
+  commit: a5cbb8505a1df3c348c06607933a07fc8c87c222
+  jdk: 11
+  license: Apache-2.0
+
+lab-insurance:
+  url: https://github.com/asc-lab/micronaut-microservices-poc.git
+  commit: 79416dd5a2b17febaf67d0472f5d9f51f7059b01
+  jdk: 11
+  license: Apache-2.0
+  prebuild:
+    - [mvn, -q, -o, -DskipTests, install, -f, command-bus-api]
+    - [mvn, -q, -o, -DskipTests, install, -f, command-bus]
+    - [mvn, -q, -o, -DskipTests, install, -f, pricing-service-api]

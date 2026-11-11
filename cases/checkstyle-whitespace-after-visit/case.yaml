@@ -1,0 +1,17 @@
+id: checkstyle-whitespace-after-visit
+project: checkstyle
+group: indirect
+target:
+  class: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck
+  method: visitToken
+  signature: (com.puppycrawl.tools.checkstyle.api.DetailAST) -> void
+scenario:
+  test: com.puppycrawl.tools.checkstyle.TreeWalkerTest#testMultiCheckOrder
+  source: src/test/java/com/puppycrawl/tools/checkstyle/TreeWalkerTest.java
+output_test_file: src/test/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAfterCheckCarvedTest.java
+hidden_paths:
+- src/test/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAfterCheckTest.java
+commands:
+  build: [mvn, -q, -o, -DskipTests, -Djacoco.skip=true, -Dexec.skip=true, test-compile]
+  scenario: [mvn, -q, -o, -Dtest=TreeWalkerTest#testMultiCheckOrder, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Djacoco.skip=true, -Dexec.skip=true, test]
+  generated_test: [mvn, -q, -o, -Dtest=WhitespaceAfterCheckCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Djacoco.skip=true, -Dexec.skip=true, test]

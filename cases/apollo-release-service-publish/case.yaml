@@ -1,0 +1,17 @@
+id: apollo-release-service-publish
+project: apollo
+group: direct
+target:
+  class: com.ctrip.framework.apollo.biz.service.ReleaseService
+  method: publish
+  signature: (com.ctrip.framework.apollo.biz.entity.Namespace, java.lang.String, java.lang.String, java.lang.String, boolean) -> com.ctrip.framework.apollo.biz.entity.Release
+scenario:
+  test: com.ctrip.framework.apollo.biz.service.ReleaseCreationTest
+  source: apollo-biz/src/test/java/com/ctrip/framework/apollo/biz/service/ReleaseCreationTest.java
+output_test_file: apollo-biz/src/test/java/com/ctrip/framework/apollo/biz/service/ReleaseServicePublishCarvedTest.java
+hidden_paths:
+- apollo-biz/src/test/java/com/ctrip/framework/apollo/biz/service/ReleaseServiceTest.java
+commands:
+  build: [mvn, -q, -o, -pl, apollo-biz, -am, -DskipTests, -Dexec.skip=true, test-compile]
+  scenario: [mvn, -q, -o, -pl, apollo-biz, -am, -Dtest=ReleaseCreationTest, -Dsurefire.failIfNoSpecifiedTests=false, -DfailIfNoTests=false, -Dexec.skip=true, test]
+  generated_test: [mvn, -q, -o, -pl, apollo-biz, -am, -Dtest=ReleaseServicePublishCarvedTest, -Dsurefire.failIfNoSpecifiedTests=false, -DfailIfNoTests=false, -Dexec.skip=true, test]

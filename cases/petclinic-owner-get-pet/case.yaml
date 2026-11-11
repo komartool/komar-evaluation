@@ -1,0 +1,16 @@
+id: petclinic-owner-get-pet
+project: spring-petclinic
+group: indirect
+target:
+  class: org.springframework.samples.petclinic.owner.Owner
+  method: getPet
+  signature: (java.lang.Integer) -> org.springframework.samples.petclinic.owner.Pet
+scenario:
+  test: org.springframework.samples.petclinic.owner.VisitControllerTests#testProcessNewVisitFormSuccess
+  source: src/test/java/org/springframework/samples/petclinic/owner/VisitControllerTests.java
+output_test_file: src/test/java/org/springframework/samples/petclinic/owner/OwnerCarvedTest.java
+hidden_paths: []
+commands:
+  build: [./mvnw, -q, -o, -Dcheckstyle.skip, -Dspring-javaformat.skip=true, -DskipTests, test-compile]
+  scenario: [./mvnw, -q, -o, -Dcheckstyle.skip, -Dspring-javaformat.skip=true, -Dtest=VisitControllerTests#testProcessNewVisitFormSuccess, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [./mvnw, -q, -o, -Dcheckstyle.skip, -Dspring-javaformat.skip=true, -Dtest=OwnerCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

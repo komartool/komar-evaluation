@@ -1,0 +1,59 @@
+{
+ "case_id": "jsoup-token-queue-chomp-balanced",
+ "project": "jsoup",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 20.6,
+   "invocations": 4,
+   "scenarios": 4,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 0,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 22.0,
+   "invocations": 4,
+   "scenarios": 4,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 0,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 4,
+  "structure_hits": 4,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 4,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 4,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 4,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 4,
+  "io_hit_ids": [
+   "4cff8e997e8c",
+   "6a6dbdf07947",
+   "6e8c25660393",
+   "f20ca6e2cfef"
+  ],
+  "data_hits": 4,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [],
+  "dependency_fields_count": 0,
+  "value_dependencies": [],
+  "value_dependencies_count": 0,
+  "masked": 0,
+  "cuts": 0
+ }
+}

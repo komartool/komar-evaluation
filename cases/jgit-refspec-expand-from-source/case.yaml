@@ -1,0 +1,18 @@
+id: jgit-refspec-expand-from-source
+project: jgit
+group: indirect
+target:
+  class: org.eclipse.jgit.transport.RefSpec
+  method: expandFromSource
+  signature: (java.lang.String) -> org.eclipse.jgit.transport.RefSpec
+scenario:
+  test: org.eclipse.jgit.transport.TransportTest#testFindRemoteRefUpdatesTrackingRef
+  source: org.eclipse.jgit.test/tst/org/eclipse/jgit/transport/TransportTest.java
+output_test_file: org.eclipse.jgit.test/tst/org/eclipse/jgit/transport/RefSpecCarvedTest.java
+hidden_paths:
+- org.eclipse.jgit.test/tst/org/eclipse/jgit/transport/RefSpecTest.java
+commands:
+  build: [mvn, -q, -o, -pl, org.eclipse.jgit.test, -am, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, org.eclipse.jgit.test, -am, -Dtest=TransportTest#testFindRemoteRefUpdatesTrackingRef, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false,
+    test]
+  generated_test: [mvn, -q, -o, -pl, org.eclipse.jgit.test, -am, -Dtest=RefSpecCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

@@ -1,0 +1,16 @@
+id: gh-virtual-edge-iterator-state-get-reverse
+project: graphhopper
+group: indirect
+target:
+  class: com.graphhopper.routing.querygraph.VirtualEdgeIteratorState
+  method: getReverse
+  signature: (com.graphhopper.routing.ev.BooleanEncodedValue) -> boolean
+scenario:
+  test: com.graphhopper.GraphHopperTest#germanyCountryRuleAvoidsTracks
+  source: core/src/test/java/com/graphhopper/GraphHopperTest.java
+output_test_file: core/src/test/java/com/graphhopper/routing/querygraph/VirtualEdgeIteratorStateCarvedTest.java
+hidden_paths: []
+commands:
+  build: [mvn, -q, -o, -pl, core, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, core, -Dtest=GraphHopperTest#germanyCountryRuleAvoidsTracks, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -pl, core, -Dtest=VirtualEdgeIteratorStateCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

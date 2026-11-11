@@ -1,0 +1,16 @@
+id: petclinic-pet-validator-validate
+project: spring-petclinic
+group: indirect
+target:
+  class: org.springframework.samples.petclinic.owner.PetValidator
+  method: validate
+  signature: '(java.lang.Object, org.springframework.validation.Errors) -> void'
+scenario:
+  test: org.springframework.samples.petclinic.owner.PetControllerTests#testProcessUpdateFormSuccess
+  source: src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java
+output_test_file: src/test/java/org/springframework/samples/petclinic/owner/PetValidatorCarvedTest.java
+hidden_paths: []
+commands:
+  build: [./mvnw, -q, -o, -Dcheckstyle.skip, -Dspring-javaformat.skip=true, -DskipTests, test-compile]
+  scenario: [./mvnw, -q, -o, -Dcheckstyle.skip, -Dspring-javaformat.skip=true, -Dtest=PetControllerTests#testProcessUpdateFormSuccess, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [./mvnw, -q, -o, -Dcheckstyle.skip, -Dspring-javaformat.skip=true, -Dtest=PetValidatorCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

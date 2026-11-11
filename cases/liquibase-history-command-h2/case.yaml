@@ -1,0 +1,20 @@
+id: liquibase-history-command-h2
+project: liquibase
+group: indirect
+target:
+  class: liquibase.command.core.HistoryCommandStep
+  method: run
+  signature: (liquibase.command.CommandResultsBuilder) -> void
+scenario:
+  test: liquibase.command.update.UpdateIntegrationTest
+  source: liquibase-integration-tests/src/test/groovy/liquibase/command/update/UpdateIntegrationTest.groovy
+output_test_file: liquibase-integration-tests/src/test/java/liquibase/command/core/HistoryCommandStepCarvedTest.java
+hidden_paths:
+- liquibase-standard/src/test/groovy/liquibase/command/HistoryCommandStepTest.groovy
+- liquibase-standard/src/test/java/liquibase/changelog/ChangeLogHistoryServiceFactoryTest.java
+- liquibase-standard/src/test/java/liquibase/changelog/StandardChangeLogHistoryServiceTest.java
+- liquibase-integration-tests/src/test/groovy/liquibase/command/UpdateCommandStepIntegrationTest.groovy
+commands:
+  build: [./mvnw, -q, -o, -pl, liquibase-integration-tests, -am, -DskipTests, test-compile]
+  scenario: [./mvnw, -q, -o, -pl, liquibase-integration-tests, -am, -Dtest=UpdateIntegrationTest, -Dsurefire.failIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [./mvnw, -q, -o, -pl, liquibase-integration-tests, -am, -Dtest=HistoryCommandStepCarvedTest, -Dsurefire.failIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

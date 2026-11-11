@@ -1,0 +1,74 @@
+Condition: Komar.
+
+No execution data is provided. You can run the driving scenario under Komar, a tool that observes a
+running JVM program without changing its code: a YAML spec says where to observe, when to record and
+what to capture; Komar instruments the program at load time and writes what it observed, which you read
+in a compact view. Observe the executions of the target method and use the observed values as test data and
+expected results; do not replace them with invented values. If the observed data are not sufficient,
+you may change the spec and run the scenario again, at most {{debug_runs}} runs in total.
+
+Komar commands (NAME: letters, digits, '.', '_', '-'; komar/ is a scratch directory of the workspace,
+not part of the result):
+- write the spec with the write tool to komar/NAME.yaml;
+- run the scenario under Komar with the bash tool:
+  komar run komar/NAME.yaml -o komar/NAME.jsonl -- {{komar_scenario}}
+  A spec with errors is reported before anything starts and does not count as a run.
+- read what was observed with the read tool from komar/NAME.komar, a compact view of the run that
+  komar run writes next to the raw dump komar/NAME.jsonl.
+
+Komar documentation (excerpts):
+
+  stop: { after: 30s }                 # optional
+  limits: { depth: 3 }                 # optional; a probe may have its own limits
+  probes:
+    - id: big_orders
+      where: { class: com.shop.OrderService, method: charge, at: [entry, exit] }
+      when: 'vars.order.total > 1000'
+      what:
+        - id: vars.order.id
+        - customer: vars.order.customer.name
+        - ret
+    - id: loop
+      where: { class: com.shop.OrderService, method: charge, line: [42] }
+      what: [vars.item, vars.subtotal]
+    - id: repo_get
+      where:
+        class: com.shop.OrderService
+        method: charge
+        call: { class: java.util.HashMap, method: get }
+        at: [after]
+      what: [call.args, ret]
+
+- Probe kinds: method and constructor (`method: new`), points `entry`, `exit`, `exception`; line
+  (`line: [...]`, no `at`); call site (`call: {...}`), points `before`, `after`, `exception`.
+- `class` is a fully qualified name or a wildcard ('com.shop.*Service'); `subtypes: true` also matches
+  subclasses and implementations. `method` without `params` covers every overload; `params: [String, int]`
+  selects overloads by parameter types written as in the source.
+- `when` and `what` are CEL expressions over `this`, `args` (`args[0]`, ...), `vars.<name>` (parameters
+  and local variables by source name), `ret` (at `exit`, `after`), `exception`, `duration` (ms) and, at a
+  call site, `call.target` and `call.args`. A `what` item is a bare expression, keyed by its text, or
+  `name: expression`. Quote expressions that contain YAML special characters.
+- Values are read from fields; program methods never run. JDK strings, numbers, `BigDecimal`,
+  `java.time` types, enums, collections, maps and arrays are shown as plain values; other objects by their
+  type and fields.
+- `vars` needs classes compiled with `-parameters` or `-g`; local variables at a line need `-g`. An item
+  that does not exist at a point is left out of that record; a key with `null` means the value was null.
+- `limits` (defaults): `depth` 3 (levels of object fields), `items` 100, `string` 1000, `fields` 50,
+  `max_hits` 1000 (hits after which a probe stops firing). A value cut by a limit is marked in
+  the view (below).
+- The compact view starts with a legend line, the hits per probe and point (`probe@point N`), placement
+  warnings and errors, the end of the run with `code`, the exit code of the scenario, and the number of
+  executions. Then each distinct execution of a probed method is shown once as a tree: the method with
+  the values captured at entry ((no entry record) if `entry` is not probed); indented under it, the probed
+  methods it called, the calls captured by call-site probes (→ call ⇒ result) and line probes (`L42 ...`);
+  and its outcome (⇒ value, ⇒ threw, or ⇒ returned when `ret` is not captured). Identical executions and
+  identical lines are shown once with ×N. Types are simple names; a map entry with a key that is not text
+  is key: value. A longer value is labelled where it first occurs, Order#1{id: 1, ...}, and written
+  Order#1 (#1 for a list) later; Order#3=#1+{id: 2, note: ∅} is a value like #1 except these fields
+  (∅: field absent). Order{…} is an object cut by a limit, "abc…"(1200 chars) a cut string, [...]…+5 a
+  cut collection; Order^1{...} and ^1 mark an object met twice within one captured value; <error: ...> a
+  value that could not be read.
+
+  Main.discount(Order)  args=(Order#1{id: 1, customer: "ann-the-long-customer-name"})   ×3
+    → Repo.tier(Order#1) ⇒ "gold"
+    ⇒ 0.1

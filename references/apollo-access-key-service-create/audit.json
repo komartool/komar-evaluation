@@ -1,0 +1,68 @@
+{
+ "case_id": "apollo-access-key-service-create",
+ "project": "apollo",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 58.4,
+   "invocations": 7,
+   "scenarios": 7,
+   "jvms": 1,
+   "masked": 117,
+   "cuts": 0,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 59.6,
+   "invocations": 7,
+   "scenarios": 7,
+   "jvms": 1,
+   "masked": 117,
+   "cuts": 0,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 7,
+  "structure_hits": 7,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 7,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 7,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 7,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 7,
+  "io_hit_ids": [
+   "1df4b16fa1e4",
+   "218d2b65c5aa",
+   "235093c30e87",
+   "433062cad263",
+   "7403ba8f8774",
+   "9198d000a13c",
+   "92484eb21811"
+  ],
+  "data_hits": 7,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [
+   "accessKeyRepository",
+   "auditService"
+  ],
+  "dependency_fields_count": 2,
+  "value_dependencies": [
+   "value.dataChangeCreatedTime",
+   "value.dataChangeLastModifiedTime"
+  ],
+  "value_dependencies_count": 2,
+  "masked": 234,
+  "cuts": 0
+ }
+}

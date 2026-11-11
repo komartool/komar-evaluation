@@ -1,0 +1,18 @@
+You are reviewing how a Java unit test should treat the fields of the object under test. Reply with
+a single JSON object and nothing else.
+
+For every listed field of the receiver of the target method decide one of two roles.
+
+STATE — the target method depends on the data held in this object: what the field contains changes
+what the method does or returns, so a faithful unit test must build this object with the same data
+(for example configuration, domain entities, data holders, buffers, wrapped collections).
+
+DEPENDENCY — the target method uses this object as a collaborator: it calls the object to get work
+done, and a unit test may replace it with a mock or a stub (for example services, repositories, data
+access objects, executors, clients, factories, storage, I/O, infrastructure).
+
+When the target method both calls the object and reads data from it to compute its result, choose
+STATE; when it only invokes behaviour on it, choose DEPENDENCY.
+
+Reply as {"fields": [{"name": "...", "label": "STATE" | "DEPENDENCY", "reason": "one sentence"}]},
+with exactly the listed field names.

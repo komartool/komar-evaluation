@@ -1,0 +1,68 @@
+{
+ "case_id": "klaw-envs-clusters-tenants-controller-service-add-new-env",
+ "project": "klaw",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 110.1,
+   "invocations": 6,
+   "scenarios": 6,
+   "jvms": 1,
+   "masked": 42,
+   "cuts": 147,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 106.0,
+   "invocations": 6,
+   "scenarios": 6,
+   "jvms": 1,
+   "masked": 42,
+   "cuts": 147,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 6,
+  "structure_hits": 6,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 6,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 6,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 6,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 6,
+  "io_hit_ids": [
+   "10d3d565c3eb",
+   "1f738f915b86",
+   "31b568fbaf63",
+   "6fe7af5b4f31",
+   "7536c241571d",
+   "cfb46f3786f6"
+  ],
+  "data_hits": 6,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [
+   "clusterApiService",
+   "commonUtilsService",
+   "defaultDataService",
+   "mailService",
+   "manageDatabase",
+   "usersTeamsControllerService"
+  ],
+  "dependency_fields_count": 6,
+  "value_dependencies": [],
+  "value_dependencies_count": 0,
+  "masked": 84,
+  "cuts": 294
+ }
+}

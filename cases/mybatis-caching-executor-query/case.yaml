@@ -1,0 +1,22 @@
+id: mybatis-caching-executor-query
+project: mybatis
+group: indirect
+target:
+  class: org.apache.ibatis.executor.CachingExecutor
+  method: query
+  signature: (org.apache.ibatis.mapping.MappedStatement, java.lang.Object, org.apache.ibatis.session.RowBounds, org.apache.ibatis.session.ResultHandler, org.apache.ibatis.cache.CacheKey, org.apache.ibatis.mapping.BoundSql)
+    -> java.util.List
+scenario:
+  test: org.apache.ibatis.submitted.cache.CacheTest#testplan1
+  source: src/test/java/org/apache/ibatis/submitted/cache/CacheTest.java
+output_test_file: src/test/java/org/apache/ibatis/executor/CachingExecutorCarvedTest.java
+hidden_paths:
+- src/test/java/org/apache/ibatis/executor/CachingSimpleExecutorTest.java
+- src/test/java/org/apache/ibatis/executor/CachingBatchExecutorTest.java
+- src/test/java/org/apache/ibatis/executor/CachingReuseExecutorTest.java
+- src/test/java/org/apache/ibatis/submitted/blocking_cache
+- src/test/java/org/apache/ibatis/submitted/nested_query_cache
+commands:
+  build: [./mvnw, -Dlicense.skip=true, -q, -o, -DskipTests, test-compile]
+  scenario: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=CacheTest#testplan1, -DfailIfNoTests=false, test]
+  generated_test: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=CachingExecutorCarvedTest, -DfailIfNoTests=false, test]

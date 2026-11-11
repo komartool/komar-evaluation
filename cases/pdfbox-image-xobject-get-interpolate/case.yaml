@@ -1,0 +1,17 @@
+id: pdfbox-image-xobject-get-interpolate
+project: pdfbox
+group: indirect
+target:
+  class: org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject
+  method: getInterpolate
+  signature: () -> boolean
+scenario:
+  test: org.apache.pdfbox.pdmodel.graphics.image.LosslessFactoryTest#testCreateLosslessFrom16BitPNG
+  source: pdfbox/src/test/java/org/apache/pdfbox/pdmodel/graphics/image/LosslessFactoryTest.java
+output_test_file: pdfbox/src/test/java/org/apache/pdfbox/pdmodel/graphics/image/PDImageXObjectCarvedTest.java
+hidden_paths:
+- pdfbox/src/test/java/org/apache/pdfbox/pdmodel/graphics/image/PDImageXObjectTest.java
+commands:
+  build: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -Dtest=LosslessFactoryTest#testCreateLosslessFrom16BitPNG, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -Dtest=PDImageXObjectCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

@@ -1,0 +1,68 @@
+{
+ "case_id": "mybatis-nested-foreach-node",
+ "project": "mybatis",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 72.7,
+   "invocations": 2,
+   "scenarios": 2,
+   "jvms": 1,
+   "masked": 32,
+   "cuts": 345,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 72.9,
+   "invocations": 2,
+   "scenarios": 2,
+   "jvms": 1,
+   "masked": 32,
+   "cuts": 345,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 2,
+  "structure_hits": 2,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 2,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 2,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 2,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 2,
+  "io_hit_ids": [
+   "54e66d1d6e91",
+   "cf441fd6e941"
+  ],
+  "data_hits": 2,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [],
+  "dependency_fields_count": 0,
+  "value_dependencies": [
+   "args[0].delegate.configuration.incompleteCacheRefsLock",
+   "args[0].delegate.configuration.incompleteMethodsLock",
+   "args[0].delegate.configuration.incompleteResultMapsLock",
+   "args[0].delegate.configuration.incompleteStatementsLock",
+   "args[0].delegate.configuration.mappedStatements.conflictMessageProducer",
+   "args[0].delegate.delegate.configuration.incompleteCacheRefsLock",
+   "args[0].delegate.delegate.configuration.incompleteMethodsLock",
+   "args[0].delegate.delegate.configuration.incompleteResultMapsLock",
+   "args[0].delegate.delegate.configuration.incompleteStatementsLock",
+   "args[0].delegate.delegate.configuration.mappedStatements.conflictMessageProducer"
+  ],
+  "value_dependencies_count": 10,
+  "masked": 64,
+  "cuts": 690
+ }
+}

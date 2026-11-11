@@ -1,0 +1,19 @@
+id: mybatis-mapper-method-execute
+project: mybatis
+group: indirect
+target:
+  class: org.apache.ibatis.binding.MapperMethod
+  method: execute
+  signature: (org.apache.ibatis.session.SqlSession, java.lang.Object[]) -> java.lang.Object
+scenario:
+  test: org.apache.ibatis.submitted.association_nested.FolderMapperTest#findWithChildren
+  source: src/test/java/org/apache/ibatis/submitted/association_nested/FolderMapperTest.java
+output_test_file: src/test/java/org/apache/ibatis/binding/MapperMethodCarvedTest.java
+hidden_paths:
+- src/test/java/org/apache/ibatis/binding/BindingTest.java
+- src/test/java/org/apache/ibatis/binding/MapperMethodParamTest.java
+- src/test/java/org/apache/ibatis/binding/FlushTest.java
+commands:
+  build: [./mvnw, -Dlicense.skip=true, -q, -o, -DskipTests, test-compile]
+  scenario: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=FolderMapperTest#findWithChildren, -DfailIfNoTests=false, test]
+  generated_test: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=MapperMethodCarvedTest, -DfailIfNoTests=false, test]

@@ -1,0 +1,18 @@
+id: liquibase-context-expression-matches
+project: liquibase
+group: indirect
+target:
+  class: liquibase.ContextExpression
+  method: matches
+  signature: (liquibase.Contexts) -> boolean
+scenario:
+  test: liquibase.dbtest.h2.H2IntegrationTest#testRollbackByContext
+  source: liquibase-integration-tests/src/test/java/liquibase/dbtest/h2/H2IntegrationTest.java
+output_test_file: liquibase-standard/src/test/java/liquibase/ContextExpressionCarvedTest.java
+hidden_paths:
+- liquibase-standard/src/test/groovy/liquibase/ContextExpressionTest.groovy
+- liquibase-standard/src/test/groovy/liquibase/LabelExpressionTest.groovy
+commands:
+  build: [./mvnw, -q, -o, -pl, liquibase-integration-tests, -am, -DskipTests, test-compile]
+  scenario: [./mvnw, -q, -o, -pl, liquibase-integration-tests, -am, -Dtest=H2IntegrationTest#testRollbackByContext, -Dsurefire.failIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [./mvnw, -q, -o, -pl, liquibase-standard, -Dtest=ContextExpressionCarvedTest, -Dsurefire.failIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

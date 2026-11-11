@@ -1,0 +1,16 @@
+id: klaw-kw-authentication-success-handler-get-redirect-page
+project: klaw
+group: direct
+target:
+  class: io.aiven.klaw.auth.KwAuthenticationSuccessHandler
+  method: getRedirectPage
+  signature: (jakarta.servlet.http.HttpServletRequest, org.springframework.security.core.Authentication) -> java.lang.String
+scenario:
+  test: io.aiven.klaw.auth.KwAuthenticationSuccessHandlerTest
+  source: core/src/test/java/io/aiven/klaw/auth/KwAuthenticationSuccessHandlerTest.java
+output_test_file: core/src/test/java/io/aiven/klaw/auth/KwAuthenticationSuccessHandlerGetRedirectPageCarvedTest.java
+hidden_paths: []
+commands:
+  build: [mvn, -q, -o, -pl, core, -DskipTests, -Dexec.skip=true, test-compile]
+  scenario: [mvn, -q, -o, -pl, core, -Dtest=KwAuthenticationSuccessHandlerTest, -Dsurefire.failIfNoSpecifiedTests=false, -DfailIfNoTests=false, -Dexec.skip=true, test]
+  generated_test: [mvn, -q, -o, -pl, core, -Dtest=KwAuthenticationSuccessHandlerGetRedirectPageCarvedTest, -Dsurefire.failIfNoSpecifiedTests=false, -DfailIfNoTests=false, -Dexec.skip=true, test]

@@ -1,0 +1,63 @@
+{
+ "case_id": "jgit-path-matcher-matches",
+ "project": "jgit",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 79.6,
+   "invocations": 8,
+   "scenarios": 8,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 0,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 82.6,
+   "invocations": 8,
+   "scenarios": 8,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 0,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 8,
+  "structure_hits": 8,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 8,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 8,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 8,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 8,
+  "io_hit_ids": [
+   "2febae553ea1",
+   "3cefba631ed7",
+   "8b74fb9abf30",
+   "b2b52a359db5",
+   "b5bc5db5eedb",
+   "c0ed204de7d2",
+   "e4c4088c64e1",
+   "e89e62ee7672"
+  ],
+  "data_hits": 8,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [],
+  "dependency_fields_count": 0,
+  "value_dependencies": [],
+  "value_dependencies_count": 0,
+  "masked": 0,
+  "cuts": 0
+ }
+}

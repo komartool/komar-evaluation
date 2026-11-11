@@ -1,0 +1,73 @@
+{
+ "case_id": "apollo-release-service-publish",
+ "project": "apollo",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 85.8,
+   "invocations": 6,
+   "scenarios": 6,
+   "jvms": 1,
+   "masked": 126,
+   "cuts": 0,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 85.6,
+   "invocations": 6,
+   "scenarios": 6,
+   "jvms": 1,
+   "masked": 126,
+   "cuts": 0,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 6,
+  "structure_hits": 6,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 6,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 6,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 6,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 6,
+  "io_hit_ids": [
+   "190cc079d178",
+   "2c9f979f4fd7",
+   "648b14871f23",
+   "6aa1f20dfc06",
+   "b80e52e5173f",
+   "e84cc21fce66"
+  ],
+  "data_hits": 6,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [
+   "auditService",
+   "itemService",
+   "itemSetService",
+   "namespaceBranchService",
+   "namespaceLockService",
+   "namespaceService",
+   "releaseHistoryService",
+   "releaseRepository"
+  ],
+  "dependency_fields_count": 8,
+  "value_dependencies": [
+   "value.dataChangeCreatedTime",
+   "value.dataChangeLastModifiedTime"
+  ],
+  "value_dependencies_count": 2,
+  "masked": 252,
+  "cuts": 0
+ }
+}

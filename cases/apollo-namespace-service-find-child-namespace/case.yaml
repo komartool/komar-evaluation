@@ -1,0 +1,18 @@
+id: apollo-namespace-service-find-child-namespace
+project: apollo
+group: indirect
+target:
+  class: com.ctrip.framework.apollo.biz.service.NamespaceService
+  method: findChildNamespace
+  signature: (java.lang.String, java.lang.String, java.lang.String) -> com.ctrip.framework.apollo.biz.entity.Namespace
+scenario:
+  test: com.ctrip.framework.apollo.biz.service.NamespaceBranchServiceTest#testFindBranch
+  source: apollo-biz/src/test/java/com/ctrip/framework/apollo/biz/service/NamespaceBranchServiceTest.java
+output_test_file: apollo-biz/src/test/java/com/ctrip/framework/apollo/biz/service/NamespaceServiceFindChildNamespaceCarvedTest.java
+hidden_paths:
+- apollo-biz/src/test/java/com/ctrip/framework/apollo/biz/service/NamespaceServiceTest.java
+- apollo-biz/src/test/java/com/ctrip/framework/apollo/biz/service/NamespaceServiceIntegrationTest.java
+commands:
+  build: [mvn, -q, -o, -pl, apollo-biz, -am, -DskipTests, -Dexec.skip=true, test-compile]
+  scenario: [mvn, -q, -o, -pl, apollo-biz, -am, -Dtest=NamespaceBranchServiceTest#testFindBranch, -Dsurefire.failIfNoSpecifiedTests=false, -DfailIfNoTests=false, -Dexec.skip=true, test]
+  generated_test: [mvn, -q, -o, -pl, apollo-biz, -am, -Dtest=NamespaceServiceFindChildNamespaceCarvedTest, -Dsurefire.failIfNoSpecifiedTests=false, -DfailIfNoTests=false, -Dexec.skip=true, test]

@@ -1,0 +1,19 @@
+id: mybatis-keygen-jdbc3
+project: mybatis
+group: indirect
+target:
+  class: org.apache.ibatis.executor.keygen.Jdbc3KeyGenerator
+  method: processBatch
+  signature: (org.apache.ibatis.mapping.MappedStatement, java.sql.Statement, java.lang.Object) -> void
+scenario:
+  test: org.apache.ibatis.submitted.keygen.Jdbc3KeyGeneratorTest#shouldAssignKeyToBean
+  source: src/test/java/org/apache/ibatis/submitted/keygen/Jdbc3KeyGeneratorTest.java
+output_test_file: src/test/java/org/apache/ibatis/executor/keygen/Jdbc3KeyGeneratorCarvedTest.java
+hidden_paths:
+- src/test/java/org/apache/ibatis/submitted/batch_keys
+- src/test/java/org/apache/ibatis/submitted/keycolumn
+- src/test/java/org/apache/ibatis/submitted/selectkey
+commands:
+  build: [./mvnw, -Dlicense.skip=true, -q, -o, -DskipTests, test-compile]
+  scenario: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=Jdbc3KeyGeneratorTest#shouldAssignKeyToBean, -DfailIfNoTests=false, test]
+  generated_test: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=Jdbc3KeyGeneratorCarvedTest, -DfailIfNoTests=false, test]

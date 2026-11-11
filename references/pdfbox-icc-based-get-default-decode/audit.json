@@ -1,0 +1,60 @@
+{
+ "case_id": "pdfbox-icc-based-get-default-decode",
+ "project": "pdfbox",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 45.5,
+   "invocations": 6,
+   "scenarios": 5,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 132,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 49.9,
+   "invocations": 6,
+   "scenarios": 5,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 132,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 5,
+  "structure_hits": 5,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 5,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 5,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 5,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 5,
+  "io_hit_ids": [
+   "24d02de0e27e",
+   "3f89ee4984d0",
+   "68b6cf38e41d",
+   "e4fc523637e9",
+   "ed160f36f670"
+  ],
+  "data_hits": 5,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [],
+  "dependency_fields_count": 0,
+  "value_dependencies": [],
+  "value_dependencies_count": 0,
+  "masked": 0,
+  "cuts": 264
+ }
+}

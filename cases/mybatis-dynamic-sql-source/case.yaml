@@ -1,0 +1,18 @@
+id: mybatis-dynamic-sql-source
+project: mybatis
+group: indirect
+target:
+  class: org.apache.ibatis.scripting.xmltags.DynamicSqlSource
+  method: getBoundSql
+  signature: (java.lang.Object) -> org.apache.ibatis.mapping.BoundSql
+scenario:
+  test: org.apache.ibatis.submitted.choosewhen.ChooseWhenTest
+  source: src/test/java/org/apache/ibatis/submitted/choosewhen/ChooseWhenTest.java
+output_test_file: src/test/java/org/apache/ibatis/scripting/xmltags/DynamicSqlSourceCarvedTest.java
+hidden_paths:
+- src/test/java/org/apache/ibatis/builder/xml/dynamic/DynamicSqlSourceTest.java
+- src/test/java/org/apache/ibatis/submitted/raw_sql_source/RawSqlSourceTest.java
+commands:
+  build: [./mvnw, -Dlicense.skip=true, -q, -o, -DskipTests, test-compile]
+  scenario: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=ChooseWhenTest, -DfailIfNoTests=false, test]
+  generated_test: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=DynamicSqlSourceCarvedTest, -DfailIfNoTests=false, test]

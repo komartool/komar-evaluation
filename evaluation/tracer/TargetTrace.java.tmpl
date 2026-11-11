@@ -1,0 +1,42 @@
+import org.openjdk.btrace.core.annotations.BTrace;
+import org.openjdk.btrace.core.annotations.Kind;
+import org.openjdk.btrace.core.annotations.Location;
+import org.openjdk.btrace.core.annotations.OnMethod;
+import org.openjdk.btrace.core.annotations.Return;
+import org.openjdk.btrace.core.annotations.Self;
+import org.openjdk.btrace.core.annotations.TargetInstance;
+import org.openjdk.btrace.core.annotations.TargetMethodOrField;
+import org.openjdk.btrace.core.types.AnyType;
+
+/*
+ * Trusted ("unsafe") BTrace script for the RQ1 evaluation. It delegates to StateTrace (boot class
+ * path), which serialises field graphs. Placeholders: __CLASS__, __METHOD__, __TYPE__ (method type
+ * filter, BTrace syntax), __VOID__ (true/false).
+ *
+ * Kind.ERROR (an exception leaves the target) gets the exception through @TargetInstance; checked
+ * with BTrace 2.2.6 on JDK 21, where a plain Throwable parameter is not bound.
+ */
+@BTrace(trusted = true)
+public class TargetTrace {
+
+    @OnMethod(clazz = "__CLASS__", method = "__METHOD__", type = "__TYPE__", location = @Location(Kind.ENTRY))
+    public static void onEntry(@Self Object self, AnyType[] args) {
+        StateTrace.enter(self, args);
+    }
+
+    @OnMethod(clazz = "__CLASS__", method = "__METHOD__", type = "__TYPE__",
+              location = @Location(value = Kind.CALL, clazz = "/.*/", method = "/.*/"))
+    public static void onCall(@TargetMethodOrField(fqn = true) String method) {
+        StateTrace.call(method);
+    }
+
+    @OnMethod(clazz = "__CLASS__", method = "__METHOD__", type = "__TYPE__", location = @Location(Kind.RETURN))
+    public static void onReturn(@Return AnyType ret) {
+        StateTrace.ret(ret, __VOID__);
+    }
+
+    @OnMethod(clazz = "__CLASS__", method = "__METHOD__", type = "__TYPE__", location = @Location(Kind.ERROR))
+    public static void onError(@TargetInstance Throwable error) {
+        StateTrace.error(error);
+    }
+}

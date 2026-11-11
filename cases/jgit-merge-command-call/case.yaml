@@ -1,0 +1,18 @@
+id: jgit-merge-command-call
+project: jgit
+group: direct
+target:
+  class: org.eclipse.jgit.api.MergeCommand
+  method: call
+  signature: () -> org.eclipse.jgit.api.MergeResult
+scenario:
+  test: org.eclipse.jgit.api.CherryPickCommandTest#testCherryPickMerge
+  source: org.eclipse.jgit.test/tst/org/eclipse/jgit/api/CherryPickCommandTest.java
+output_test_file: org.eclipse.jgit.test/tst/org/eclipse/jgit/api/MergeCommandCarvedTest.java
+hidden_paths:
+- org.eclipse.jgit.test/tst/org/eclipse/jgit/api/MergeCommandTest.java
+commands:
+  build: [mvn, -q, -o, -pl, org.eclipse.jgit.test, -am, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, org.eclipse.jgit.test, -am, -Dtest=CherryPickCommandTest#testCherryPickMerge, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false,
+    test]
+  generated_test: [mvn, -q, -o, -pl, org.eclipse.jgit.test, -am, -Dtest=MergeCommandCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

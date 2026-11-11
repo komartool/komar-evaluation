@@ -1,0 +1,59 @@
+{
+ "case_id": "jsoup-node-abs-url",
+ "project": "jsoup",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 25.7,
+   "invocations": 4,
+   "scenarios": 4,
+   "jvms": 1,
+   "masked": 8,
+   "cuts": 56,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 18.3,
+   "invocations": 4,
+   "scenarios": 4,
+   "jvms": 1,
+   "masked": 8,
+   "cuts": 56,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 4,
+  "structure_hits": 4,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 4,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 4,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 4,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 4,
+  "io_hit_ids": [
+   "0e754fe76ab0",
+   "34706d04113b",
+   "8f1e2362c9db",
+   "bc822741f30e"
+  ],
+  "data_hits": 4,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [],
+  "dependency_fields_count": 0,
+  "value_dependencies": [],
+  "value_dependencies_count": 0,
+  "masked": 16,
+  "cuts": 112
+ }
+}

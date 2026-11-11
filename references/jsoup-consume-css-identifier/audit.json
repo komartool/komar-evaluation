@@ -1,0 +1,60 @@
+{
+ "case_id": "jsoup-consume-css-identifier",
+ "project": "jsoup",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 16.1,
+   "invocations": 8,
+   "scenarios": 5,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 0,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 15.3,
+   "invocations": 8,
+   "scenarios": 5,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 0,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 5,
+  "structure_hits": 5,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 5,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 5,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 5,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 5,
+  "io_hit_ids": [
+   "00c968f789a2",
+   "1d0d9ca2e28d",
+   "3178ad3d13c0",
+   "799e4b15bab7",
+   "7c457a9ffc35"
+  ],
+  "data_hits": 5,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [],
+  "dependency_fields_count": 0,
+  "value_dependencies": [],
+  "value_dependencies_count": 0,
+  "masked": 0,
+  "cuts": 0
+ }
+}

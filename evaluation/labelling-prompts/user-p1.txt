@@ -1,0 +1,15 @@
+Target method: {target_class}#{target_method} {signature}
+
+Fields of the receiver to label:
+{fields}
+
+Source of the target class:
+```java
+{class_source}
+```
+
+Tests written by the developers of the project for this class (they show what the developers mock
+and what they construct):
+```java
+{tests}
+```

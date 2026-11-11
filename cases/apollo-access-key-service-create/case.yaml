@@ -1,0 +1,16 @@
+id: apollo-access-key-service-create
+project: apollo
+group: direct
+target:
+  class: com.ctrip.framework.apollo.biz.service.AccessKeyService
+  method: create
+  signature: (java.lang.String, com.ctrip.framework.apollo.biz.entity.AccessKey) -> com.ctrip.framework.apollo.biz.entity.AccessKey
+scenario:
+  test: com.ctrip.framework.apollo.biz.service.AccessKeyServiceTest
+  source: apollo-biz/src/test/java/com/ctrip/framework/apollo/biz/service/AccessKeyServiceTest.java
+output_test_file: apollo-biz/src/test/java/com/ctrip/framework/apollo/biz/service/AccessKeyServiceCreateCarvedTest.java
+hidden_paths: []
+commands:
+  build: [mvn, -q, -o, -pl, apollo-biz, -am, -DskipTests, -Dexec.skip=true, test-compile]
+  scenario: [mvn, -q, -o, -pl, apollo-biz, -am, -Dtest=AccessKeyServiceTest, -Dsurefire.failIfNoSpecifiedTests=false, -DfailIfNoTests=false, -Dexec.skip=true, test]
+  generated_test: [mvn, -q, -o, -pl, apollo-biz, -am, -Dtest=AccessKeyServiceCreateCarvedTest, -Dsurefire.failIfNoSpecifiedTests=false, -DfailIfNoTests=false, -Dexec.skip=true, test]

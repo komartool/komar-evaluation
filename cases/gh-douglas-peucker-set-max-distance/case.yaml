@@ -1,0 +1,17 @@
+id: gh-douglas-peucker-set-max-distance
+project: graphhopper
+group: indirect
+target:
+  class: com.graphhopper.util.DouglasPeucker
+  method: setMaxDistance
+  signature: (double) -> com.graphhopper.util.DouglasPeucker
+scenario:
+  test: com.graphhopper.GraphHopperTest#testMonacoVia
+  source: core/src/test/java/com/graphhopper/GraphHopperTest.java
+output_test_file: core/src/test/java/com/graphhopper/util/DouglasPeuckerCarvedTest.java
+hidden_paths:
+- core/src/test/java/com/graphhopper/util/DouglasPeuckerTest.java
+commands:
+  build: [mvn, -q, -o, -pl, core, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, core, -Dtest=GraphHopperTest#testMonacoVia, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -pl, core, -Dtest=DouglasPeuckerCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

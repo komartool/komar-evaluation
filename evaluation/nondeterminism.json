@@ -1,0 +1,65 @@
+{
+  "_comment": "Values masked during RQ1 data comparison. Same list for every mode. Built from the double-reference audit (reference.py, audit.json: unstable_paths). Type prefixes mask whole objects of external infrastructure (logging, JDBC drivers) whose internal state is not part of the behaviour under test. In addition compare.py masks inside strings: identity hash codes (@1a2b3c), timestamps and UUIDs.",
+  "types": [
+    "java.time.Instant",
+    "java.time.LocalDateTime",
+    "java.time.LocalDate",
+    "java.time.LocalTime",
+    "java.time.OffsetDateTime",
+    "java.time.ZonedDateTime",
+    "java.util.Date",
+    "java.sql.Timestamp",
+    "java.sql.Date",
+    "java.util.UUID",
+    "java.util.Random",
+    "java.lang.Thread",
+    "java.util.concurrent.locks.ReentrantLock",
+    "java.util.concurrent.locks.ReentrantReadWriteLock",
+    "org.eclipse.jgit.internal.storage.file.FileSnapshot"
+  ],
+  "type_prefixes": [
+    "ch.qos.logback.",
+    "org.slf4j.",
+    "org.apache.logging.log4j.",
+    "org.apache.ibatis.logging.",
+    "org.hsqldb.",
+    "org.h2.",
+    "org.apache.derby.",
+    "com.zaxxer.hikari.",
+    "org.springframework.context.",
+    "org.springframework.beans.factory.",
+    "org.springframework.boot.",
+    "org.springframework.transaction.",
+    "org.springframework.orm."
+  ],
+  "fields": {
+    "*": [
+      "birthTime",
+      "randomId",
+      "creationTime",
+      "lastAccessTime",
+      "timestamp",
+      "startTime"
+    ],
+    "apollo": [
+      "dataChangeCreatedTime",
+      "dataChangeLastModifiedTime",
+      "releaseKey",
+      "deletedAt"
+    ],
+    "klaw": [
+      "password"
+    ],
+    "mybatis": [
+      "lastClear",
+      "typeHandlerMap"
+    ],
+    "jsoup": [],
+    "checkstyle": [],
+    "jgit": [
+      "readIndexChecksum",
+      "org.eclipse.jgit.dircache.DirCacheEntry.info"
+    ],
+    "liquibase": []
+  }
+}

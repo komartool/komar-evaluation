@@ -1,0 +1,14 @@
+The developers' own tests of this class, from the project (what they mock and what they build):
+```java
+{tests}
+```
+
+The class that declares the target method:
+```java
+{class_source}
+```
+
+Target method: {target_method} in {target_class}, signature {signature}.
+
+Receiver fields to classify (each held an object while the target method ran):
+{fields}

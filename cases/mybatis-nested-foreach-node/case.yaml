@@ -1,0 +1,19 @@
+id: mybatis-nested-foreach-node
+project: mybatis
+group: indirect
+target:
+  class: org.apache.ibatis.scripting.xmltags.ForEachSqlNode
+  method: apply
+  signature: (org.apache.ibatis.scripting.xmltags.DynamicContext) -> boolean
+scenario:
+  test: org.apache.ibatis.submitted.nested.NestedForEachTest#nestedSelect
+  source: src/test/java/org/apache/ibatis/submitted/nested/NestedForEachTest.java
+output_test_file: src/test/java/org/apache/ibatis/scripting/xmltags/ForEachSqlNodeCarvedTest.java
+hidden_paths:
+- src/test/java/org/apache/ibatis/builder/xml/dynamic/DynamicSqlSourceTest.java
+- src/test/java/org/apache/ibatis/submitted/foreach
+- src/test/java/org/apache/ibatis/submitted/foreach_map
+commands:
+  build: [./mvnw, -Dlicense.skip=true, -q, -o, -DskipTests, test-compile]
+  scenario: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=NestedForEachTest#nestedSelect, -DfailIfNoTests=false, test]
+  generated_test: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=ForEachSqlNodeCarvedTest, -DfailIfNoTests=false, test]

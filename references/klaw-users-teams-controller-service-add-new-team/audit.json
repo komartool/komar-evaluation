@@ -1,0 +1,63 @@
+{
+ "case_id": "klaw-users-teams-controller-service-add-new-team",
+ "project": "klaw",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 127.3,
+   "invocations": 3,
+   "scenarios": 3,
+   "jvms": 1,
+   "masked": 30,
+   "cuts": 81,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 137.3,
+   "invocations": 3,
+   "scenarios": 3,
+   "jvms": 1,
+   "masked": 30,
+   "cuts": 81,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 3,
+  "structure_hits": 3,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 3,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 3,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 3,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 3,
+  "io_hit_ids": [
+   "0fea4b97f8d6",
+   "60c48253d4f6",
+   "85b406965604"
+  ],
+  "data_hits": 3,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [
+   "commonUtilsService",
+   "mailService",
+   "manageDatabase",
+   "passwordService"
+  ],
+  "dependency_fields_count": 4,
+  "value_dependencies": [],
+  "value_dependencies_count": 0,
+  "masked": 60,
+  "cuts": 162
+ }
+}

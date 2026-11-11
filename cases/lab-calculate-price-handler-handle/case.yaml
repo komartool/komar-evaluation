@@ -1,0 +1,16 @@
+id: lab-calculate-price-handler-handle
+project: lab-insurance
+group: indirect
+target:
+  class: pl.altkom.asc.lab.micronaut.poc.pricing.commands.CalculatePriceHandler
+  method: handle
+  signature: (pl.altkom.asc.lab.micronaut.poc.pricing.service.api.v1.commands.calculateprice.CalculatePriceCommand) -> pl.altkom.asc.lab.micronaut.poc.pricing.service.api.v1.commands.calculateprice.CalculatePriceResult
+scenario:
+  test: pl.altkom.asc.lab.micronaut.poc.pricing.PricingControllerTest#canCalculateTravelPolicyPrice
+  source: pricing-service/src/test/java/pl/altkom/asc/lab/micronaut/poc/pricing/PricingControllerTest.java
+output_test_file: pricing-service/src/test/java/pl/altkom/asc/lab/micronaut/poc/pricing/commands/CalculatePriceHandlerCarvedTest.java
+hidden_paths: []
+commands:
+  build: [mvn, -q, -o, -f, pricing-service, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -DargLine=-Dmicronaut.http.client.read-timeout=300s -Dconsul.client.registration.enabled=false -Dconsul.client.enabled=false -Dtracing.zipkin.enabled=false, -f, pricing-service, -Dtest=PricingControllerTest#canCalculateTravelPolicyPrice, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -DargLine=-Dmicronaut.http.client.read-timeout=300s -Dconsul.client.registration.enabled=false -Dconsul.client.enabled=false -Dtracing.zipkin.enabled=false, -f, pricing-service, -Dtest=CalculatePriceHandlerCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

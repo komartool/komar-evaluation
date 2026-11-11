@@ -1,0 +1,75 @@
+{
+ "case_id": "apollo-release-history-service-create-release-history",
+ "project": "apollo",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 82.3,
+   "invocations": 11,
+   "scenarios": 11,
+   "jvms": 1,
+   "masked": 143,
+   "cuts": 0,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 94.1,
+   "invocations": 11,
+   "scenarios": 11,
+   "jvms": 1,
+   "masked": 143,
+   "cuts": 0,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 11,
+  "structure_hits": 11,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 11,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 11,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 11,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 11,
+  "io_hit_ids": [
+   "0032afe924a4",
+   "3cbdf40976d7",
+   "462ef37c32fc",
+   "4da2ffa4c1d7",
+   "97fc8a62a8e5",
+   "a9ae1c5980e4",
+   "b6ca12c2a05a",
+   "c1b0ee4a5d91",
+   "c848d7d3ee9b",
+   "cf084490b25b",
+   "fbe37611bdb8"
+  ],
+  "data_hits": 11,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [
+   "auditService",
+   "bizConfig",
+   "releaseHistoryRepository",
+   "releaseRepository",
+   "transactionManager"
+  ],
+  "dependency_fields_count": 5,
+  "value_dependencies": [
+   "value.dataChangeCreatedTime",
+   "value.dataChangeLastModifiedTime"
+  ],
+  "value_dependencies_count": 2,
+  "masked": 286,
+  "cuts": 0
+ }
+}

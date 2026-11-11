@@ -1,0 +1,68 @@
+{
+ "case_id": "jsoup-element-has-class",
+ "project": "jsoup",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 17.5,
+   "invocations": 13,
+   "scenarios": 13,
+   "jvms": 1,
+   "masked": 26,
+   "cuts": 218,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 21.0,
+   "invocations": 13,
+   "scenarios": 13,
+   "jvms": 1,
+   "masked": 26,
+   "cuts": 218,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 13,
+  "structure_hits": 13,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 13,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 13,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 13,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 13,
+  "io_hit_ids": [
+   "11999b79d91b",
+   "15fe4981f5ef",
+   "262ea5974b99",
+   "50e70178e70e",
+   "5b36ff42993f",
+   "5e366ece7fb1",
+   "62a113ba2fc7",
+   "6451fab72b5e",
+   "bebe73c11ce5",
+   "c9de8914e173",
+   "dc0cde7421d4",
+   "e79d43768ed4",
+   "ec9720c76729"
+  ],
+  "data_hits": 13,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [],
+  "dependency_fields_count": 0,
+  "value_dependencies": [],
+  "value_dependencies_count": 0,
+  "masked": 52,
+  "cuts": 436
+ }
+}

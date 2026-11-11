@@ -1,0 +1,16 @@
+id: pdfbox-font-descriptor-get-flags
+project: pdfbox
+group: indirect
+target:
+  class: org.apache.pdfbox.pdmodel.font.PDFontDescriptor
+  method: getFlags
+  signature: () -> int
+scenario:
+  test: org.apache.pdfbox.pdmodel.font.PDFontTest#testPDFox5048
+  source: pdfbox/src/test/java/org/apache/pdfbox/pdmodel/font/PDFontTest.java
+output_test_file: pdfbox/src/test/java/org/apache/pdfbox/pdmodel/font/PDFontDescriptorCarvedTest.java
+hidden_paths: []
+commands:
+  build: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -Dtest=PDFontTest#testPDFox5048, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -Dtest=PDFontDescriptorCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

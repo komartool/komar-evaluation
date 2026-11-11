@@ -1,0 +1,18 @@
+id: checkstyle-checker-process
+project: checkstyle
+group: direct
+target:
+  class: com.puppycrawl.tools.checkstyle.Checker
+  method: process
+  signature: (java.util.List) -> int
+scenario:
+  test: com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheckTest#testKeywordsAndOperators
+  source: src/test/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheckTest.java
+output_test_file: src/test/java/com/puppycrawl/tools/checkstyle/CheckerProcessCarvedTest.java
+hidden_paths:
+- src/test/java/com/puppycrawl/tools/checkstyle/CheckerTest.java
+commands:
+  build: [mvn, -q, -o, -Djacoco.skip=true, -Dexec.skip=true, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -Djacoco.skip=true, -Dexec.skip=true, -Dtest=WhitespaceAroundCheckTest#testKeywordsAndOperators, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false,
+    test]
+  generated_test: [mvn, -q, -o, -Djacoco.skip=true, -Dexec.skip=true, -Dtest=CheckerProcessCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

@@ -1,0 +1,66 @@
+{
+ "case_id": "mybatis-caching-executor-query",
+ "project": "mybatis",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 111.3,
+   "invocations": 2,
+   "scenarios": 2,
+   "jvms": 1,
+   "masked": 46,
+   "cuts": 510,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 113.2,
+   "invocations": 2,
+   "scenarios": 2,
+   "jvms": 1,
+   "masked": 46,
+   "cuts": 510,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 2,
+  "structure_hits": 2,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 2,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 2,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 2,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 2,
+  "io_hit_ids": [
+   "32de5e31af92",
+   "4e4a8c816255"
+  ],
+  "data_hits": 2,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [],
+  "dependency_fields_count": 0,
+  "value_dependencies": [
+   "args[0].cache.delegate.log",
+   "args[0].cache.lock",
+   "args[0].configuration.incompleteCacheRefsLock",
+   "args[0].configuration.incompleteMethodsLock",
+   "args[0].configuration.incompleteResultMapsLock",
+   "args[0].configuration.incompleteStatementsLock",
+   "args[0].configuration.mappedStatements.conflictMessageProducer",
+   "args[0].statementLog"
+  ],
+  "value_dependencies_count": 8,
+  "masked": 92,
+  "cuts": 1020
+ }
+}

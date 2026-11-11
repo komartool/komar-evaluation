@@ -1,0 +1,17 @@
+id: mybatis-default-sql-session-update
+project: mybatis
+group: direct
+target:
+  class: org.apache.ibatis.session.defaults.DefaultSqlSession
+  method: update
+  signature: (java.lang.String, java.lang.Object) -> int
+scenario:
+  test: org.apache.ibatis.submitted.complex_type.ComplexTypeTest#shouldUpdateProps
+  source: src/test/java/org/apache/ibatis/submitted/complex_type/ComplexTypeTest.java
+output_test_file: src/test/java/org/apache/ibatis/session/defaults/DefaultSqlSessionUpdateCarvedTest.java
+hidden_paths:
+- src/test/java/org/apache/ibatis/session/SqlSessionTest.java
+commands:
+  build: [./mvnw, -Dlicense.skip=true, -q, -o, -DskipTests, test-compile]
+  scenario: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=ComplexTypeTest#shouldUpdateProps, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [./mvnw, -Dlicense.skip=true, -q, -o, -Dtest=DefaultSqlSessionUpdateCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]

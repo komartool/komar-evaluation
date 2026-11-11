@@ -1,0 +1,18 @@
+id: checkstyle-xpath-query-generator-generate
+project: checkstyle
+group: direct
+target:
+  class: com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator
+  method: generate
+  signature: () -> java.util.List
+scenario:
+  test: com.puppycrawl.tools.checkstyle.xpath.XpathQueryGeneratorTest#testTabWidthBeforeMethodDef
+  source: src/test/java/com/puppycrawl/tools/checkstyle/xpath/XpathQueryGeneratorTest.java
+output_test_file: src/test/java/com/puppycrawl/tools/checkstyle/xpath/XpathQueryGeneratorGenerateCarvedTest.java
+hidden_paths: []
+commands:
+  build: [mvn, -q, -o, -Djacoco.skip=true, -Dexec.skip=true, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -Djacoco.skip=true, -Dexec.skip=true, -Dtest=XpathQueryGeneratorTest#testTabWidthBeforeMethodDef, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false,
+    test]
+  generated_test: [mvn, -q, -o, -Djacoco.skip=true, -Dexec.skip=true, -Dtest=XpathQueryGeneratorGenerateCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false,
+    test]

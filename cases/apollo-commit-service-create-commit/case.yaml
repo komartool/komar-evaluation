@@ -1,0 +1,16 @@
+id: apollo-commit-service-create-commit
+project: apollo
+group: indirect
+target:
+  class: com.ctrip.framework.apollo.biz.service.CommitService
+  method: createCommit
+  signature: (java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String) -> void
+scenario:
+  test: com.ctrip.framework.apollo.biz.service.ItemSetServiceTest
+  source: apollo-biz/src/test/java/com/ctrip/framework/apollo/biz/service/ItemSetServiceTest.java
+output_test_file: apollo-biz/src/test/java/com/ctrip/framework/apollo/biz/service/CommitServiceCreateCommitCarvedTest.java
+hidden_paths: []
+commands:
+  build: [mvn, -q, -o, -pl, apollo-biz, -am, -DskipTests, -Dexec.skip=true, test-compile]
+  scenario: [mvn, -q, -o, -pl, apollo-biz, -am, -Dtest=ItemSetServiceTest, -Dsurefire.failIfNoSpecifiedTests=false, -DfailIfNoTests=false, -Dexec.skip=true, test]
+  generated_test: [mvn, -q, -o, -pl, apollo-biz, -am, -Dtest=CommitServiceCreateCommitCarvedTest, -Dsurefire.failIfNoSpecifiedTests=false, -DfailIfNoTests=false, -Dexec.skip=true, test]

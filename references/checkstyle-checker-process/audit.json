@@ -1,0 +1,56 @@
+{
+ "case_id": "checkstyle-checker-process",
+ "project": "checkstyle",
+ "depth": 5,
+ "runs": [
+  {
+   "exit_code": 0,
+   "seconds": 405.7,
+   "invocations": 1,
+   "scenarios": 1,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 112,
+   "errors": []
+  },
+  {
+   "exit_code": 0,
+   "seconds": 323.2,
+   "invocations": 1,
+   "scenarios": 1,
+   "jvms": 1,
+   "masked": 0,
+   "cuts": 112,
+   "errors": []
+  }
+ ],
+ "unstable_paths": [],
+ "run1_vs_run2": {
+  "scenarios": 1,
+  "structure_hits": 1,
+  "recall_structure": 1.0,
+  "precision_structure": 1.0,
+  "io_hits": 1,
+  "recall_io": 1.0,
+  "precision_io": 1.0,
+  "state_hits": 1,
+  "recall_state": 1.0,
+  "precision_state": 1.0,
+  "strict_hits": 1,
+  "recall_strict": 1.0,
+  "precision_strict": 1.0,
+  "candidate_scenarios": 1,
+  "io_hit_ids": [
+   "0ac1fd7e48a6"
+  ],
+  "data_hits": 1,
+  "recall_data": 1.0,
+  "precision_data": 1.0,
+  "dependency_fields": [],
+  "dependency_fields_count": 0,
+  "value_dependencies": [],
+  "value_dependencies_count": 0,
+  "masked": 0,
+  "cuts": 224
+ }
+}

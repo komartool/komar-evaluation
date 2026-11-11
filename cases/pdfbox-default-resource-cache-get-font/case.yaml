@@ -1,0 +1,16 @@
+id: pdfbox-default-resource-cache-get-font
+project: pdfbox
+group: indirect
+target:
+  class: org.apache.pdfbox.pdmodel.DefaultResourceCache
+  method: getFont
+  signature: (org.apache.pdfbox.cos.COSObject) -> org.apache.pdfbox.pdmodel.font.PDFont
+scenario:
+  test: org.apache.pdfbox.pdmodel.interactive.form.MultilineFieldsTest#testMultilineBreak
+  source: pdfbox/src/test/java/org/apache/pdfbox/pdmodel/interactive/form/MultilineFieldsTest.java
+output_test_file: pdfbox/src/test/java/org/apache/pdfbox/pdmodel/DefaultResourceCacheCarvedTest.java
+hidden_paths: []
+commands:
+  build: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -DskipTests, test-compile]
+  scenario: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -Dtest=MultilineFieldsTest#testMultilineBreak, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
+  generated_test: [mvn, -q, -o, -pl, pdfbox, -Drat.skip=true, -Danimal.sniffer.skip=true, -Dtest=DefaultResourceCacheCarvedTest, -Dsurefire.failIfNoTests=false, -DfailIfNoTests=false, -Dsurefire.failIfNoSpecifiedTests=false, test]
