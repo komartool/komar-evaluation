@@ -604,11 +604,22 @@ def compare(reference: list[dict[str, Any]], candidate: list[dict[str, Any]] | N
     return out
 
 
+def own_invocations(candidate: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """The invocations of the target that the generated test makes itself: those reached through the
+    scenario test (its class on the stack, `via_scenario`) are dropped, so that a test running the
+    scenario cannot reproduce it by construction."""
+    return [inv for inv in candidate if not inv.get("via_scenario")]
+
+
 def level_b(reference: list[dict[str, Any]], candidate: list[dict[str, Any]] | None, project: str | None,
             labelled: set[str]) -> dict[str, Any]:
-    """Level B of a candidate under the asymmetric rule with the case's labelled dependency fields."""
-    r = compare(reference, candidate, load_nondet(), project, asymmetric=True, labelled=labelled)
+    """Level B of a candidate under the asymmetric rule with the case's labelled dependency fields,
+    over the invocations the generated test makes itself (own_invocations)."""
+    counted = None if candidate is None else own_invocations(candidate)
+    r = compare(reference, counted, load_nondet(), project, asymmetric=True, labelled=labelled)
     return {"b": r["recall_state"], "hits": r["state_hits"], "scenarios": r["scenarios"],
+            "invocations_total": None if candidate is None else len(candidate),
+            "invocations_counted": None if counted is None else len(counted),
             "precision": r["precision_state"], "candidate_scenarios": r["candidate_scenarios"],
             "dependency_fields": r["dependency_fields"], "value_dependencies": r["value_dependencies"],
             "masked": r["masked"], "cuts": r["cuts"]}
@@ -620,8 +631,9 @@ def _from_class(caller: str | None, test_class: str) -> bool:
 
 def caller_stats(candidate: list[dict[str, Any]], test_class: str, scenario_test: str,
                  not_from_test_limit: float = 0.5) -> dict[str, Any]:
-    """Where the candidate's invocations of the target come from. RQ1 counts all of them (fixed
-    before the run); these fields show whether the generated test calls the target itself.
+    """Where the candidate's invocations of the target come from. Level B drops the ones reached
+    through the scenario test (own_invocations); these fields show whether the generated test calls
+    the target itself.
 
       called_from_test_class   share of distinct candidate scenarios (level C) with at least one
                                invocation called from the generated class or its nested classes

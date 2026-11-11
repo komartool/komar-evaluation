@@ -324,7 +324,7 @@ class DebuggerIntegrationTest(unittest.TestCase):
                         os.environ.pop(k, None)
                     else:
                         os.environ[k] = v
-            logs = "".join(f.read_text(errors="replace") for f in sorted(agent.glob("scenario-debug-run*.log")))
+            logs = "".join(f.read_text(errors="replace") for f in sorted(agent.glob("scenario-debug-start*.log")))
         return out, logs
 
 

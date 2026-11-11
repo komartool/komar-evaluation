@@ -16,7 +16,7 @@ of breakpoints, phases, evidence files) is prescribed.
 
 | Tool | Arguments | Answer |
 |---|---|---|
-| `debug_start` | none | starts the scenario command of the case with the JDWP agent (`-Dmaven.surefire.debug=…suspend=y`, a port of the cell) and attaches; the JVM waits before its first instruction. Called again: the current run is killed and the scenario runs again (run #2, …); breakpoints are kept. At most `debug_runs` runs per cell (config, default 3; failed starts count): a further call answers `limit of N scenario runs reached; write the test from the data you have` and is journalled as `start_refused`. Any bash command ends the debug JVM, so the next `debug_start` uses up a run. |
+| `debug_start` | none | starts the scenario command of the case with the JDWP agent (`-Dmaven.surefire.debug=…suspend=y`, a port of the cell) and attaches; the JVM waits before its first instruction. Called again: the current run is killed and the scenario runs again (run #2, …); breakpoints are kept. At most `debug_runs` runs per cell (config, default 3); a run counts once the scenario JVM has reached the debugger, a start that fails before that (no JVM within the start timeout, or the command exits first) does not count and is journalled as `start_failed`: a further call answers `limit of N scenario runs reached; write the test from the data you have` and is journalled as `start_refused`. Any bash command ends the debug JVM, so the next `debug_start` uses up a run. |
 | `set_breakpoint` | line form: `file`, `code` (the text of the line, at most 200 characters, compared with whitespace collapsed), optional `line`; method form: `method` (`pkg.Class#name`, argument types only for overloads), `on` = `entry` / `exit`; optional `condition` | `#id … set` / `pending (class not loaded yet)`. A text that occurs on several lines without `line` is an error listing the line numbers; a given `line` must hold the text. |
 | `remove_breakpoint` | `id` | |
 | `resume` | `timeout_s` (default 300 for the first resume of a run, 60 later; at most 600) | the next stop: kind (breakpoint, entry, exit, exception), breakpoint ids with hit numbers, at most 5 project frames (`… (+N project frames)`), the top frame: the fields of `this` one level deep (instance methods), the arguments to depth 1, other locals as values or `Type@N`; `returned = …` at an exit; `exception: X: "message" thrown out of <method>` when the method is left by an exception; `terminated: run #N ended, K stops` at the end of the run; `still running after N s` |
@@ -82,7 +82,7 @@ the method left — is the target method), plus the ends of runs. `summary.json:
 calls by tool, JVM runs and the run limit (`run_limit`, cells that used all runs, cells with a
 refused start), failed starts, stops, stops in the target method, plan revisions (breakpoints set or
 removed after the first stop), answer characters. The agent writes no evidence
-file. `artifacts/scenario-debug-run<N>.log` keeps the output of every scenario run.
+file. `artifacts/scenario-debug-start<N>.log` keeps the output of every start of the scenario, failed ones included.
 
 Escape check: every `inspect` expression and breakpoint condition is matched against file system,
 process, environment, class loader and reflection names (the server refuses such calls anyway).

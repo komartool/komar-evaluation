@@ -173,7 +173,8 @@ def eval_b(cfg: Config, case: Case, cell: Path, rec: dict[str, Any], reuse_trace
             if trace["run"]["exit_code"] == 0:
                 candidate = trace["invocations"]
             else:
-                note = f"generated test exit code {trace['run']['exit_code']} under the tracer"
+                # a test that passed verify but fails under the tracer: a result (B = 0), counted apart
+                note = f"trace_failed: generated test exit code {trace['run']['exit_code']} under the tracer"
         finally:
             shutil.rmtree(ws, ignore_errors=True)
             shutil.rmtree(out_dir, ignore_errors=True)
@@ -212,6 +213,11 @@ def evaluate_cell(cfg: Config, cell: Path, steps: list[str] | None = None, force
                                  if (stored or {}).get(k) != current.get(k))
                 raise StaleResult(f"{cell}: stored {step} was computed from other inputs ({', '.join(changed)}); "
                                   "rerun with --force")
+            continue
+        if step == "b" and rec.get("verify") is None:
+            # verify failed for a transient reason (or was not run): B would be computed as if the test
+            # had failed; wait for the next evaluation
+            transient.append("b: waits for verify")
             continue
         try:
             if step == "b" and reuse_traces:

@@ -165,11 +165,19 @@ class StaleAndTransientTest(unittest.TestCase):
     def test_transient_errors_are_not_stored(self):
         def boom(*a):
             raise E.Transient("b: generated test timed out")
-        with mock.patch.dict(E.STEPS, {"b": boom}):
-            rec = E.evaluate_cell(self.cfg, self.cell, ["b"])
+        with mock.patch.dict(E.STEPS, {"verify": lambda *a: {"passes": True}, "b": boom}):
+            rec = E.evaluate_cell(self.cfg, self.cell, ["verify", "b"])
         self.assertNotIn("b", rec)
         self.assertEqual(rec["transient_errors"], ["b: generated test timed out"])
         self.assertNotIn("b", json.loads((self.cell / "eval.json").read_text()))
+
+    def test_b_waits_for_a_transient_verify(self):
+        def slow(*a):
+            raise E.Transient("verify: build timed out")
+        with mock.patch.dict(E.STEPS, {"verify": slow}):
+            rec = E.evaluate_cell(self.cfg, self.cell, ["verify", "b"])
+        self.assertNotIn("b", rec)
+        self.assertEqual(rec["transient_errors"], ["verify: build timed out", "b: waits for verify"])
 
 
 class CellSelectionTest(unittest.TestCase):
@@ -202,6 +210,7 @@ class ReferenceValidationTest(unittest.TestCase):
     def test_rejected_reference_keeps_its_traces_under_other_names(self):
         tmp = Path(tempfile.mkdtemp())
         cfg = load_config(config(tmp))
+        cfg.references_root = tmp / "references"  # never the shipped references of the repository
         case = mock.Mock(id="c", project="p")
         traces = [{"run": {"exit_code": 0, "seconds": 1}, "errors": [], "invocations": [], "n": i} for i in (1, 2)]
         out = cfg.references_dir / "c"
@@ -231,6 +240,37 @@ def rec(case, mode, rnd, b=1.0, passes=True):
 
 
 class AggregateTest(unittest.TestCase):
+    def test_incomplete_cells_are_never_scored(self):
+        self.assertEqual(AG.incomplete_reason(None), "no evaluation record")
+        self.assertEqual(AG.incomplete_reason({"transient_errors": ["verify: x"]}), "not verified (verify: x)")
+        passing_no_b = {"case_id": "c1", "mode": "komar", "run_id": "r1", "verify": {"passes": True}}
+        self.assertEqual(AG.incomplete_reason(passing_no_b), "test passes, level B missing")
+        self.assertIsNone(AG.incomplete_reason(rec("c1", "komar", 1, passes=False) | {"b": None}))
+        with self.assertRaises(ValueError):
+            AG.cell_b(passing_no_b)
+
+    def test_aggregate_stops_on_incomplete_cells_or_excludes_their_cases(self):
+        tmp = Path(tempfile.mkdtemp())
+        cases = ["jsoup-normalise-whitespace", "jsoup-element-has-class"]
+        path = config(tmp, rounds=[1], modes=["baseline", "komar"], cases=cases)
+        cfg = load_config(path)
+        for case in cases:
+            for mode in ("baseline", "komar"):
+                d = cfg.cell_dir(case, mode, "r1")
+                d.mkdir(parents=True)
+                (d / "summary.json").write_text("{}")
+                r = rec(case, mode, 1)
+                if (case, mode) == (cases[1], "komar"):
+                    del r["b"]  # passing test, B missing
+                (d / "eval.json").write_text(json.dumps(r))
+        self.assertEqual([(c["case"], c["mode"]) for c in AG.incomplete_cells(cfg, AG.load(cfg))],
+                         [(cases[1], "komar")])
+        self.assertEqual(AG.main(["--config", str(path)]), 2)
+        out = tmp / "out.json"
+        self.assertEqual(AG.main(["--config", str(path), "--exclude-incomplete", "--json", str(out)]), 0)
+        rows = {r["mode"]: r for r in json.loads(out.read_text())[0]["modes"]}
+        self.assertEqual((rows["baseline"]["cases"], rows["komar"]["cases"]), (1, 1))  # dropped from both
+
     def test_case_means_failed_cells_score_zero(self):
         recs = [rec("c1", "baseline", 1, b=0.0), rec("c1", "baseline", 2, b=1.0),
                 rec("c2", "baseline", 1, b=1.0), rec("c2", "baseline", 2, b=1.0, passes=False),

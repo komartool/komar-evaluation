@@ -160,7 +160,8 @@ def _generate(cfg: Config, case: Case, mode: str, checkout: Path, commit: str, c
     if mode not in AGENT_MODES:
         raise ValueError(f"unknown mode {mode}")
     summary["phase"] = "agent"
-    commands = {n: case.commands[n] for n in AGENT_COMMANDS}
+    # the same argv as the evaluation and the debugger/Komar scenario runs (eval_maven_args included)
+    commands = {n: eval_command(case, n) for n in AGENT_COMMANDS}
     prompts = render(cfg.prompts_dir, case, mode, commands, cfg.debug_runs)
     _write(cell / "prompts" / "system.txt", prompts["system"])
     _write(cell / "prompts" / "task.txt", prompts["task"])
@@ -189,7 +190,7 @@ def _generate(cfg: Config, case: Case, mode: str, checkout: Path, commit: str, c
     if res.debug_log is not None:
         from runner import debugger as D
         _jsonl(cell / "artifacts" / "debug-log.jsonl", res.debug_log)
-        for log in sorted((tmp / "agent").glob("scenario-debug-run*.log")):
+        for log in sorted((tmp / "agent").glob("scenario-debug-start*.log")):
             _write(cell / "artifacts" / log.name, log.read_text(encoding="utf-8", errors="replace")[-20000:])
         summary["debugger"] = D.journal_summary(res.debug_log, cfg.debug_runs)
     _jsonl(cell / "artifacts" / "agent-commands.jsonl", res.commands)

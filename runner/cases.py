@@ -140,8 +140,9 @@ def check_jdk(cfg: Config, ids: list[str]) -> None:
 
 
 def eval_command(case: Case, name: str) -> list[str]:
-    """A case command as the evaluation runs it (verification, tracing): the
-    project's eval_maven_args added after the executable. The agent gets case.commands unchanged."""
+    """A case command with the project's eval_maven_args added after the executable: the form every
+    run uses (the agent's commands in all modes, the scenario under the debugger or Komar,
+    verification, tracing)."""
     argv = list(case.commands[name])
     extra = list(load_projects()[case.project].eval_maven_args)
     return argv[:1] + extra + argv[1:] if extra else argv

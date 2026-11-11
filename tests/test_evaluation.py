@@ -198,6 +198,18 @@ class CompareTest(unittest.TestCase):
         s = C.caller_stats([{**own, "via_scenario": True}], "p.FooCarvedTest", "p.ScenarioTest")
         self.assertTrue(s["runs_scenario"])
 
+    def test_level_b_drops_invocations_through_the_scenario(self):
+        ref = [{**inv(["a"]), "via_scenario": True}, {**inv(["b"]), "via_scenario": True}]
+        # a test that runs the scenario test: it reproduces everything, but only through the scenario
+        shortcut = [{**inv(["a"]), "via_scenario": True}, {**inv(["b"]), "via_scenario": True}]
+        b = C.level_b(ref, shortcut, None, set())
+        self.assertEqual((b["b"], b["invocations_total"], b["invocations_counted"]), (0.0, 2, 0))
+        # its own call of the target counts, the one through the scenario does not
+        mixed = [{**inv(["a"]), "via_scenario": False}, {**inv(["b"]), "via_scenario": True}]
+        b = C.level_b(ref, mixed, None, set())
+        self.assertEqual((b["b"], b["invocations_counted"], b["precision"]), (0.5, 1, 1.0))
+        self.assertIsNone(C.level_b(ref, None, None, set())["invocations_total"])
+
     def test_unstable_between_runs_with_different_counts(self):
         norm = C.Normaliser(self.NO_ND, "p")
         a = [inv(["x"]), inv(["y"])]

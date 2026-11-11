@@ -1,9 +1,9 @@
 # Subject projects. Every case of a project uses the same commit.
 #
-# eval_maven_args: added to the build and test commands of the evaluation (verification, tracing),
-# never to the commands of the agent. They switch off code-format checks
+# eval_maven_args: added to every build and test command (the agent's commands in all modes, the
+# scenario under the debugger or Komar, verification, tracing). They switch off code-format checks
 # bound to early Maven phases, so that the format of a generated test does not decide whether it
-# compiles; the agent modes still see the project's checks through their own commands.
+# compiles.
 
 apollo:
   url: https://github.com/apolloconfig/apollo.git

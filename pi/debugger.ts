@@ -214,7 +214,9 @@ export default function (pi: ExtensionAPI) {
 	let client: DapClient | undefined;
 	let scenario: ChildProcess | undefined;
 	let scenarioExit: number | null | undefined;
+	/** Runs that reached the debugger (count against debug_runs); `attempt` also counts failed starts. */
 	let run = 0;
+	let attempt = 0;
 	let state: "none" | "suspended" | "running" | "over" = "none";
 	let nextId = 1;
 	const hits = new Map<number, number>();
@@ -371,7 +373,7 @@ export default function (pi: ExtensionAPI) {
 
 	function scenarioTail(): string {
 		try {
-			const s = readFileSync(resolve(config.scenario_log_dir, `scenario-debug-run${run}.log`), "utf-8");
+			const s = readFileSync(resolve(config.scenario_log_dir, `scenario-debug-start${attempt}.log`), "utf-8");
 			return s.split(/\r?\n/).filter((l) => l.trim()).slice(-15).join("\n");
 		} catch {
 			return "";
@@ -464,7 +466,7 @@ export default function (pi: ExtensionAPI) {
 
 	register(
 		"debug_start",
-		`Start the driving scenario of the task under the debugger and attach to its JVM, which waits suspended before running. Set breakpoints, then call resume. Calling debug_start again stops the current run and starts the scenario again; breakpoints are kept. At most ${maxRuns} runs. Any bash command ends the debug JVM, so the next debug_start uses up a run.`,
+		`Start the driving scenario of the task under the debugger and attach to its JVM, which waits suspended before running. Set breakpoints, then call resume. Calling debug_start again stops the current run and starts the scenario again; breakpoints are kept. At most ${maxRuns} runs; a start whose JVM never reaches the debugger does not count. Any bash command ends the debug JVM, so the next debug_start uses up a run.`,
 		Type.Object({}),
 		async (_p, signal) => {
 			if (run >= maxRuns) {
@@ -477,12 +479,12 @@ export default function (pi: ExtensionAPI) {
 			const c = await ensureServer();
 			if (state !== "none") await endRun("restart");
 			queue.length = 0;
-			run++;
+			attempt++;
 			hits.clear();
 			stopsInRun = 0;
 			resumedInRun = false;
 			const argv = debugArgv(config.scenario, config.port);
-			const logFile = resolve(config.scenario_log_dir, `scenario-debug-run${run}.log`);
+			const logFile = resolve(config.scenario_log_dir, `scenario-debug-start${attempt}.log`);
 			const fd = openSync(logFile, "a");
 			scenarioExit = undefined;
 			scenario = spawn(argv[0].startsWith("./") ? resolve(workspace, argv[0]) : argv[0], argv.slice(1), {
@@ -501,14 +503,15 @@ export default function (pi: ExtensionAPI) {
 				const code = await waitScenarioExit(1000);
 				await killScenario();
 				state = "over";
-				log({ event: "run_end", reason: "no_jvm", exit_code: code ?? null });
+				log({ event: "run_end", reason: "no_jvm", exit_code: code ?? null, attempt });
 				const tail = scenarioTail();
 				return {
 					ok: false,
-					text: `run #${run}: the scenario ${code === undefined || code === null ? `started no test JVM within ${config.start_timeout} s` : `command exited with code ${code} before a test JVM started`}${tail ? `\nlast output:\n${tail}` : ""}`,
+					text: `start failed (not counted as a run; ${maxRuns - run} left): the scenario ${code === undefined || code === null ? `started no test JVM within ${config.start_timeout} s` : `command exited with code ${code} before a test JVM started`}${tail ? `\nlast output:\n${tail}` : ""}`,
 					extra: { event: { kind: "start_failed" } },
 				};
 			}
+			run++;
 			state = "suspended";
 			const sts = (r.body?.breakpoints ?? []) as any[];
 			const lines = [`run #${run}: scenario JVM started and suspended before its first instruction; call resume to run it`];

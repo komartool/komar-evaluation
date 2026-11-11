@@ -16,8 +16,9 @@ with the recorded behaviour of the target method.
 
 Everything else is the same in every mode: the system prompt and the common task prompt, the model and its
 settings, the wall-clock limit, the three commands the agent may run (`build`, `scenario`,
-`generated_test`), the workspace guard. `autonomous` and `komar` may run the scenario at most `debug_runs`
-times (default 3).
+`generated_test`, with the same Maven arguments as every other run of the case), the workspace guard.
+`autonomous` and `komar` may run the scenario at most `debug_runs` times (default 3): a debugger run counts
+once its JVM has reached the debugger, a Komar run once the spec is valid.
 
 ## Metric: level B
 
@@ -25,7 +26,12 @@ A scenario is a distinct invocation of the target method in the reference trace 
 scenario test run twice under a BTrace tracer; both runs must agree). Level B of a generated test is the
 share of reference scenarios that the test reproduces: the outcome (return or exception class), the
 signatures of the calls the target method makes, the arguments, the returned value and the receiver state
-(field graphs up to depth 5). A cell whose test does not compile or pass scores 0.
+(field graphs up to depth 5). A cell whose test does not compile or pass scores 0, as does a test that
+passes but fails under the tracer (counted apart). Only the invocations the generated test makes itself
+count: an invocation reached through the scenario test (its class on the stack) is dropped.
+
+Precision is the share of the test's distinct counted invocations of the target that match a reference
+scenario at level B; it is reported next to B and does not enter it.
 
 Collaborators. A unit test may replace a collaborator of the target method with a stub, so some values are
 compared by presence only (null or not):
@@ -84,7 +90,12 @@ are sha256-checked).
 
 For the 31 JDK 11 cases use a second config with `jdk: 11`, `case_list: cases-jdk11.csv` and
 `paths.java_home` pointing at the JDK 11 (and its own `paths.projects`, `paths.results`), then run
-`scripts/setup.sh` with it.
+`scripts/setup.sh` with it. Komar itself is built with JDK 21+ and its agent runs on JDK 11; with a JDK 11
+config give the build JDK explicitly:
+
+```
+KOMAR_BUILD_JDK=/opt/jdk-21 scripts/setup_komar.sh config-jdk11.yaml
+```
 
 ## Configuration
 
@@ -138,9 +149,14 @@ config, project, Komar build, normalisation lists, dependency labels, reference)
 inputs changed is never reused silently. `python3 -m evaluation.evaluate --config config.yaml --steps b
 --force --reuse-traces` recomputes level B from the kept candidate traces without running the tests again.
 
-`evaluation.aggregate` reports, per case list and together: cells, passing cells and mean B per mode (a case
-is the mean over its rounds), and every pair of modes compared per case (mean difference, bootstrap 95%
-interval, wins/ties/losses, Wilcoxon signed-rank p).
+`evaluation.aggregate` reports, per case list and together: cells, passing cells, mean B and mean precision
+per mode (a case is the mean over its rounds), cells where invocations through the scenario were dropped,
+cells whose test failed under the tracer, the runs of the debugger (JVM runs, failed and refused starts) and
+of Komar (runs, spec errors, refused runs), and every pair of modes compared per case (cases, mean
+difference, bootstrap 95% interval, wins/ties/losses, Wilcoxon signed-rank p). It stops if a cell of the
+config is incomplete (not generated, not evaluated, or a passing test without level B) and lists those
+cells: rerun the evaluation, or the cell under the infrastructure rule; `--exclude-incomplete` drops their
+cases from every mode instead.
 
 ## Relabelling the dependency fields
 
